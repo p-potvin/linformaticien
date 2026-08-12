@@ -77,8 +77,10 @@ echo "dev now serving ${SHA}"
 
 # Keep the last N releases so promotion and rollback always have a target.
 # Never prune whatever dev or prod currently point at.
-CURRENT_DEV="$(readlink -f "${ROOT_DIR}/dev" || true)"
-CURRENT_PROD="$(readlink -f "${ROOT_DIR}/prod" || true)"
+CURRENT_DEV=""
+CURRENT_PROD=""
+[[ -L "${ROOT_DIR}/dev" ]]  && CURRENT_DEV="$(readlink -f "${ROOT_DIR}/dev")"
+[[ -L "${ROOT_DIR}/prod" ]] && CURRENT_PROD="$(readlink -f "${ROOT_DIR}/prod")"
 
 # shellcheck disable=SC2012
 ls -1dt "${RELEASES_DIR}"/*/ 2>/dev/null | tail -n "+$((KEEP_RELEASES + 1))" | while read -r old; do

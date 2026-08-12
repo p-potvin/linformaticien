@@ -18,9 +18,22 @@ ROOT_DIR="/var/www/linformaticien"
 RELEASES_DIR="${ROOT_DIR}/releases"
 PREV_MARK="${ROOT_DIR}/.prod-previous"
 
+# `readlink -f` canonicalizes a path that does not exist and exits 0, so on an
+# unpromoted host it would report `prod -> /var/www/linformaticien/prod`, which
+# reads like prod points at itself. Resolve only actual symlinks.
+link_target() {
+  local link="$1"
+  if [[ -L "$link" ]]; then
+    readlink -f "$link"
+  fi
+}
+
 show_status() {
-  echo "dev  -> $(readlink -f "${ROOT_DIR}/dev" 2>/dev/null || echo '(none)')"
-  echo "prod -> $(readlink -f "${ROOT_DIR}/prod" 2>/dev/null || echo '(none)')"
+  local dev prod
+  dev="$(link_target "${ROOT_DIR}/dev")"
+  prod="$(link_target "${ROOT_DIR}/prod")"
+  echo "dev  -> ${dev:-(not deployed)}"
+  echo "prod -> ${prod:-(not promoted)}"
   if [[ -f "$PREV_MARK" ]]; then
     echo "prev -> $(cat "$PREV_MARK")"
   fi
@@ -39,7 +52,7 @@ flip_prod_to() {
   fi
 
   local current
-  current="$(readlink -f "${ROOT_DIR}/prod" 2>/dev/null || true)"
+  current="$(link_target "${ROOT_DIR}/prod")"
   if [[ -n "$current" && "$current" != "$target" ]]; then
     echo "$current" > "$PREV_MARK"
   fi
@@ -62,7 +75,7 @@ case "${1:-}" in
     flip_prod_to "$(cat "$PREV_MARK")"
     ;;
   "")
-    dev_target="$(readlink -f "${ROOT_DIR}/dev" 2>/dev/null || true)"
+    dev_target="$(link_target "${ROOT_DIR}/dev")"
     if [[ -z "$dev_target" ]]; then
       echo "dev is not pointing at a release yet" >&2
       exit 1
