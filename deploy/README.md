@@ -153,9 +153,28 @@ La version en ligne se lit dans le source de la page, en commentaire HTML
 | `Permission denied` sur le verrou | Verrou laissé à `root:root` | Le verrou vit dans `/var/lib/vw-deploy/`, mode 0666 |
 | Le déploiement passe mais la page ne change pas | `index.html` mis en cache | Le vhost envoie déjà `Cache-Control: no-cache` sur `index.html` |
 
+## Surveillance
+
+`linformaticien.ca` et le domaine de redirection sont enregistrés dans
+`health-ledger/services.yaml` (route de projet `production`, plancher d'alerte
+`medium`), sondés depuis `clopeux-desktop` et `vps-ovhcloud`. Greencloud est
+exclu de ses propres sondes : un hôte qui prouve qu'il se voit lui-même ne
+prouve rien.
+
+La sonde de production accepte `200` **ou** `404` tant que la production n'a pas
+été promue. À corriger le jour de la mise en ligne — voir `TODO.md`.
+
+`dev.linformaticien.ca` n'est pas encore surveillé : il manque une route
+split-DNS Tailscale pour `linformaticien.ca`, sans quoi les membres du tailnet
+résolvent le nom par le DNS public et se font refuser par la liste blanche du
+vhost. Le détail est consigné dans `services.yaml`.
+
+Modifier la surveillance passe par un push sur `main` de `health-ledger` : le
+déploiement redémarre les services Joker sur greencloud et OVH. Plus rien à
+configurer à la main sur les machines.
+
 ## Reste à faire (hors dépôt)
 
-- [ ] Déclarer le service dans `vault-monitor` et le tableau `health-ledger`.
-- [ ] Configurer une sonde Joker Probe sur `linformaticien.ca`.
+- [ ] Déclarer le service dans `vault-monitor`.
 - [ ] Ajouter les deux URL à `vaultwares-docs` → `operations/services-inventory`
       (règle : le jour même où une URL publique apparaît).
