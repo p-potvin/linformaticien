@@ -66,6 +66,7 @@ flip_prod_to() {
 case "${1:-}" in
   --status)
     show_status
+    exit 0
     ;;
   --rollback)
     if [[ ! -f "$PREV_MARK" ]]; then
