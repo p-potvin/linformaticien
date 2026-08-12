@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Système de design « L'Informaticien » — jetons portables
+   Mise à jour : Wed, 12 Aug 2026 08:32
+
+   Copie en CSS pur des jetons définis dans ../src/styles/theme.css.
+   Sert aux contextes sans Tailwind : affiche imprimée, gabarits, Claude Design.
+   Si vous modifiez une valeur ici, modifiez-la aussi dans theme.css.
+   ========================================================================== */
+
+:root {
+  /* --- Couleurs (contraste calculé sur fond blanc) ---------------------- */
+  --papier: #ffffff;        /* fond de page — jamais remplacé */
+  --creme: #f6f2ea;         /* teinte chaude, écran seulement */
+  --encre: #16232e;         /* texte courant                    14,3:1 */
+  --bleu: #10557f;          /* principale, boutons               6,6:1 */
+  --bleu-fonce: #0b3e5e;    /* survol, état actif               10,0:1 */
+  --bleu-pale: #e8f1f7;     /* surface teintée */
+  --orange: #b8500f;        /* accent : prix, soulignés          5,5:1 */
+  --orange-pale: #fdf0e6;   /* surface d'accent */
+  --vert: #1f6b47;          /* confirmation                      6,3:1 */
+  --gris: #5a6672;          /* texte secondaire                  5,9:1 */
+  --ligne: #d6dce2;         /* filets et bordures */
+
+  /* --- Typographie ----------------------------------------------------- */
+  --font-titre: "Bitter", Georgia, "Times New Roman", serif;
+  --font-texte: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+
+  --texte-mention: 0.875rem;  /* 14 px — mentions légales seulement */
+  --texte-petit: 1rem;        /* 16 px */
+  --texte-base: 1.125rem;     /* 18 px — plancher du corps de texte */
+  --texte-grand: 1.25rem;     /* 20 px */
+  --texte-xl: 1.5rem;         /* 24 px */
+  --texte-2xl: 1.875rem;      /* 30 px */
+  --texte-3xl: 2.25rem;       /* 36 px */
+  --texte-4xl: 3rem;          /* 48 px */
+  --texte-5xl: 3.75rem;       /* 60 px */
+
+  --interligne-lecture: 1.65;
+  --interligne-titre: 1.15;
+
+  /* --- Formes ---------------------------------------------------------- */
+  --rayon-carte: 0.75rem;
+  --rayon-grand: 1.25rem;
+  --ombre-carte: 0 1px 2px rgb(22 35 46 / 0.06), 0 8px 24px rgb(22 35 46 / 0.06);
+
+  /* --- Cibles ---------------------------------------------------------- */
+  --cible: 3rem;      /* 48 px minimum cliquable */
+  --cible-lg: 3.5rem; /* 56 px pour l'action principale */
+}
+
+/* --- Équivalents pour l'impression (points plutôt que pixels) -----------
+   Affiche 8,5 × 11 po. Plancher absolu : 12 pt pour le corps de texte.
+   corps      12–14 pt
+   intertitre 18–22 pt
+   titre      40–56 pt
+   téléphone  36 pt minimum
+   ---------------------------------------------------------------------- */

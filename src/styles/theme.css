@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Système de design « L'Informaticien »
+   Source de vérité des jetons (tokens). Ne pas coder de couleur en dur ailleurs.
+
+   Principes :
+   - Fond blanc uniquement (les affiches sont imprimées, la couleur de fond coûte cher).
+   - Gros texte : 18 px minimum pour le corps, interlignage généreux (1.65).
+   - Contraste AA ou mieux sur blanc pour TOUT texte.
+   - Cibles tactiles d'au moins 48 px, 56 px pour l'action principale.
+   ========================================================================== */
+
+@theme {
+  /* --- Couleurs -------------------------------------------------------- */
+  /* Ratios de contraste calculés sur fond blanc (#FFFFFF) */
+  --color-papier: #ffffff;          /* fond de page — jamais remplacé */
+  --color-creme: #f6f2ea;           /* teinte chaude, sections alternées (écran) */
+  --color-encre: #16232e;           /* texte courant                    14.3:1 */
+  --color-bleu: #10557f;            /* couleur principale, boutons       6.6:1 */
+  --color-bleu-fonce: #0b3e5e;      /* survol / état actif              10.0:1 */
+  --color-bleu-pale: #e8f1f7;       /* surface teintée, encadrés */
+  --color-orange: #b8500f;          /* accent : prix, soulignés          5.5:1 */
+  --color-orange-pale: #fdf0e6;     /* surface d'accent */
+  --color-vert: #1f6b47;            /* confirmation, « inclus »          6.3:1 */
+  --color-gris: #5a6672;            /* texte secondaire                  5.9:1 */
+  --color-ligne: #d6dce2;           /* filets et bordures */
+
+  /* --- Typographie ----------------------------------------------------- */
+  --font-titre: "Bitter", Georgia, "Times New Roman", serif;
+  --font-texte: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Échelle basée sur 18 px. Rien sous 1rem dans le contenu. */
+  --text-mention: 0.875rem;   /* 14 px — mentions légales seulement */
+  --text-petit: 1rem;         /* 16 px */
+  --text-base: 1.125rem;      /* 18 px — plancher du corps de texte */
+  --text-grand: 1.25rem;      /* 20 px — texte d'introduction */
+  --text-xl: 1.5rem;          /* 24 px */
+  --text-2xl: 1.875rem;       /* 30 px */
+  --text-3xl: 2.25rem;        /* 36 px */
+  --text-4xl: 3rem;           /* 48 px */
+  --text-5xl: 3.75rem;        /* 60 px */
+
+  --leading-lecture: 1.65;    /* corps de texte — aéré pour les yeux fatigués */
+  --leading-titre: 1.15;
+
+  /* --- Formes et profondeur -------------------------------------------- */
+  --radius-carte: 0.75rem;    /* 12 px */
+  --radius-grand: 1.25rem;    /* 20 px */
+
+  --shadow-carte: 0 1px 2px rgb(22 35 46 / 0.06), 0 8px 24px rgb(22 35 46 / 0.06);
+  --shadow-releve: 0 2px 4px rgb(22 35 46 / 0.08), 0 16px 40px rgb(22 35 46 / 0.1);
+
+  /* --- Cibles tactiles -------------------------------------------------- */
+  --spacing-cible: 3rem;      /* 48 px — minimum cliquable */
+  --spacing-cible-lg: 3.5rem; /* 56 px — action principale */
+}

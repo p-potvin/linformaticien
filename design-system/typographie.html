@@ -1,0 +1,118 @@
+<!-- @dsCard group="Fondations" -->
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Typographie — L'Informaticien</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+        background: #fff;
+        color: #16232e;
+        font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+      }
+      h1 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 36px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+      }
+      .note {
+        color: #5a6672;
+        max-width: 62ch;
+        margin: 0 0 40px;
+      }
+      .rangee {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 24px;
+        align-items: baseline;
+        padding: 18px 0;
+        border-top: 1px solid #d6dce2;
+      }
+      .etiquette {
+        font-size: 16px;
+        color: #5a6672;
+        font-variant-numeric: tabular-nums;
+      }
+      .titre {
+        font-family: Bitter, Georgia, serif;
+        font-weight: 600;
+        line-height: 1.15;
+      }
+      .plancher {
+        margin-top: 40px;
+        border-left: 4px solid #b8500f;
+        background: #fdf0e6;
+        padding: 20px 24px;
+        border-radius: 0 12px 12px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Typographie</h1>
+    <p class="note">
+      Deux familles, pas plus. <strong>Bitter</strong> (empattements) pour les titres :
+      solide, chaleureuse, très lisible à l'impression. <strong>Source Sans 3</strong>
+      pour tout le reste. Le corps de texte ne descend jamais sous 18 px à l'écran ni
+      sous 12 pt sur papier.
+    </p>
+
+    <div class="rangee">
+      <div class="etiquette">titre — 60 px</div>
+      <div class="titre" style="font-size: 60px">On règle ça ensemble</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">titre — 48 px</div>
+      <div class="titre" style="font-size: 48px">Ce que je fais</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">titre — 36 px</div>
+      <div class="titre" style="font-size: 36px">Comment ça marche</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">titre — 30 px</div>
+      <div class="titre" style="font-size: 30px">Réparer vos appareils</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">titre — 24 px</div>
+      <div class="titre" style="font-size: 24px">Vous montrer à vous en servir</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">grand — 20 px</div>
+      <div style="font-size: 20px">
+        Je me déplace chez vous pour réparer vos appareils et vous montrer
+        tranquillement comment vous en servir.
+      </div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">base — 18 px</div>
+      <div style="font-size: 18px">
+        Ordinateurs, ordinateurs portables, Mac, cellulaires, tablettes, télévisions,
+        imprimantes. On regarde ensemble ce qui cloche avant de parler d'argent.
+      </div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">petit — 16 px</div>
+      <div style="font-size: 16px">Navigation, étiquettes de formulaire.</div>
+    </div>
+    <div class="rangee">
+      <div class="etiquette">mention — 14 px</div>
+      <div style="font-size: 14px; color: #5a6672">
+        Mentions légales et droits d'auteur seulement. Jamais de contenu utile à cette
+        taille.
+      </div>
+    </div>
+
+    <div class="plancher">
+      <strong>Sur papier :</strong> corps 12–14 pt, intertitres 18–22 pt, titre
+      40–56 pt, numéro de téléphone 36 pt minimum. Un aîné doit pouvoir lire le
+      numéro à bout de bras.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+# Snippet to add under `targets:` in /etc/vw-webhookd/config.yml on greencloud.
+# `p-potvin` is already in server.allowed_owners, so nothing else changes there.
+#
+# Verified against /opt/vaultwares-adk/webhookd/vw_webhookd.py on
+# Wed, 12 Aug 2026 10:14 — targets are keyed by `owner/repo` and match exactly
+# one branch (line 329: `expected_branch = target.get("branch") or "main"`).
+# That is why production is a promotion rather than a second branch target.
+
+  p-potvin/linformaticien:
+    branch: main
+    command: /var/www/deploy-scripts/deploy-linformaticien.sh
