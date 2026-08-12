@@ -1,0 +1,133 @@
+<!-- @dsCard group="Composants" -->
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Boutons et appels à l'action — L'Informaticien</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+        background: #fff;
+        color: #16232e;
+        font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+      }
+      h1 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 36px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 22px;
+        margin: 40px 0 16px;
+      }
+      .note {
+        color: #5a6672;
+        max-width: 62ch;
+        margin: 0;
+      }
+      .rangee {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 2px solid transparent;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      .principale {
+        background: #10557f;
+        color: #fff;
+      }
+      .principale:hover {
+        background: #0b3e5e;
+      }
+      .secondaire {
+        background: #fff;
+        color: #10557f;
+        border-color: #10557f;
+      }
+      .secondaire:hover {
+        background: #e8f1f7;
+      }
+      .normale {
+        min-height: 48px;
+        padding: 0 24px;
+        font-size: 18px;
+      }
+      .grande {
+        min-height: 56px;
+        padding: 0 32px;
+        font-size: 20px;
+      }
+      .focus {
+        outline: 3px solid #b8500f;
+        outline-offset: 3px;
+      }
+      .chiffres {
+        font-variant-numeric: tabular-nums;
+      }
+      .regles {
+        margin-top: 40px;
+        border-left: 4px solid #10557f;
+        background: #e8f1f7;
+        padding: 20px 24px;
+        border-radius: 0 12px 12px 0;
+      }
+      .regles li {
+        margin-bottom: 8px;
+      }
+      .regles li:last-child {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Boutons</h1>
+    <p class="note">
+      L'action principale est toujours le téléphone. Le numéro est écrit au complet
+      dans le bouton : personne ne devrait avoir à chercher où appeler.
+    </p>
+
+    <h2>Grande — action principale</h2>
+    <div class="rangee">
+      <a class="btn principale grande" href="#">☎ Appelez-moi : <span class="chiffres">418 555-0143</span></a>
+      <a class="btn secondaire grande" href="#">Voir ce que je fais</a>
+    </div>
+
+    <h2>Normale</h2>
+    <div class="rangee">
+      <a class="btn principale normale" href="#">☎ <span class="chiffres">418 555-0143</span></a>
+      <a class="btn secondaire normale" href="#">Questions fréquentes</a>
+    </div>
+
+    <h2>Focus au clavier</h2>
+    <div class="rangee">
+      <a class="btn principale grande focus" href="#">☎ Appelez-moi</a>
+      <a class="btn secondaire grande focus" href="#">Voir ce que je fais</a>
+    </div>
+
+    <ul class="regles">
+      <li>Hauteur minimale de 48 px, 56 px pour l'action principale.</li>
+      <li>Jamais d'icône seule : toujours accompagnée de mots.</li>
+      <li>Le contour de focus fait 3 px et est orange, pour rester visible sur bleu.</li>
+      <li>Une seule action principale par écran.</li>
+      <li>Aucun libellé vague : « Appelez-moi », pas « En savoir plus ».</li>
+    </ul>
+  </body>
+</html>

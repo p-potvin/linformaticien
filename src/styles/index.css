@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* ==========================================================================
+   Base — règles qui découlent directement des principes du système.
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-papier);
+    color: var(--color-encre);
+    font-family: var(--font-texte);
+    font-size: var(--text-base);
+    line-height: var(--leading-lecture);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-titre);
+    line-height: var(--leading-titre);
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Tous les liens de contenu sont soulignés : la couleur seule ne suffit pas.
+     Tailwind neutralise le soulignement natif, on le remet explicitement.
+     Les boutons le retirent avec `no-underline`. */
+  a {
+    color: var(--color-bleu);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 0.08em;
+  }
+
+  /* Contour de focus visible et épais — indispensable au clavier et à la loupe. */
+  :focus-visible {
+    outline: 3px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Chiffres alignés pour les prix et les numéros de téléphone. */
+  :where(.chiffres) {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Lien d'évitement, visible seulement au clavier. */
+  .lien-evitement {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+  }
+  .lien-evitement:focus {
+    left: 1rem;
+    top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-papier);
+    border: 3px solid var(--color-bleu);
+    border-radius: var(--radius-carte);
+  }
+}
+
+/* ==========================================================================
+   Impression — la page doit sortir proprement sur une imprimante maison.
+   Fond blanc, pas d'ombres, adresses des liens en clair.
+   ========================================================================== */
+
+@media print {
+  nav,
+  .sans-impression {
+    display: none !important;
+  }
+
+  * {
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #444;
+  }
+}

@@ -1,0 +1,121 @@
+<!-- @dsCard group="Marque" -->
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Règles de l'affiche imprimée — L'Informaticien</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+        background: #fff;
+        color: #16232e;
+        font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+      }
+      h1 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 36px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 24px;
+        margin: 40px 0 16px;
+      }
+      .note {
+        color: #5a6672;
+        max-width: 64ch;
+        margin: 0;
+      }
+      .disposition {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .feuille {
+        border: 1px solid #d6dce2;
+        border-radius: 4px;
+        aspect-ratio: 8.5 / 11;
+        background: #fff;
+        box-shadow: 0 8px 24px rgb(22 35 46 / 0.1);
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 13px;
+      }
+      .zone {
+        border: 1px dashed #b8500f;
+        border-radius: 6px;
+        padding: 10px 12px;
+        color: #5a6672;
+      }
+      .zone strong {
+        display: block;
+        color: #16232e;
+        font-size: 14px;
+      }
+      .zone.grande {
+        flex: 1;
+      }
+      ul {
+        max-width: 60ch;
+        padding-left: 22px;
+        margin-top: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      .interdit {
+        border-left: 4px solid #b8500f;
+        background: #fdf0e6;
+        padding: 20px 24px;
+        border-radius: 0 12px 12px 0;
+        max-width: 64ch;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>L'affiche imprimée</h1>
+    <p class="note">
+      Format lettre, 8,5 × 11 po, une seule face, fond blanc. Elle sera affichée dans
+      des halls de résidences et des babillards de blocs à condos, souvent lue de loin
+      ou sans lunettes.
+    </p>
+
+    <div class="disposition" style="margin-top: 32px">
+      <div class="feuille">
+        <div class="zone"><strong>Nom + promesse</strong>L'Informaticien — dépannage informatique à domicile</div>
+        <div class="zone"><strong>Accroche</strong>Une phrase, 40–56 pt</div>
+        <div class="zone grande"><strong>Ce que je fais</strong>4 à 6 points, verbe en premier, 12–14 pt</div>
+        <div class="zone"><strong>Prix + disponibilité</strong>30 $ de l'heure · sur appel ou sur rendez-vous</div>
+        <div class="zone"><strong>Téléphone</strong>36 pt minimum, dernier élément lu</div>
+      </div>
+
+      <div>
+        <h2 style="margin-top: 0">Contraintes d'impression</h2>
+        <ul>
+          <li><strong>Fond blanc, sans exception.</strong> Aucun aplat de couleur pleine page.</li>
+          <li>Couleur d'accent en petites surfaces seulement : filets, puces, prix.</li>
+          <li>Prévoir une marge de 1,3 cm (0,5 po) sur les quatre côtés.</li>
+          <li>Doit rester lisible photocopiée en noir et blanc — ne jamais faire porter le sens par la couleur seule.</li>
+          <li>Aucune photo de banque d'images. Des pictogrammes au trait, épais, si nécessaire.</li>
+          <li>Le numéro de téléphone est l'élément le plus gros après l'accroche.</li>
+        </ul>
+
+        <h2>À proscrire</h2>
+        <div class="interdit">
+          Pas de dégradés, pas de texte sur photo, pas de texte en biais, pas de gris
+          pâle sur blanc, pas de capitales sur plus de trois mots, pas de codes QR seuls
+          (le numéro écrit passe avant), et surtout aucun ton alarmiste.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

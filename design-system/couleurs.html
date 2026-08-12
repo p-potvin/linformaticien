@@ -1,0 +1,169 @@
+<!-- @dsCard group="Fondations" -->
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Couleurs — L'Informaticien</title>
+    <style>
+      :root {
+        --papier: #ffffff;
+        --creme: #f6f2ea;
+        --encre: #16232e;
+        --bleu: #10557f;
+        --bleu-fonce: #0b3e5e;
+        --bleu-pale: #e8f1f7;
+        --orange: #b8500f;
+        --orange-pale: #fdf0e6;
+        --vert: #1f6b47;
+        --gris: #5a6672;
+        --ligne: #d6dce2;
+      }
+      body {
+        margin: 0;
+        padding: 40px;
+        background: var(--papier);
+        color: var(--encre);
+        font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+      }
+      h1 {
+        font-family: Bitter, Georgia, serif;
+        font-size: 36px;
+        line-height: 1.15;
+        margin: 0 0 8px;
+      }
+      .note {
+        color: var(--gris);
+        max-width: 60ch;
+        margin: 0 0 40px;
+      }
+      .grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 20px;
+      }
+      .jeton {
+        border: 1px solid var(--ligne);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .pastille {
+        height: 88px;
+      }
+      .info {
+        padding: 12px 16px 16px;
+      }
+      .nom {
+        font-weight: 600;
+      }
+      .hex,
+      .ratio {
+        font-size: 16px;
+        color: var(--gris);
+        font-variant-numeric: tabular-nums;
+      }
+      .ratio strong {
+        color: var(--vert);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Couleurs</h1>
+    <p class="note">
+      Le fond est toujours blanc : les affiches sont imprimées et l'aplat de couleur
+      coûte cher. Le ratio indiqué est le contraste du texte sur blanc — tout ce qui
+      sert de texte dépasse 4,5:1.
+    </p>
+
+    <div class="grille">
+      <div class="jeton">
+        <div class="pastille" style="background: #16232e"></div>
+        <div class="info">
+          <div class="nom">encre</div>
+          <div class="hex">#16232E</div>
+          <div class="ratio"><strong>14,3:1</strong> — texte courant</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #10557f"></div>
+        <div class="info">
+          <div class="nom">bleu</div>
+          <div class="hex">#10557F</div>
+          <div class="ratio"><strong>6,6:1</strong> — boutons, liens</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #0b3e5e"></div>
+        <div class="info">
+          <div class="nom">bleu-fonce</div>
+          <div class="hex">#0B3E5E</div>
+          <div class="ratio"><strong>10,0:1</strong> — survol</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #e8f1f7; border-bottom: 1px solid #d6dce2"></div>
+        <div class="info">
+          <div class="nom">bleu-pale</div>
+          <div class="hex">#E8F1F7</div>
+          <div class="ratio">surface seulement</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #b8500f"></div>
+        <div class="info">
+          <div class="nom">orange</div>
+          <div class="hex">#B8500F</div>
+          <div class="ratio"><strong>5,5:1</strong> — prix, accents</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #fdf0e6; border-bottom: 1px solid #d6dce2"></div>
+        <div class="info">
+          <div class="nom">orange-pale</div>
+          <div class="hex">#FDF0E6</div>
+          <div class="ratio">surface seulement</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #1f6b47"></div>
+        <div class="info">
+          <div class="nom">vert</div>
+          <div class="hex">#1F6B47</div>
+          <div class="ratio"><strong>6,3:1</strong> — confirmations</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #5a6672"></div>
+        <div class="info">
+          <div class="nom">gris</div>
+          <div class="hex">#5A6672</div>
+          <div class="ratio"><strong>5,9:1</strong> — texte secondaire</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #f6f2ea; border-bottom: 1px solid #d6dce2"></div>
+        <div class="info">
+          <div class="nom">creme</div>
+          <div class="hex">#F6F2EA</div>
+          <div class="ratio">écran seulement, jamais imprimé</div>
+        </div>
+      </div>
+
+      <div class="jeton">
+        <div class="pastille" style="background: #d6dce2"></div>
+        <div class="info">
+          <div class="nom">ligne</div>
+          <div class="hex">#D6DCE2</div>
+          <div class="ratio">filets, bordures</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

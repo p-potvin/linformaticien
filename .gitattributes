@@ -1,0 +1,20 @@
+# Ce dépôt est édité sous Windows et déployé sous Linux.
+# Tout est normalisé en LF dans le dépôt ET à l'extraction.
+#
+# Ce n'est pas cosmétique : un `\r` en fin de ligne dans un script shell donne
+# « $'\r': command not found » sur greencloud, et dans un fichier de config
+# webhookd il produit des « bad_signature » impossibles à diagnostiquer.
+* text=auto eol=lf
+
+# Fichiers où un CRLF casse le déploiement — jamais de conversion, quoi qu'il
+# arrive au réglage core.autocrlf de la machine.
+*.sh    text eol=lf
+*.conf  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# Binaires
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
