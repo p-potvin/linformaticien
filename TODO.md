@@ -22,6 +22,23 @@ Mise à jour : Wed, 12 Aug 2026 08:32
       en quantité. C'est le seul test qui compte vraiment.
 - [ ] Décliner en carte d'affaires 3,5 × 2 po.
 
+## Mise en production et surveillance
+
+- [ ] **Le jour de la mise en ligne**, dans `health-ledger/services.yaml`, entrée
+      `linformaticien` : retirer `404` de `expected_status_any_of` et ajouter
+      `expected_text: "L'Informaticien"`. Sans ça, un site vide passerait pour
+      un site en santé indéfiniment.
+- [ ] Ajouter une route split-DNS `linformaticien.ca` → `100.73.93.84` dans la
+      console Tailscale. Sans elle, `dev.linformaticien.ca` se résout par le DNS
+      public et la liste blanche du vhost répond 403 depuis le tailnet — c'est
+      ce qui empêche pour l'instant de surveiller la préproduction.
+- [ ] Une fois le split-DNS en place : vérifier `curl https://dev.linformaticien.ca/`
+      depuis Clopeux, puis enregistrer `linformaticien-dev` dans
+      `services.yaml` (200, `expected_text`, `alert_floor: low`).
+- [ ] Ajouter les deux URL à `vaultwares-docs` →
+      `operations/services-inventory` (règle : le jour même où une URL publique
+      apparaît).
+
 ## Site
 
 - [ ] Auto-héberger Bitter et Source Sans 3 plutôt que de dépendre de Google Fonts.
