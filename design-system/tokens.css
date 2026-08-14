@@ -1,6 +1,6 @@
 /* ==========================================================================
    Système de design « L'Informaticien » — jetons portables
-   Mise à jour : Wed, 12 Aug 2026 08:32
+   Mise à jour : Fri, 14 Aug 2026 01:09
 
    Copie en CSS pur des jetons définis dans ../src/styles/theme.css.
    Sert aux contextes sans Tailwind : affiche imprimée, gabarits, Claude Design.
@@ -8,17 +8,18 @@
    ========================================================================== */
 
 :root {
-  /* --- Couleurs (contraste calculé sur fond blanc) ---------------------- */
+  /* --- Couleurs (ratios mesurés : sur blanc / sur crème) ---------------- */
+  /* Le crème est le cas défavorable des deux fonds : c'est lui qui décide. */
   --papier: #ffffff;        /* fond de page — jamais remplacé */
   --creme: #f6f2ea;         /* teinte chaude, écran seulement */
-  --encre: #16232e;         /* texte courant                    14,3:1 */
-  --bleu: #10557f;          /* principale, boutons               6,6:1 */
-  --bleu-fonce: #0b3e5e;    /* survol, état actif               10,0:1 */
+  --encre: #16232e;         /* texte courant              16,0 / 14,3:1 */
+  --bleu: #10557f;          /* principale, boutons          8,0 / 7,2:1 */
+  --bleu-fonce: #0b3e5e;    /* survol, état actif         11,3 / 10,1:1 */
   --bleu-pale: #e8f1f7;     /* surface teintée */
-  --orange: #b8500f;        /* accent : prix, soulignés          5,5:1 */
+  --orange: #b04c0e;        /* accent : prix, soulignés     5,4 / 4,8:1 */
   --orange-pale: #fdf0e6;   /* surface d'accent */
-  --vert: #1f6b47;          /* confirmation                      6,3:1 */
-  --gris: #5a6672;          /* texte secondaire                  5,9:1 */
+  --vert: #1f6b47;          /* confirmation                 6,5 / 5,8:1 */
+  --gris: #5a6672;          /* texte secondaire             5,9 / 5,3:1 */
   --ligne: #d6dce2;         /* filets et bordures */
 
   /* --- Typographie ----------------------------------------------------- */

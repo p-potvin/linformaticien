@@ -1,5 +1,5 @@
 import { Section } from "./ui/Section";
-import { contact, coordonnees } from "../content/site";
+import { contact, coordonnees, lecteursDecran } from "../content/site";
 
 export function Contact() {
   return (
@@ -11,6 +11,7 @@ export function Contact() {
             <a
               href={`tel:${coordonnees.telephoneLien}`}
               className="chiffres font-titre text-3xl font-semibold sm:text-4xl"
+              aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
             >
               {coordonnees.telephone}
             </a>

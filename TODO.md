@@ -1,17 +1,26 @@
 # À faire
 
-Mise à jour : Wed, 12 Aug 2026 08:32
+Mise à jour : Fri, 14 Aug 2026 01:09
 
 ## Bloquant avant la mise en ligne
 
+Ces décisions n'ont pas à être prises pour travailler sur dev : les valeurs
+d'exemple y restent, et dev n'est ni public ni indexé. Elles bloquent la
+**promotion en production**, pas le développement.
+
 - [ ] Remplacer les valeurs `À REMPLIR` dans `src/content/site.ts` : nom, téléphone,
       courriel, zone desservie, heures d'appel. Tout le reste en dépend, y compris
-      l'affiche.
+      l'affiche et les données structurées.
+- [ ] En même temps, ajuster `heuresMachine` pour qu'il dise la même chose que
+      `heures`. C'est la seule paire du fichier à tenir synchronisée à la main ;
+      c'est elle que Google lit.
 - [ ] Décider des heures d'appel raisonnables et les écrire noir sur blanc. « Sur
       appel » sans plage horaire, ça finit par des appels à 23 h.
-- [ ] Confirmer la zone desservie et si le déplacement est facturé au-delà.
+- [ ] Confirmer la zone desservie.
 - [ ] Trancher la question du temps minimum facturé (une heure ? une demi-heure ?).
       Rien n'est écrit à ce sujet pour l'instant, volontairement.
+
+Réglé : pas de supplément de déplacement. La question ne se pose pas.
 
 ## Affiche
 
@@ -28,28 +37,37 @@ Mise à jour : Wed, 12 Aug 2026 08:32
       `linformaticien` : retirer `404` de `expected_status_any_of` et ajouter
       `expected_text: "L'Informaticien"`. Sans ça, un site vide passerait pour
       un site en santé indéfiniment.
-- [ ] Ajouter une route split-DNS `linformaticien.ca` → `100.73.93.84` dans la
-      console Tailscale. Sans elle, `dev.linformaticien.ca` se résout par le DNS
-      public et la liste blanche du vhost répond 403 depuis le tailnet — c'est
-      ce qui empêche pour l'instant de surveiller la préproduction.
-- [ ] Une fois le split-DNS en place : vérifier `curl https://dev.linformaticien.ca/`
-      depuis Clopeux, puis enregistrer `linformaticien-dev` dans
-      `services.yaml` (200, `expected_text`, `alert_floor: low`).
+- [x] Route split-DNS Tailscale. Elle vise `dev.linformaticien.ca` seulement, et
+      non l'apex : la production doit continuer de se résoudre par le DNS public,
+      y compris depuis le tailnet, sans quoi on surveillerait un chemin que
+      personne d'autre n'emprunte.
+- [ ] Vérifier `curl https://dev.linformaticien.ca/` depuis Clopeux, puis
+      enregistrer `linformaticien-dev` dans `services.yaml` (200, `expected_text`,
+      `alert_floor: low`). Attention : sur dev, `expected_text` doit se contenter
+      d'un mot présent dans la version d'exemple — les coordonnées y resteront
+      fictives.
 - [ ] Ajouter les deux URL à `vaultwares-docs` →
       `operations/services-inventory` (règle : le jour même où une URL publique
       apparaît).
 
 ## Site
 
-- [ ] Auto-héberger Bitter et Source Sans 3 plutôt que de dépendre de Google Fonts.
-- [ ] Ajouter `sitemap.xml` (`robots.txt` le référence déjà).
-- [ ] Ajouter les données structurées `LocalBusiness` en JSON-LD : c'est ce qui fait
-      apparaître le numéro de téléphone directement dans Google.
+- [x] Auto-héberger Bitter et Source Sans 3 plutôt que de dépendre de Google Fonts.
+- [x] Ajouter `sitemap.xml` (`robots.txt` le référence déjà).
+- [x] Ajouter les données structurées `LocalBusiness` en JSON-LD.
+- [x] Passer un vérificateur d'accessibilité automatisé : axe-core sur le DOM
+      rendu, aucune violation. Les correctifs sont détaillés dans `CHANGES.md`.
+- [ ] Navigation complète au clavier seul, dans un vrai navigateur. L'ordre de
+      tabulation a été vérifié dans le DOM (19 éléments, aucun `tabindex` positif),
+      mais personne n'a encore *vu* le contour de focus se promener dans la page.
 - [ ] Vérifier le rendu réel sur un téléphone, à taille de police système agrandie
-      (réglage courant chez les aînés).
-- [ ] Passer un vérificateur d'accessibilité automatisé, puis une navigation complète
-      au clavier seul.
+      (réglage courant chez les aînés). À surveiller en particulier : le bouton de
+      téléphone de l'en-tête est en `whitespace-nowrap` et pourrait déborder à
+      320 px avec une grosse police.
 - [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
+- [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google —
+      mais seulement une fois les vraies coordonnées en place, sinon on validerait
+      un faux numéro.
 
 ## À décider plus tard
 

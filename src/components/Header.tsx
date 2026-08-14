@@ -1,5 +1,5 @@
 import { Button } from "./ui/Button";
-import { coordonnees, entete, marque } from "../content/site";
+import { coordonnees, entete, lecteursDecran, marque } from "../content/site";
 
 export function Header() {
   return (
@@ -27,7 +27,10 @@ export function Header() {
           </ul>
         </nav>
 
-        <Button href={`tel:${coordonnees.telephoneLien}`}>
+        <Button
+          href={`tel:${coordonnees.telephoneLien}`}
+          aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
+        >
           <span aria-hidden="true">☎</span>
           <span className="hidden sm:inline">{entete.bouton} :</span>
           <span className="chiffres">{coordonnees.telephone}</span>

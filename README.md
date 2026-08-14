@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Wed, 12 Aug 2026 08:32
+Dernière mise à jour : Fri, 14 Aug 2026 01:09
 
 ## Projet indépendant
 
@@ -70,19 +70,26 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
   en une centaine de lignes ; une librairie ajouterait des styles à combattre.
 - **`<details>` natif pour les questions fréquentes.** Accessible au clavier et lisible
   sans JavaScript.
-- **Polices Google en lien externe.** À auto-héberger avant la mise en ligne (voir
-  `TODO.md`).
+- **Polices auto-hébergées.** Aucune requête vers un tiers. Bitter et Source Sans 3
+  sont des polices variables : quatre fichiers couvrent toutes les graisses. Voir
+  [`src/styles/fonts.css`](src/styles/fonts.css) — remplacer un fichier veut dire
+  changer son nom, le vhost les met en cache pour un an.
 
 ## Accessibilité
 
 Le public cible a 65 ans et plus. Les règles ne sont pas négociables :
 
 - corps de texte à 18 px minimum, interlignage 1,65 ;
-- contraste d'au moins 4,5:1 pour tout texte, calculé sur fond blanc ;
+- contraste d'au moins 4,5:1 pour tout texte ;
 - cibles cliquables d'au moins 48 px, 56 px pour l'action principale ;
 - contour de focus de 3 px, visible ;
 - liens soulignés, jamais distingués par la couleur seule ;
 - numéro de téléphone cliquable (`tel:`) et écrit en gros.
+
+Le contraste se calcule sur les **deux** fonds du site, blanc et crème. Le crème
+est le cas défavorable : c'est lui qui décide si une couleur est admissible. Les
+ratios sont inscrits à côté de chaque jeton dans
+[`src/styles/theme.css`](src/styles/theme.css) — les mesurer, jamais les estimer.
 
 ## Système de design
 

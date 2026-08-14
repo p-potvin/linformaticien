@@ -19,7 +19,14 @@ export const coordonnees = {
   courriel: "bonjour@linformaticien.ca", // À REMPLIR
   zone: "Québec et les environs", // À REMPLIR — zone desservie
   heures: "de 8 h à 20 h, 7 jours sur 7", // À REMPLIR — plage d'appel raisonnable
+  /**
+   * Les mêmes heures, dans le format que Google sait lire (schema.org).
+   * Jours : Mo Tu We Th Fr Sa Su. Doit toujours dire la même chose que
+   * `heures` ci-dessus — c'est la seule paire du fichier à tenir synchronisée.
+   */
+  heuresMachine: "Mo-Su 08:00-20:00", // À REMPLIR — doit correspondre à `heures`
   site: "linformaticien.ca",
+  adresseSite: "https://linformaticien.ca/",
 } as const;
 
 export const marque = {
@@ -188,6 +195,16 @@ export const contact = {
   etiquetteCourriel: "Courriel",
   etiquetteZone: "Je me déplace dans",
   etiquetteHeures: "Vous pouvez appeler",
+} as const;
+
+/**
+ * Textes qui ne s'affichent pas à l'écran, mais que les lecteurs d'écran lisent.
+ * Sur les petits écrans, les boutons de téléphone n'affichent que le numéro :
+ * sans ce texte, la personne entend une suite de chiffres sans savoir que le
+ * lien appelle quelqu'un.
+ */
+export const lecteursDecran = {
+  appeler: "Appelez-moi au",
 } as const;
 
 export const piedDePage = {
