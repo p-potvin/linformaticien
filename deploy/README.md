@@ -1,6 +1,6 @@
 # Déploiement
 
-Mise à jour : Wed, 12 Aug 2026 10:14
+Mise à jour : Fri, 14 Aug 2026 01:09
 
 ## Le modèle : construire une fois, promouvoir l'artéfact
 
@@ -141,7 +141,7 @@ Une ligne `vw_jira_sync_nonblocking_failure` entre les deux est normale et ne
 bloque pas le déploiement.
 
 La version en ligne se lit dans le source de la page, en commentaire HTML
-(`<!-- v0.1.0 -->`), jamais dans la console du navigateur.
+(`<!-- vX.Y.Z -->`, deuxième ligne), jamais dans la console du navigateur.
 
 ## Pannes déjà rencontrées ailleurs
 
@@ -164,10 +164,14 @@ prouve rien.
 La sonde de production accepte `200` **ou** `404` tant que la production n'a pas
 été promue. À corriger le jour de la mise en ligne — voir `TODO.md`.
 
-`dev.linformaticien.ca` n'est pas encore surveillé : il manque une route
-split-DNS Tailscale pour `linformaticien.ca`, sans quoi les membres du tailnet
-résolvent le nom par le DNS public et se font refuser par la liste blanche du
-vhost. Le détail est consigné dans `services.yaml`.
+La route split-DNS Tailscale est en place, et elle vise **`dev.linformaticien.ca`
+seulement**, pas l'apex. C'est voulu : la production doit se résoudre par le DNS
+public depuis partout, tailnet compris. Une sonde qui emprunterait un chemin
+réservé aux membres du tailnet ne prouverait rien sur ce que voit le public.
+
+Il reste à enregistrer `dev.linformaticien.ca` dans `services.yaml`. Son
+`expected_text` ne peut pas porter sur les coordonnées : dev garde en permanence
+les valeurs d'exemple, par choix. Viser le nom de la marque.
 
 Modifier la surveillance passe par un push sur `main` de `health-ledger` : le
 déploiement redémarre les services Joker sur greencloud et OVH. Plus rien à

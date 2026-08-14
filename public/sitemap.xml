@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Site d'une seule page : une seule entrée, et c'est normal.
+  `robots.txt` pointe déjà ici. Ajouter une entrée le jour où une deuxième
+  page publique apparaît (les guides imprimables, par exemple).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://linformaticien.ca/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

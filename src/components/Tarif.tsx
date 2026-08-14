@@ -1,6 +1,6 @@
 import { Button } from "./ui/Button";
 import { Section } from "./ui/Section";
-import { coordonnees, tarif } from "../content/site";
+import { coordonnees, lecteursDecran, tarif } from "../content/site";
 
 export function Tarif() {
   return (
@@ -33,6 +33,7 @@ export function Tarif() {
             href={`tel:${coordonnees.telephoneLien}`}
             taille="grande"
             className="mt-8"
+            aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
           >
             <span aria-hidden="true">☎</span>
             <span className="chiffres">{coordonnees.telephone}</span>

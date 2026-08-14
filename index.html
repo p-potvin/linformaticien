@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- v0.1.0 -->
+<!-- v0.2.0 -->
 <html lang="fr-CA">
   <head>
     <meta charset="UTF-8" />
@@ -22,11 +22,22 @@
     />
     <meta property="og:url" content="https://linformaticien.ca/" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Polices auto-hébergées (voir src/styles/fonts.css). Seuls les deux
+         fichiers « latin » sont préchargés : le français n'a pas besoin des
+         autres. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/source-sans-3-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/bitter-latin.woff2"
+      crossorigin
     />
   </head>
   <body>

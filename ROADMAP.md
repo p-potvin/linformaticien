@@ -1,17 +1,21 @@
 # Feuille de route
 
-Mise à jour : Wed, 12 Aug 2026 08:32
+Mise à jour : Fri, 14 Aug 2026 01:09
 
 ## v0.1 — Charpente (fait)
 
 Système de design propre au projet, site d'une page en québécois, brief d'affiche prêt
 à coller dans Claude Design. Coordonnées encore fictives.
 
-## v0.2 — Vraies coordonnées et mise en ligne
+## v0.2 — Vraies coordonnées et mise en ligne (en cours)
 
-Remplacer les valeurs d'exemple, auto-héberger les polices, ajouter le JSON-LD
-`LocalBusiness` et le plan du site. Brancher `linformaticien.ca` avec les deux
-redirections. Vérification d'accessibilité complète, dont un passage au clavier seul.
+Fait : polices auto-hébergées, JSON-LD `LocalBusiness`, plan du site,
+vérification d'accessibilité automatisée.
+
+Reste : remplacer les valeurs d'exemple, brancher `linformaticien.ca` avec les
+deux redirections, faire le passage au clavier seul dans un vrai navigateur.
+Les valeurs d'exemple restent en place sur dev — seule la production exige les
+vraies coordonnées.
 
 ## v0.3 — Sortie papier
 
