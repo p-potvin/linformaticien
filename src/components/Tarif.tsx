@@ -17,7 +17,7 @@ export function Tarif() {
           <ul className="space-y-4">
             {tarif.details.map((detail) => (
               <li key={detail} className="flex items-start gap-3">
-                <span aria-hidden="true" className="text-xl leading-none text-orange">
+                <span aria-hidden="true" className="text-xl leading-none text-rouge">
                   •
                 </span>
                 {detail}
@@ -25,7 +25,7 @@ export function Tarif() {
             ))}
           </ul>
 
-          <p className="mt-8 rounded-carte bg-orange-pale px-6 py-5 font-semibold">
+          <p className="mt-8 rounded-carte bg-rouge-pale px-6 py-5 font-semibold">
             {tarif.note}
           </p>
 

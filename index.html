@@ -1,47 +1,48 @@
 <!doctype html>
-<!-- v0.2.0 -->
+<!-- v0.2.1 -->
 <html lang="fr-CA">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <title>L'Informaticien — Dépannage informatique à domicile</title>
-    <meta
-      name="description"
-      content="Réparation, branchement et accompagnement informatique à domicile. Ordinateurs, cellulaires, tablettes, télévisions, imprimantes. 30 $ de l'heure, sur appel ou sur rendez-vous."
-    />
-    <link rel="canonical" href="https://linformaticien.ca/" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:locale" content="fr_CA" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="L'Informaticien — Dépannage informatique à domicile" />
-    <meta
-      property="og:description"
-      content="Je me déplace chez vous pour réparer vos appareils et vous montrer à vous en servir. Sans jargon, à votre rythme."
-    />
-    <meta property="og:url" content="https://linformaticien.ca/" />
+  <!-- favicon.ico contient les trois tailles (16, 32, 48) ; il suffit à lui
+       seul aux navigateurs de bureau. favicon.png est le dessin source, en
+       748 px — il n'est volontairement pas lié ici : le servir comme icône
+       ferait descendre 66 ko pour afficher 16 px. -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Polices auto-hébergées (voir src/styles/fonts.css). Seuls les deux
-         fichiers « latin » sont préchargés : le français n'a pas besoin des
-         autres. -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/source-sans-3-latin.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/bitter-latin.woff2"
-      crossorigin
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <title>L'Informaticien — Dépannage informatique à domicile</title>
+  <meta name="description"
+    content="Réparation, branchement et accompagnement informatique à domicile. Ordinateurs, cellulaires, tablettes, télévisions, imprimantes. 30 $ de l'heure, sur appel ou sur rendez-vous." />
+  <link rel="canonical" href="https://linformaticien.ca/" />
+
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="L'Informaticien — Dépannage informatique à domicile" />
+  <meta property="og:description"
+    content="Je me déplace chez vous pour réparer vos appareils et vous montrer à vous en servir. Sans jargon, à votre rythme." />
+  <meta property="og:url" content="https://linformaticien.ca/" />
+  <!-- Image de partage au format attendu (1200 x 630). Le mot-symbole seul
+       mesure 933 x 103 : partagé tel quel, Facebook et Messenger le
+       recadraient en une bande illisible. -->
+  <meta property="og:image" content="https://linformaticien.ca/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="L'Informaticien" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Polices auto-hébergées (voir src/styles/fonts.css). Seuls les deux
+       fichiers « latin » sont préchargés : le français n'a pas besoin des
+       autres. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/source-sans-3-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/bitter-latin.woff2" crossorigin />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

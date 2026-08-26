@@ -1,14 +1,15 @@
 {
   "name": "linformaticien",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "Site vitrine de L'Informaticien — dépannage informatique à domicile (fr-CA).",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node outils/verifier-jetons.mjs && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "lint": "node outils/verifier-jetons.mjs && tsc --noEmit",
+    "verifier": "node outils/verifier-jetons.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",

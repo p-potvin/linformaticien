@@ -21,8 +21,8 @@
   --color-bleu: #10557f;            /* couleur principale, boutons  8,0 / 7,2:1 */
   --color-bleu-fonce: #0b3e5e;      /* survol / état actif        11,3 / 10,1:1 */
   --color-bleu-pale: #e8f1f7;       /* surface teintée, encadrés */
-  --color-orange: #b04c0e;          /* accent : prix, soulignés     5,4 / 4,8:1 */
-  --color-orange-pale: #fdf0e6;     /* surface d'accent */
+  --color-rouge: #c03a37;           /* accent : prix, soulignés     5,4 / 4,8:1 */
+  --color-rouge-pale: #fdf0ef;      /* surface d'accent */
   --color-vert: #1f6b47;            /* confirmation, « inclus »     6,5 / 5,8:1 */
   --color-gris: #5a6672;            /* texte secondaire             5,9 / 5,3:1 */
   --color-ligne: #d6dce2;           /* filets et bordures */

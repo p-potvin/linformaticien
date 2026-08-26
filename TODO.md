@@ -1,30 +1,30 @@
 # À faire
 
-Mise à jour : Fri, 14 Aug 2026 01:09
+Mise à jour : Wed, 26 Aug 2026 17:42
 
 ## Bloquant avant la mise en ligne
 
-Ces décisions n'ont pas à être prises pour travailler sur dev : les valeurs
-d'exemple y restent, et dev n'est ni public ni indexé. Elles bloquent la
-**promotion en production**, pas le développement.
-
-- [ ] Remplacer les valeurs `À REMPLIR` dans `src/content/site.ts` : nom, téléphone,
-      courriel, zone desservie, heures d'appel. Tout le reste en dépend, y compris
-      l'affiche et les données structurées.
-- [ ] En même temps, ajuster `heuresMachine` pour qu'il dise la même chose que
-      `heures`. C'est la seule paire du fichier à tenir synchronisée à la main ;
-      c'est elle que Google lit.
-- [ ] Décider des heures d'appel raisonnables et les écrire noir sur blanc. « Sur
-      appel » sans plage horaire, ça finit par des appels à 23 h.
-- [ ] Confirmer la zone desservie.
+- [x] Vraies coordonnées dans `src/content/site.ts` : Philippe Potvin,
+      438 827-4585, philippe.potvin@linformaticien.ca, Sorel-Tracy.
+- [x] Heures d'appel arrêtées : de 8 h à 20 h, du lundi au vendredi. `heuresMachine`
+      dit la même chose (`Mo-Fr 08:00-20:00`).
+- [x] Zone desservie confirmée : Sorel-Tracy.
 - [ ] Trancher la question du temps minimum facturé (une heure ? une demi-heure ?).
-      Rien n'est écrit à ce sujet pour l'instant, volontairement.
+      Rien n'est écrit à ce sujet pour l'instant, volontairement. **Seul point
+      encore ouvert avant la mise en ligne.**
 
 Réglé : pas de supplément de déplacement. La question ne se pose pas.
+
+Attention : le site publié affiche désormais un vrai numéro et une vraie adresse
+courriel. Dev n'est pas indexé et reste sur le tailnet, mais ce ne sont plus des
+valeurs jetables.
 
 ## Affiche
 
 - [ ] Coller `docs/brief-affiche.md` dans Claude Design, projet **Linformaticien**.
+- [ ] Y placer le mot-symbole (`design-system/marque/logo.png`), en haut. Le brief
+      a été écrit avant que le logo existe : il demandait d'écrire le nom en
+      caractères. Maintenant qu'il y a un dessin, c'est lui qui porte le nom.
 - [ ] Imprimer un essai et le lire à bout de bras, sans lunettes.
 - [ ] Le photocopier en noir et blanc pour vérifier que rien ne se perd.
 - [ ] Faire relire le texte par une personne de la clientèle visée avant l'impression
@@ -43,9 +43,8 @@ Réglé : pas de supplément de déplacement. La question ne se pose pas.
       personne d'autre n'emprunte.
 - [ ] Vérifier `curl https://dev.linformaticien.ca/` depuis Clopeux, puis
       enregistrer `linformaticien-dev` dans `services.yaml` (200, `expected_text`,
-      `alert_floor: low`). Attention : sur dev, `expected_text` doit se contenter
-      d'un mot présent dans la version d'exemple — les coordonnées y resteront
-      fictives.
+      `alert_floor: low`). Viser le nom de la marque pour `expected_text`, pas le
+      numéro : le nom ne changera plus, le numéro peut changer.
 - [ ] Ajouter les deux URL à `vaultwares-docs` →
       `operations/services-inventory` (règle : le jour même où une URL publique
       apparaît).
@@ -61,13 +60,17 @@ Réglé : pas de supplément de déplacement. La question ne se pose pas.
       tabulation a été vérifié dans le DOM (19 éléments, aucun `tabindex` positif),
       mais personne n'a encore *vu* le contour de focus se promener dans la page.
 - [ ] Vérifier le rendu réel sur un téléphone, à taille de police système agrandie
-      (réglage courant chez les aînés). À surveiller en particulier : le bouton de
-      téléphone de l'en-tête est en `whitespace-nowrap` et pourrait déborder à
-      320 px avec une grosse police.
+      (réglage courant chez les aînés). Le débordement de l'en-tête est réglé — la
+      marque carrée a remplacé le mot-symbole, ce qui laisse 42 px de marge à
+      320 px. Ce qui reste à surveiller : le bouton est en `whitespace-nowrap`, donc
+      une police système très agrandie peut encore le pousser dehors.
 - [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
-- [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google —
-      mais seulement une fois les vraies coordonnées en place, sinon on validerait
-      un faux numéro.
+- [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google.
+      Les vraies coordonnées y sont maintenant, donc ce test a du sens. À faire une
+      fois le site en ligne : l'outil doit pouvoir atteindre l'adresse publique.
+- [ ] Regarder l'aperçu de partage dans Messenger et Facebook une fois en ligne
+      (`og-image.png`, 1200 × 630). Les deux gardent l'ancienne image en cache
+      longtemps : vérifier tôt.
 
 ## À décider plus tard
 

@@ -1,6 +1,6 @@
 # Déploiement
 
-Mise à jour : Fri, 14 Aug 2026 01:09
+Mise à jour : Wed, 26 Aug 2026 17:42
 
 ## Le modèle : construire une fois, promouvoir l'artéfact
 
@@ -169,9 +169,14 @@ seulement**, pas l'apex. C'est voulu : la production doit se résoudre par le DN
 public depuis partout, tailnet compris. Une sonde qui emprunterait un chemin
 réservé aux membres du tailnet ne prouverait rien sur ce que voit le public.
 
-Il reste à enregistrer `dev.linformaticien.ca` dans `services.yaml`. Son
-`expected_text` ne peut pas porter sur les coordonnées : dev garde en permanence
-les valeurs d'exemple, par choix. Viser le nom de la marque.
+Il reste à enregistrer `dev.linformaticien.ca` dans `services.yaml`. Viser le nom
+de la marque pour `expected_text`, pas le numéro de téléphone : le nom ne changera
+plus, le numéro peut changer, et une sonde qui tombe en panne le jour où on corrige
+une coordonnée est une sonde qui crie pour rien.
+
+(Une note précédente disait que dev garderait des valeurs d'exemple en permanence.
+C'est faux depuis le 26 août 2026 : les vraies coordonnées sont dans le dépôt, donc
+dev les affiche aussi.)
 
 Modifier la surveillance passe par un push sur `main` de `health-ledger` : le
 déploiement redémarre les services Joker sur greencloud et OVH. Plus rien à

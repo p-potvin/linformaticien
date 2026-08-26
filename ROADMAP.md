@@ -1,6 +1,6 @@
 # Feuille de route
 
-Mise à jour : Fri, 14 Aug 2026 01:09
+Mise à jour : Wed, 26 Aug 2026 17:42
 
 ## v0.1 — Charpente (fait)
 
@@ -10,12 +10,11 @@ Système de design propre au projet, site d'une page en québécois, brief d'aff
 ## v0.2 — Vraies coordonnées et mise en ligne (en cours)
 
 Fait : polices auto-hébergées, JSON-LD `LocalBusiness`, plan du site,
-vérification d'accessibilité automatisée.
+vérification d'accessibilité automatisée, vraies coordonnées, logo et icônes.
 
-Reste : remplacer les valeurs d'exemple, brancher `linformaticien.ca` avec les
-deux redirections, faire le passage au clavier seul dans un vrai navigateur.
-Les valeurs d'exemple restent en place sur dev — seule la production exige les
-vraies coordonnées.
+Reste : trancher le temps minimum facturé, brancher `linformaticien.ca` avec les
+deux redirections, faire le passage au clavier seul dans un vrai navigateur et
+le test sur un téléphone à police agrandie.
 
 ## v0.3 — Sortie papier
 

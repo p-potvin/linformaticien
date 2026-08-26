@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Fri, 14 Aug 2026 01:09
+Dernière mise à jour : Wed, 26 Aug 2026 17:42
 
 ## Projet indépendant
 
@@ -25,9 +25,10 @@ npm run dev
 | Commande          | Ce qu'elle fait                                    |
 | ----------------- | -------------------------------------------------- |
 | `npm run dev`     | Serveur de développement Vite                       |
-| `npm run build`   | Vérification TypeScript puis production dans `dist/` |
+| `npm run build`   | Jetons, TypeScript, puis production dans `dist/`     |
 | `npm run preview` | Sert `dist/` localement                              |
-| `npm run lint`    | Vérification TypeScript seule                        |
+| `npm run lint`    | Jetons et TypeScript, sans construire                |
+| `npm run verifier`| Jetons seulement : concordance et contraste          |
 
 ## Structure
 
@@ -39,15 +40,20 @@ src/
   components/            Sections de la page
   components/ui/         Bouton, Section, Carte
 design-system/           Fiches poussées vers Claude Design
+design-system/marque/    Dessins sources du logo, volontairement hors de public/
 docs/brief-affiche.md    Brief à coller dans Claude Design pour l'affiche
 ```
 
-## Avant la mise en ligne
+## Coordonnées
 
-Les coordonnées sont des **valeurs d'exemple**. Remplacer les entrées marquées
-`À REMPLIR` en haut de [`src/content/site.ts`](src/content/site.ts) : nom, téléphone,
-courriel, zone desservie et heures d'appel. Le même fichier alimente le site et le
-brief de l'affiche.
+Les vraies coordonnées sont en place depuis le 26 août 2026, en haut de
+[`src/content/site.ts`](src/content/site.ts). Le même fichier alimente le site, les
+données structurées et le brief de l'affiche : il n'y a pas de deuxième endroit où
+les recopier.
+
+Une seule paire est à tenir synchronisée à la main : `heures` (la phrase lue par les
+gens) et `heuresMachine` (la même chose au format que Google lit). Changer l'une sans
+l'autre passerait inaperçu à l'écran.
 
 ## Environnements et domaines
 
@@ -70,6 +76,10 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
   en une centaine de lignes ; une librairie ajouterait des styles à combattre.
 - **`<details>` natif pour les questions fréquentes.** Accessible au clavier et lisible
   sans JavaScript.
+- **Deux dessins de logo, pas un.** Le mot-symbole fait neuf fois plus large que
+  haut : il tient au pied de page, pas dans une rangée serrée. L'en-tête porte la
+  marque carrée. Le détail est dans
+  [`design-system/logo.html`](design-system/logo.html).
 - **Polices auto-hébergées.** Aucune requête vers un tiers. Bitter et Source Sans 3
   sont des polices variables : quatre fichiers couvrent toutes les graisses. Voir
   [`src/styles/fonts.css`](src/styles/fonts.css) — remplacer un fichier veut dire
@@ -90,6 +100,11 @@ Le contraste se calcule sur les **deux** fonds du site, blanc et crème. Le crè
 est le cas défavorable : c'est lui qui décide si une couleur est admissible. Les
 ratios sont inscrits à côté de chaque jeton dans
 [`src/styles/theme.css`](src/styles/theme.css) — les mesurer, jamais les estimer.
+
+`npm run verifier` le fait pour vous, et tourne dans `npm run build` : une couleur
+sous le plancher, ou une étiquette du système de design qui ne dit plus la même chose
+que le jeton, arrête la construction. Les deux sont déjà arrivés sans que personne
+le voie.
 
 ## Système de design
 

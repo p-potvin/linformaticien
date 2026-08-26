@@ -16,8 +16,8 @@
   --bleu: #10557f;          /* principale, boutons          8,0 / 7,2:1 */
   --bleu-fonce: #0b3e5e;    /* survol, état actif         11,3 / 10,1:1 */
   --bleu-pale: #e8f1f7;     /* surface teintée */
-  --orange: #b04c0e;        /* accent : prix, soulignés     5,4 / 4,8:1 */
-  --orange-pale: #fdf0e6;   /* surface d'accent */
+  --rouge: #c03a37;         /* accent : prix, soulignés     5,4 / 4,8:1 */
+  --rouge-pale: #fdf0ef;    /* surface d'accent */
   --vert: #1f6b47;          /* confirmation                 6,5 / 5,8:1 */
   --gris: #5a6672;          /* texte secondaire             5,9 / 5,3:1 */
   --ligne: #d6dce2;         /* filets et bordures */

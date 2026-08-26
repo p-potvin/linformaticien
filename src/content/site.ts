@@ -9,22 +9,21 @@
  */
 
 /* -------------------------------------------------------------------------
- * À REMPLIR — ces valeurs sont des exemples. Remplacer avant la mise en ligne.
- * Les mêmes valeurs servent à l'affiche imprimée.
+ * Coordonnées officielles. Les mêmes valeurs servent à l'affiche imprimée.
  * ---------------------------------------------------------------------- */
 export const coordonnees = {
-  nom: "Pascal Potvin", // À REMPLIR — nom affiché
-  telephone: "418 555-0143", // À REMPLIR
-  telephoneLien: "+14185550143", // À REMPLIR — format tel:
-  courriel: "bonjour@linformaticien.ca", // À REMPLIR
-  zone: "Québec et les environs", // À REMPLIR — zone desservie
-  heures: "de 8 h à 20 h, 7 jours sur 7", // À REMPLIR — plage d'appel raisonnable
+  nom: "Philippe Potvin", // nom affiché
+  telephone: "438 827-4585",
+  telephoneLien: "+14388274585", // format tel:
+  courriel: "philippe.potvin@linformaticien.ca",
+  zone: "Sorel-Tracy", // zone desservie
+  heures: "de 8 h à 20 h, du lundi au vendredi", // plage d'appel
   /**
    * Les mêmes heures, dans le format que Google sait lire (schema.org).
    * Jours : Mo Tu We Th Fr Sa Su. Doit toujours dire la même chose que
    * `heures` ci-dessus — c'est la seule paire du fichier à tenir synchronisée.
    */
-  heuresMachine: "Mo-Su 08:00-20:00", // À REMPLIR — doit correspondre à `heures`
+  heuresMachine: "Mo-Fr 08:00-20:00", // doit correspondre à `heures`
   site: "linformaticien.ca",
   adresseSite: "https://linformaticien.ca/",
 } as const;
@@ -208,5 +207,7 @@ export const lecteursDecran = {
 } as const;
 
 export const piedDePage = {
-  mention: `${marque.nom} — ${marque.promesse}`,
+  // Le mot-symbole est juste à côté au pied de page : répéter le nom en
+  // toutes lettres ferait doublon. Seule la promesse reste.
+  mention: marque.promesse,
 } as const;

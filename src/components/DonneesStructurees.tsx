@@ -18,6 +18,11 @@ export function DonneesStructurees() {
     "@type": "LocalBusiness",
     "@id": `${coordonnees.adresseSite}#entreprise`,
     name: marque.nom,
+    // Google veut une image de proportions courantes ; le mot-symbole seul
+    // (933 x 103) se ferait recadrer. `logo` est la propriété prévue pour la
+    // marque elle-même, et elle accepte une bande.
+    image: `${coordonnees.adresseSite}og-image.png`,
+    logo: `${coordonnees.adresseSite}logo-wordmark.png`,
     description: accueil.texte,
     url: coordonnees.adresseSite,
     telephone: coordonnees.telephoneLien,

@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section id="haut" className="px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20">
       <div className="mx-auto max-w-5xl">
-        <p className="text-grand font-semibold uppercase tracking-wide text-orange">
+        <p className="text-grand font-semibold uppercase tracking-wide text-rouge">
           {accueil.surtitre}
         </p>
 

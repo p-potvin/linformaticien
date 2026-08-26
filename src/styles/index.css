@@ -59,7 +59,7 @@
 
   /* Contour de focus visible et épais — indispensable au clavier et à la loupe. */
   :focus-visible {
-    outline: 3px solid var(--color-orange);
+    outline: 3px solid var(--color-rouge);
     outline-offset: 3px;
     border-radius: 4px;
   }

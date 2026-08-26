@@ -1,5 +1,49 @@
 # Journal des changements
 
+## v0.2.1 — Wed, 26 Aug 2026 17:42
+
+Arrivée du logo et des vraies coordonnées. Le site n'affiche plus une seule
+valeur d'exemple.
+
+- **Coordonnées réelles** (Philippe Potvin, 438 827-4585, Sorel-Tracy, de 8 h à
+  20 h du lundi au vendredi). Vérifié : `telephoneLien` correspond bien au
+  numéro affiché, et `heuresMachine` (`Mo-Fr 08:00-20:00`) dit la même chose que
+  la phrase française. C'était la seule paire du fichier qui pouvait diverger
+  sans que ça se voie.
+- **Le logo, en deux dessins et cinq fichiers.** Le mot-symbole mesure neuf fois
+  plus large que haut une fois détouré : il ne rentre dans aucune rangée serrée.
+  L'en-tête porte donc la marque carrée, le pied de page porte le mot-symbole.
+  Nouvelle fiche `design-system/logo.html`.
+- **L'en-tête débordait sur tous les téléphones.** Le mot-symbole occupait 211 px
+  à côté d'un bouton en `whitespace-nowrap` : ni l'un ni l'autre ne peut
+  rétrécir, donc la page partait en défilement horizontal de 320 à 414 px. À
+  partir de 1024 px, le menu s'ajoutait et le débordement atteignait 106 px — le
+  logo texte d'origine débordait déjà de 44 px à cette largeur, mais le texte
+  pouvait se replier, ce qui masquait le problème. La marque carrée laisse
+  maintenant 42 px de marge au pire cas.
+- **L'accent passe de l'orange brûlé au rouge de la marque** (`#c03a37`). Le
+  logo porte un rouge à 1° de teinte, le site portait un orange à 23° : assez
+  proches pour avoir l'air d'une erreur. Le nouveau rouge tient 5,4:1 sur blanc
+  et 4,8:1 sur crème, exactement comme l'orange qu'il remplace. Les jetons
+  s'appellent maintenant `rouge` et `rouge-pale`.
+- **Le bleu, lui, n'a pas bougé** : le logo est à 204° de teinte, l'interface à
+  203°. C'est la même couleur en deux valeurs, et c'est très bien ainsi. Le bleu
+  du logo ne tiendrait que 4,4:1 sur crème, sous le plancher — il reste réservé
+  au dessin, qui est une image et non du texte.
+- **Icônes.** `favicon.ico` passe de 262 ko à 15 ko et contient enfin trois
+  tailles (16, 32, 48) au lieu d'une seule image de 254 px. Ajout d'une icône
+  iOS de 180 px et d'une image de partage de 1200 × 630 : le mot-symbole seul se
+  serait fait recadrer en bande illisible par Facebook.
+- **Les dessins sources sortent de `public/`** pour `design-system/marque/`. Ils
+  n'étaient référencés nulle part et partaient quand même en production, soit
+  200 ko servis à personne.
+- **`npm run verifier`**, branché dans `npm run build`. Il compare les trois
+  copies des jetons — `theme.css`, `tokens.css` et les étiquettes affichées dans
+  `couleurs.html` — et recalcule tous les contrastes. Cette troisième copie avait
+  déjà dérivé deux fois : la pastille montrait la bonne couleur pendant que le
+  texte à côté annonçait l'ancienne. Une couleur sous le plancher arrête
+  maintenant la construction.
+
 ## v0.2.0 — Fri, 14 Aug 2026 01:09
 
 Consolidation du site avant la mise en ligne. Le jalon v0.2 n'est pas terminé

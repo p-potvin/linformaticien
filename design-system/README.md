@@ -1,6 +1,6 @@
 # Système de design « L'Informaticien »
 
-Mise à jour : Wed, 12 Aug 2026 08:32
+Mise à jour : Wed, 26 Aug 2026 17:42
 
 Système propre au projet. Il ne reprend **pas** VaultWares Redesign : le public, les
 contraintes d'impression et le ton n'ont rien à voir.
@@ -20,6 +20,8 @@ contraintes d'impression et le ton n'ont rien à voir.
 | Fichier                | Contenu                                                        |
 | ---------------------- | -------------------------------------------------------------- |
 | `tokens.css`           | Jetons en CSS pur, pour les contextes sans Tailwind             |
+| `logo.html`            | Les deux dessins, quel fichier sortir et dans quel cas          |
+| `marque/`              | Dessins sources, hors de `public/` : ils ne sont pas servis     |
 | `couleurs.html`        | Palette et ratios de contraste                                  |
 | `typographie.html`     | Échelle typographique, écran et papier                          |
 | `boutons.html`         | Boutons, tailles, état de focus                                 |
