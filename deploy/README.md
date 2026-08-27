@@ -202,8 +202,14 @@ La version en ligne se lit dans le source de la page, en commentaire HTML
 exclu de ses propres sondes : un hôte qui prouve qu'il se voit lui-même ne
 prouve rien.
 
-La sonde de production accepte `200` **ou** `404` tant que la production n'a pas
-été promue. À corriger le jour de la mise en ligne — voir `TODO.md`.
+La production a été promue le 27 août 2026. La sonde exige depuis `200` et le
+texte « L'Informaticien » ; elle acceptait `404` tant qu'il n'y avait pas de
+site.
+
+Limite à connaître : la sonde n'exécute pas de JavaScript. Le texte cherché est
+celui du `<title>`, présent dans le HTML statique. Elle prouve donc que le bon
+`index.html` est servi, **pas** que la page s'affiche — un paquet JS cassé
+passerait encore.
 
 La route split-DNS Tailscale est en place, et elle vise **`dev.linformaticien.ca`
 seulement**, pas l'apex. C'est voulu : la production doit se résoudre par le DNS
@@ -222,6 +228,20 @@ dev les affiche aussi.)
 Modifier la surveillance passe par un push sur `main` de `health-ledger` : le
 déploiement redémarre les services Joker sur greencloud et OVH. Plus rien à
 configurer à la main sur les machines.
+
+## Vhosts : une étape manuelle facile à oublier
+
+Les fichiers de `deploy/nginx/` **ne se déploient pas** : le webhook ne touche
+que le contenu du site. Les corriger dans le dépôt ne les installe pas.
+
+Constaté le 27 août 2026 : les vhosts en service dataient encore du 12 août,
+donc les en-têtes de sécurité ajoutés depuis n'étaient pas envoyés et les
+polices n'étaient pas mises en cache. Après chaque modification dans
+`deploy/nginx/`, refaire l'étape 4 de l'installation, puis vérifier :
+
+```bash
+curl -sI https://linformaticien.ca/ | grep -i "x-content-type\|x-frame\|referrer"
+```
 
 ## Reste à faire (hors dépôt)
 

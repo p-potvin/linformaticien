@@ -1,6 +1,6 @@
 # À faire
 
-Mise à jour : Thu, 27 Aug 2026 01:20
+Mise à jour : Thu, 27 Aug 2026 01:45
 
 ## Bloquant avant la mise en ligne
 
@@ -34,10 +34,11 @@ valeurs jetables.
 
 ## Mise en production et surveillance
 
-- [ ] **Le jour de la mise en ligne**, dans `health-ledger/services.yaml`, entrée
-      `linformaticien` : retirer `404` de `expected_status_any_of` et ajouter
-      `expected_text: "L'Informaticien"`. Sans ça, un site vide passerait pour
-      un site en santé indéfiniment.
+- [x] **Mise en ligne faite le 27 août 2026.** La sonde de `health-ledger` exige
+      maintenant `200` et le texte « L'Informaticien » (PR health-ledger #6).
+      Limite connue et écrite dans les notes de l'entrée : la sonde n'exécute pas
+      de JavaScript, donc elle vérifie que le bon `index.html` est servi, pas que
+      la page s'affiche. Un paquet JS cassé passerait encore.
 - [x] Route split-DNS Tailscale. Elle vise `dev.linformaticien.ca` seulement, et
       non l'apex : la production doit continuer de se résoudre par le DNS public,
       y compris depuis le tailnet, sans quoi on surveillerait un chemin que
@@ -46,9 +47,10 @@ valeurs jetables.
       enregistrer `linformaticien-dev` dans `services.yaml` (200, `expected_text`,
       `alert_floor: low`). Viser le nom de la marque pour `expected_text`, pas le
       numéro : le nom ne changera plus, le numéro peut changer.
+      Pas fait faute d'accès SSH à Clopeux depuis la session du 27 août.
 - [ ] Ajouter les deux URL à `vaultwares-docs` →
       `operations/services-inventory` (règle : le jour même où une URL publique
-      apparaît).
+      apparaît — donc **échue depuis le 27 août 2026**).
 
 ## Site
 
