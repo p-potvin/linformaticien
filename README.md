@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Thu, 27 Aug 2026 02:10
+Dernière mise à jour : Thu, 27 Aug 2026 09:30
 
 ## Projet indépendant
 
@@ -83,15 +83,18 @@ Chaque push sur `main` met à jour **dev** ; chaque push sur `prod` bascule la
 - **Le cerne noir du logo comme motif.** Le mot-symbole est un aplat bleu cerné de
   noir ; boutons, cartes et pastilles reprennent ce cerne de 2 px. C'est ce qui
   accorde la page au dessin sans rien ajouter d'autre.
-- **Deux dessins de logo, pas un.** Le mot-symbole fait exactement neuf fois plus
-  large que haut : il porte l'en-tête à partir de 640 px (288 px de large, puis
-  396 px à partir de 1280 px) et le pied de page. Sous 640 px il n'entre pas à côté
-  du numéro de téléphone, et c'est la marque carrée qui sort. Le détail est dans
+- **Le mot-symbole partout, même sur un téléphone.** Il fait exactement neuf fois
+  plus large que haut, donc sa largeur découle de sa hauteur : 180 px à 320 px
+  d'écran, 288 px à partir de 640 px, 360 px à partir de 1280 px. Ce qui a libéré
+  la place sur mobile, c'est le bouton de téléphone réduit à son pictogramme — le
+  numéro reste écrit en gros juste dessous, dans l'accueil. Le détail est dans
   [`design-system/logo.html`](design-system/logo.html).
-- **Mesure d'audience par Google Tag Manager** (`GTM-5QJ5XN28`). C'est la
-  **seule** requête vers un tiers de la page — tout le reste est servi par
-  `linformaticien.ca`. Le conteneur est chargé en `async`, donc il ne retarde
-  pas l'affichage.
+- **Aucune mesure d'audience, et c'est un choix.** Un conteneur Google Tag
+  Manager a été posé puis retiré : la première balise utile y dépose des témoins
+  de profilage, la Loi 25 exige alors le consentement préalable, et une bannière
+  de témoins coûte plus à ce public qu'un tableau de bord ne rapporte. Les
+  journaux nginx comptent déjà les visites sans témoin. **Zéro requête vers un
+  tiers sur la page.**
 - **Une seule police, auto-hébergée.** Aucune requête vers un tiers. Source Sans 3
   est variable : deux fichiers couvrent toutes les graisses, titres compris. Voir
   [`src/styles/fonts.css`](src/styles/fonts.css) — remplacer un fichier veut dire

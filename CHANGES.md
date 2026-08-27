@@ -1,5 +1,34 @@
 # Journal des changements
 
+## v0.6.0 — Thu, 27 Aug 2026 09:30
+
+Première passe de corrections après de vrais retours, plus le retrait de la
+mesure d'audience.
+
+- **Le texte, revu là où il sonnait mal.** « Je parle en bon français, pas en
+  informatique » devient « On en parle dans vos mots » — la première version
+  laissait entendre que le client, lui, ne parle pas bien. « Avant de parler
+  d'argent » disparaît : la consultation peut être facturée, autant ne pas la
+  vendre comme gratuite. « Sans vous faire sentir pressé » devient « sans vous
+  bousculer ». « Je range les fils » sort, parce que ça pouvait se lire comme du
+  ménage. Dix-sept corrections en tout, toutes dans `src/content/site.ts`.
+- **L'indicatif régional prend des parenthèses** : `(438) 827-4585`. Le lien
+  `tel:` ne change pas, et le vérificateur confirme qu'ils disent toujours la
+  même chose.
+- **Le mot-symbole tient maintenant sur un téléphone.** Le bouton de téléphone
+  de l'en-tête se réduit à son pictogramme sous 640 px, ce qui libère la largeur
+  qu'il fallait. À 320 px : mot-symbole de 180 px, 36 px de marge. Le numéro
+  n'est pas perdu — il est en gros dans le bouton de l'accueil, juste dessous.
+  La marque carrée n'a plus d'emploi dans l'en-tête et sort de `public/`.
+- **Nouveau dessin du mot-symbole**, apostrophe en rouge, accordée à la marque
+  carrée et au favicon.
+- **Google Tag Manager retiré.** Google n'impose pas de bannière au Canada — le
+  mode consentement ne vise que l'EEE et le Royaume-Uni. C'est la **Loi 25** qui
+  tranche : la première balise utile dépose des témoins de profilage, et le
+  consentement préalable devient obligatoire. Une bannière coûte plus à ce
+  public-là qu'un tableau de bord ne rapporte, donc le conteneur sort. La page
+  ne fait plus **aucune** requête vers un tiers.
+
 ## v0.4.1 — Wed, 26 Aug 2026 23:10
 
 Retouches après le premier vrai coup d'œil à l'écran.

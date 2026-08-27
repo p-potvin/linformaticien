@@ -58,11 +58,10 @@
     </div>
     <p>
       900 × 100, soit <strong>exactement neuf fois plus large que haut</strong>,
-      sans marge. C'est ce chiffre qui commande tout le reste : il lui faut de la
-      largeur, et beaucoup. Dans l'en-tête du site il fait 288 px à partir de
-      640 px, et 396 px à partir de 1280 px, où le conteneur atteint sa pleine
-      largeur de 1216 px. En dessous de 640 px il n'entre pas à côté du numéro de
-      téléphone : c'est la marque carrée qui prend le relais.
+      sans marge. C'est ce chiffre qui commande tout le reste : sa largeur découle
+      de sa hauteur. Dans l'en-tête il fait 180 px à 320 px d'écran, 288 px à
+      partir de 640 px, et 360 px à partir de 1280 px quand le menu apparaît.
+      L'apostrophe est rouge, comme celle de la marque carrée.
     </p>
 
     <h2>La marque carrée</h2>
@@ -70,16 +69,16 @@
       <img src="marque/favicon.png" alt="" style="width: 96px" />
     </div>
     <p>
-      Le « L' » seul, sur son carré bleu. C'est la version qui sert quand la
-      largeur est comptée : en-tête du site, favicon, icône iOS, photo de profil.
-      Elle reste lisible à 16 px, ce que le mot-symbole ne fait pas.
+      Le « L' » seul, sur son carré bleu, apostrophe rouge. Elle sert au favicon,
+      à l'icône iOS et à toute photo de profil : elle reste lisible à 16 px, ce
+      que le mot-symbole ne fait pas. Elle n'est plus dans l'en-tête du site
+      depuis que le mot-symbole y tient à toutes les largeurs.
     </p>
 
     <h2>Quel fichier, pour quoi</h2>
     <table>
       <tr><th>Fichier</th><th>Usage</th><th>Taille</th></tr>
-      <tr><td><code>public/logo-wordmark.png</code></td><td>En-tête (≥ 640 px) et pied de page</td><td>900 × 100, sans marge</td></tr>
-      <tr><td><code>public/logo-mark.png</code></td><td>En-tête sous 640 px</td><td>96 × 96</td></tr>
+      <tr><td><code>public/logo-wordmark.png</code></td><td>En-tête et pied de page, toutes largeurs</td><td>900 × 100, sans marge</td></tr>
       <tr><td><code>public/favicon.ico</code></td><td>Onglet du navigateur</td><td>16, 32 et 48 dans un seul fichier</td></tr>
       <tr><td><code>public/apple-touch-icon.png</code></td><td>Écran d'accueil iOS</td><td>180 × 180</td></tr>
       <tr><td><code>public/og-image.png</code></td><td>Partage Facebook, Messenger</td><td>1200 × 630</td></tr>
@@ -124,11 +123,12 @@ magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gr
     </p>
 
     <h2>Ce qu'on ne fait pas</h2>
-    <div class="interdit">
-      <strong>Pas de mot-symbole sur un téléphone.</strong> Neuf fois plus large
-      que haut, il pousse tout le reste hors de l'écran. C'est déjà arrivé dans
-      l'en-tête, sur toutes les largeurs de téléphone. Sous 640 px, c'est la
-      marque carrée, toujours.
+    <div class="permis">
+      <strong>Le mot-symbole tient sur un téléphone</strong>, depuis que le bouton
+      d'appel de l'en-tête se réduit à son pictogramme sous 640 px. À 320 px :
+      180 px de large, 36 px de marge. Ce n'était pas le cas avant — l'en-tête
+      débordait sur toutes les largeurs de téléphone — donc toute modification de
+      l'en-tête doit refaire ce calcul avant d'être poussée.
     </div>
     <div class="interdit">
       <strong>Pas de <code>logo-alt.png</code> sur le site.</strong> Il est fait

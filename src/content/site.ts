@@ -13,7 +13,7 @@
  * ---------------------------------------------------------------------- */
 export const coordonnees = {
   nom: "Philippe Potvin", // nom affiché
-  telephone: "438 827-4585",
+  telephone: "(438) 827-4585",
   telephoneLien: "+14388274585", // format tel:
   courriel: "philippe.potvin@linformaticien.ca",
   zone: "Sorel-Tracy", // zone desservie
@@ -50,7 +50,7 @@ export const accueil = {
   surtitre: "Dépannage informatique à domicile",
   titre: "On règle ça ensemble, chez vous.",
   texte:
-    "Je me déplace chez vous pour réparer vos appareils, les brancher comme il faut, et vous montrer tranquillement comment vous en servir. Je parle en bon français, pas en informatique.",
+    "Je me déplace chez vous pour réparer vos appareils, les brancher comme il faut, et vous montrer tranquillement comment vous en servir. On en parle dans vos mots, pas en informatique.",
   etiquettes: [
     `${marque.tarif} ${marque.tarifUnite}`,
     "Sur appel ou sur rendez-vous",
@@ -68,32 +68,32 @@ export const services = {
     {
       titre: "Réparer vos appareils",
       texte:
-        "Ordinateurs, ordinateurs portables, Mac, cellulaires, tablettes, télévisions, imprimantes. On regarde ensemble ce qui cloche avant de parler d'argent.",
+        "Ordinateurs, ordinateurs portables, Mac, cellulaires, tablettes, télévisions, imprimantes. On regarde ensemble ce qui cloche, et je vous dis ce que ça implique avant de commencer.",
     },
     {
       titre: "Vous conseiller avant d'acheter",
       texte:
-        "Avant de dépenser, on en jase. Je vous dis ce qui fait votre affaire, ce qui est correct pour le prix, et ce qui ne vous servira jamais.",
+        "Avant que vous dépensiez, on en jase. Je vous dis ce qui vous convient à vous, ce qui est correct pour le prix, et ce qui ne vous servira jamais.",
     },
     {
       titre: "Vous montrer à vous en servir",
       texte:
-        "Votre appareil fait bien plus que ce que vous en faites. On y va à votre rythme, aussi souvent qu'il le faut, sans jamais vous faire sentir pressé.",
+        "Votre appareil fait bien plus que ce que vous en faites. On y va à votre rythme, aussi souvent qu'il le faut, sans jamais vous bousculer.",
     },
     {
       titre: "Brancher et mettre de l'ordre",
       texte:
-        "Nouvel appareil, imprimante, télévision, internet sans fil : je branche tout, je vérifie que ça marche, et je range les fils.",
+        "Nouvel appareil, imprimante, télévision, internet sans fil : je branche tout et je vérifie que ça marche avant de partir.",
     },
     {
       titre: "Démêler vos forfaits",
       texte:
-        "Téléphone, internet, câble : on regarde ensemble ce que vous payez et ce que vous recevez vraiment pour cet argent-là.",
+        "Téléphone, internet, câble : on regarde ensemble ce que vous payez, ce que vous recevez vraiment pour cet argent-là, et comment vous pouvez économiser.",
     },
     {
       titre: "Remettre de l'ordre dans vos comptes",
       texte:
-        "Vos adresses de courriel, vos mots de passe, vos comptes éparpillés. On fait le ménage ensemble, et vous gardez la liste.",
+        "Vos adresses courriel et vos comptes éparpillés. On fait le ménage, et je vous donne des stratégies pour garder vos mots de passe faciles d'accès mais en sécurité.",
     },
   ],
 } as const;
@@ -112,13 +112,13 @@ export const approche = {
       numero: "2",
       titre: "Je me déplace chez vous",
       texte:
-        "Sur appel ou sur rendez-vous, selon ce qui vous adonne. On travaille sur vos appareils, dans votre salon, avec votre internet. C'est là que les problèmes se règlent pour de vrai.",
+        "Sur appel ou sur rendez-vous, selon ce qui vous adonne. Vos appareils, votre salon, votre internet : on règle ça sur place.",
     },
     {
       numero: "3",
       titre: "On écrit des notes ensemble",
       texte:
-        "Pendant que je travaille, on note les étapes importantes sur papier, dans vos mots à vous. Vous gardez ces notes-là.",
+        "Pendant que je travaille, on note les étapes importantes sur papier, dans vos mots à vous. Ce seront vos références quand je serai reparti.",
     },
     {
       numero: "4",
@@ -132,7 +132,7 @@ export const approche = {
 export const clientele = {
   titre: "Pour qui",
   texte:
-    "Je travaille surtout avec des personnes qui n'ont pas grandi avec ces machines-là et qui trouvent que le monde va vite. Résidences pour aînés, CHSLD, immeubles à condos : je me déplace aussi pour rencontrer plusieurs personnes dans la même bâtisse.",
+    "Je travaille surtout avec des personnes qui n'ont pas grandi avec ces machines-là et qui trouvent que le monde va vite. Résidences pour aînés, CHSLD, domicile privé : je vais là où vous êtes.",
   points: [
     "Aucune question n'est trop simple",
     "Je ne vous ferai jamais sentir dépassé",
@@ -145,11 +145,11 @@ export const tarif = {
   montant: marque.tarif,
   unite: marque.tarifUnite,
   details: [
-    "Le temps est calculé au cas par cas. On s'entend toujours avant de commencer.",
+    "On s'entend sur un horaire qui vous convient, et sur le temps que ça devrait prendre.",
     `Sur appel ou sur rendez-vous, ${coordonnees.heures}.`,
     `Zone desservie : ${coordonnees.zone}.`,
   ],
-  note: "Vous n'avez pas à apporter votre appareil nulle part. C'est moi qui viens.",
+  note: "Vous n'avez pas à apporter votre appareil nulle part. C'est moi qui me déplace.",
   // Deuxième porte d'entrée : tout le monde n'aime pas téléphoner à un inconnu.
   actionCourriel: "Écrivez-moi",
 } as const;
@@ -159,17 +159,17 @@ export const questions = {
   liste: [
     {
       question: "Est-ce que je peux vous appeler n'importe quand ?",
-      reponse: `Appelez-moi quand ça vous adonne, ${coordonnees.heures}. Si je ne réponds pas, laissez-moi un message avec votre nom et votre numéro, et je vous rappelle.`,
+      reponse: `Appelez-moi ${coordonnees.heures}. Si je ne réponds pas, laissez-moi un message avec votre nom et votre numéro, et je vous rappelle.`,
     },
     {
       question: "Est-ce que je dois apporter mon appareil quelque part ?",
       reponse:
-        "Non. Je me déplace chez vous. Vos affaires restent chez vous et on travaille dessus ensemble.",
+        "Non. Je me déplace chez vous. Vos affaires restent chez vous et on règle ça sur place.",
     },
     {
       question: "Je ne comprends rien là-dedans. Est-ce que c'est grave ?",
       reponse:
-        "Pas du tout, c'est exactement pour ça que j'existe. Vous n'avez pas à connaître un seul mot de vocabulaire pour m'appeler.",
+        "Pas du tout, c'est exactement pour ça que j'existe. Vous m'expliquez du mieux que vous pouvez, on finit toujours par se comprendre !",
     },
     {
       question: "Combien de temps ça va prendre ?",
@@ -184,7 +184,7 @@ export const questions = {
     {
       question: "Et si vous ne réussissez pas à réparer mon affaire ?",
       reponse:
-        "Ça arrive : parfois l'appareil est rendu au bout de sa vie. Je vous le dis franchement et je vous conseille sur la suite, sans essayer de vous vendre quoi que ce soit.",
+        "Ça arrive : parfois l'appareil est rendu au bout de sa vie. Je vous le dis franchement et je vous conseille sur la suite.",
     },
   ],
 } as const;

@@ -1,11 +1,11 @@
 # À faire
 
-Mise à jour : Thu, 27 Aug 2026 02:10
+Mise à jour : Thu, 27 Aug 2026 09:30
 
 ## Bloquant avant la mise en ligne
 
 - [x] Vraies coordonnées dans `src/content/site.ts` : Philippe Potvin,
-      438 827-4585, philippe.potvin@linformaticien.ca, Sorel-Tracy.
+      (438) 827-4585, philippe.potvin@linformaticien.ca, Sorel-Tracy.
 - [x] Heures d'appel arrêtées : de 8 h à 20 h en semaine, de 10 h à 16 h la fin de
       semaine. `heuresMachine` dit la même chose
       (`Mo-Fr 08:00-20:00` et `Sa-Su 10:00-16:00`).
@@ -43,14 +43,11 @@ valeurs jetables.
       non l'apex : la production doit continuer de se résoudre par le DNS public,
       y compris depuis le tailnet, sans quoi on surveillerait un chemin que
       personne d'autre n'emprunte.
-- [ ] Vérifier `curl https://dev.linformaticien.ca/` depuis Clopeux, puis
-      enregistrer `linformaticien-dev` dans `services.yaml` (200, `expected_text`,
-      `alert_floor: low`). Viser le nom de la marque pour `expected_text`, pas le
-      numéro : le nom ne changera plus, le numéro peut changer.
-      Pas fait faute d'accès SSH à Clopeux depuis la session du 27 août.
-- [ ] Ajouter les deux URL à `vaultwares-docs` →
-      `operations/services-inventory` (règle : le jour même où une URL publique
-      apparaît — donc **échue depuis le 27 août 2026**).
+- [x] `dev.linformaticien.ca` enregistré dans `services.yaml` après confirmation
+      d'un 200 (PR health-ledger #7). `alert_floor: low` — dev se met à jour à
+      chaque poussée sur `main`, c'est la surface la plus bruyante des deux.
+- [x] Les deux URL inscrites à `vaultwares-docs` → `operations/services-inventory`,
+      versions EN et QC (PR vaultwares-docs #29).
 
 ## Site
 
@@ -64,10 +61,9 @@ valeurs jetables.
       tabulation a été vérifié dans le DOM (19 éléments, aucun `tabindex` positif),
       mais personne n'a encore *vu* le contour de focus se promener dans la page.
 - [ ] Vérifier le rendu réel sur un téléphone, à taille de police système agrandie
-      (réglage courant chez les aînés). L'en-tête a maintenant 62 px de marge à
-      320 px, contre 42 avant : le bouton a maigri de 299 à 162 px. Ce qui reste à
-      surveiller : il est toujours en `whitespace-nowrap`, donc une police système
-      très agrandie peut encore le pousser dehors.
+      (réglage courant chez les aînés). L'en-tête porte maintenant le mot-symbole
+      dès 320 px, avec 36 px de marge — c'est le passage le plus serré du site, et
+      il n'a jamais été vu autrement que par le calcul.
 - [ ] Regarder le mot-symbole de l'en-tête sur un vrai écran large. Les largeurs
       (288 px, puis 396 px à partir de 1280 px) viennent d'un calcul sur les
       métriques réelles des polices, pas d'une observation.
@@ -94,15 +90,15 @@ valeurs jetables.
 
 ## Mesure d'audience
 
-- [x] Conteneur Google Tag Manager `GTM-5QJ5XN28` posé dans `index.html`, en-tête
-      et corps.
-- [ ] **Loi 25 (Québec).** GTM seul ne dépose rien, mais la première balise qui
-      suit — Google Analytics en particulier — dépose des témoins et déclenche
-      l'obligation d'obtenir le consentement avant le dépôt, plus une politique
-      de confidentialité accessible. À régler **avant** d'activer une balise dans
-      le conteneur, pas après. Rien à faire tant que le conteneur reste vide.
-- [ ] Vérifier dans l'aperçu GTM que le conteneur se charge bien sur la
-      production, et que le mode sans JavaScript (`<noscript>`) ne casse rien.
+- [x] **Décision : pas de mesure d'audience.** Le conteneur GTM a été posé le
+      27 août puis retiré le jour même. Google n'impose rien au Canada, mais la
+      Loi 25 exige le consentement préalable dès qu'une balise dépose des témoins
+      de profilage, et une bannière coûte plus à ce public qu'un tableau de bord
+      ne rapporte.
+- [ ] Si le besoin de chiffres revient : les journaux nginx comptent déjà les
+      visites sans aucun témoin (`/var/log/nginx/linformaticien.access.log`).
+      Un GoAccess ou équivalent lit ça directement, sans consentement à demander,
+      parce que rien n'est déposé chez le visiteur.
 
 ## À décider plus tard
 
