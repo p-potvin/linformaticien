@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 # Deploy L'Informaticien — runs on greencloud-vps as `vwdeploy`.
 # Installed at: /var/www/deploy-scripts/deploy-linformaticien.sh
-# Triggered by: vw-webhookd on a signed GitHub push to refs/heads/main.
+# Triggered by: vw-webhookd on a signed GitHub push to `main` OR to `prod`.
 #
-# This script builds ONCE and publishes to the DEV environment only.
-# Production is a separate, explicit promotion of the same artifact:
-#   /var/www/deploy-scripts/promote-linformaticien.sh
+# Le même script sert les deux environnements, et c'est VW_REF qui les
+# distingue :
 #
-# Mise à jour : Wed, 12 Aug 2026 10:14
+#   refs/heads/main  ->  construit, publie dans releases/<SHA>, bascule DEV
+#   refs/heads/prod  ->  bascule PROD sur releases/<SHA>, SANS reconstruire
+#
+# La branche `prod` étant une avance rapide de `main`, l'artéfact existe déjà
+# quand elle est poussée : la production sert alors exactement les octets qui
+# ont été regardés sur dev. Si le release manque (release élaguée, ou `prod`
+# poussée sans passer par `main`), le script construit — et le dit.
+#
+# La promotion manuelle reste disponible et sert au retour arrière :
+#   /var/www/deploy-scripts/promote-linformaticien.sh --rollback
+#
+# Mise à jour : Thu, 27 Aug 2026 01:20
 
 set -euo pipefail
 
@@ -37,7 +47,18 @@ if [[ -z "$SHA" ]]; then
   exit 1
 fi
 
-echo "=== deploy linformaticien ${SHA} at $(date -Is) ==="
+# Quel environnement ? `main` va sur dev, `prod` va en production.
+REF="${VW_REF:-refs/heads/main}"
+case "$REF" in
+  refs/heads/main) CIBLE="dev" ;;
+  refs/heads/prod) CIBLE="prod" ;;
+  *)
+    echo "ref inattendue: ${REF} — rien à faire"
+    exit 0
+    ;;
+esac
+
+echo "=== deploy linformaticien ${SHA} -> ${CIBLE} at $(date -Is) ==="
 
 mkdir -p "$CHECKOUT_DIR" "$RELEASES_DIR"
 
@@ -49,31 +70,44 @@ if [[ ! -d "${CHECKOUT_DIR}/.git" ]]; then
   git clone "$REPO_URL" "$CHECKOUT_DIR"
 fi
 
-cd "$CHECKOUT_DIR"
-
-# `git fetch --all --prune` already brings in origin/main, which contains the
-# SHA. Never `git fetch origin <SHA>` — GitHub's upload-pack rejects fetching by
-# raw SHA with "not our ref" for commits it does not directly advertise.
-git fetch --all --prune
-git checkout -f "$SHA"
-
-npm ci
-npm run build
-
 RELEASE_DIR="${RELEASES_DIR}/${SHA}"
-rm -rf "$RELEASE_DIR"
-mkdir -p "$RELEASE_DIR"
 
-# -rltD, not -a. `-a` implies -og and tries to preserve source owner/group,
-# which fails as vwdeploy.
-rsync -rltD --delete dist/ "${RELEASE_DIR}/"
+# Sur `prod`, l'artéfact a normalement déjà été construit par la poussée sur
+# `main` : on ne le reconstruit pas, on bascule dessus. C'est ce qui garantit
+# que la production sert les octets exacts qui ont été regardés sur dev.
+if [[ "$CIBLE" == "prod" && -f "${RELEASE_DIR}/index.html" ]]; then
+  echo "artéfact déjà construit — promotion sans reconstruction"
+else
+  if [[ "$CIBLE" == "prod" ]]; then
+    echo "ATTENTION: aucun artéfact pour ${SHA}, construction depuis la source."
+    echo "La production ne servira donc pas un artéfact déjà vu sur dev."
+  fi
+
+  cd "$CHECKOUT_DIR"
+
+  # `git fetch --all --prune` already brings in origin/main, which contains the
+  # SHA. Never `git fetch origin <SHA>` — GitHub's upload-pack rejects fetching by
+  # raw SHA with "not our ref" for commits it does not directly advertise.
+  git fetch --all --prune
+  git checkout -f "$SHA"
+
+  npm ci
+  npm run build
+
+  rm -rf "$RELEASE_DIR"
+  mkdir -p "$RELEASE_DIR"
+
+  # -rltD, not -a. `-a` implies -og and tries to preserve source owner/group,
+  # which fails as vwdeploy.
+  rsync -rltD --delete dist/ "${RELEASE_DIR}/"
+fi
 
 # Atomic symlink flip: `mv -T` renames over the existing link in one syscall,
 # so nginx never observes a missing document root.
-ln -sfn "$RELEASE_DIR" "${ROOT_DIR}/.dev.tmp"
-mv -Tf "${ROOT_DIR}/.dev.tmp" "${ROOT_DIR}/dev"
+ln -sfn "$RELEASE_DIR" "${ROOT_DIR}/.${CIBLE}.tmp"
+mv -Tf "${ROOT_DIR}/.${CIBLE}.tmp" "${ROOT_DIR}/${CIBLE}"
 
-echo "dev now serving ${SHA}"
+echo "${CIBLE} now serving ${SHA}"
 
 # Keep the last N releases so promotion and rollback always have a target.
 # Never prune whatever dev or prod currently point at.
@@ -92,4 +126,4 @@ ls -1dt "${RELEASES_DIR}"/*/ 2>/dev/null | tail -n "+$((KEEP_RELEASES + 1))" | w
   rm -rf "$old_real"
 done
 
-echo "=== deploy ok ${SHA} ==="
+echo "=== deploy ok ${SHA} -> ${CIBLE} ==="

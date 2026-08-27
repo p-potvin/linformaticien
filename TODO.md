@@ -1,6 +1,6 @@
 # À faire
 
-Mise à jour : Wed, 26 Aug 2026 23:10
+Mise à jour : Thu, 27 Aug 2026 01:20
 
 ## Bloquant avant la mise en ligne
 
@@ -10,9 +10,9 @@ Mise à jour : Wed, 26 Aug 2026 23:10
       semaine. `heuresMachine` dit la même chose
       (`Mo-Fr 08:00-20:00` et `Sa-Su 10:00-16:00`).
 - [x] Zone desservie confirmée : Sorel-Tracy.
-- [ ] Trancher la question du temps minimum facturé (une heure ? une demi-heure ?).
-      Rien n'est écrit à ce sujet pour l'instant, volontairement. **Seul point
-      encore ouvert avant la mise en ligne.**
+- [x] Temps minimum facturé : il n'y en a pas, c'est le tarif horaire qui
+      s'applique. Rien à ajouter sur le site — « Le temps est calculé au cas par
+      cas » dit déjà ce qu'il faut.
 
 Réglé : pas de supplément de déplacement. La question ne se pose pas.
 
@@ -79,7 +79,10 @@ valeurs jetables.
       dès 1024 px), ou accepter que le menu soit réservé aux grands écrans.
 - [ ] À l'impression, la bande « Pour qui » sort en blanc avec du texte noir.
       Prévu, jamais vu sur papier.
-- [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
+- [ ] **En attente (décision du 27 août 2026)** : rediriger `letechnicien.top` et
+      `le.technicien.top` vers `linformaticien.ca`. Les vhosts sont écrits, mais
+      les certificats de ces domaines n'ont pas été demandés — la commande
+      `certbot` de `deploy/README.md` les inclut, il faudra la relancer.
 - [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google.
       Les vraies coordonnées y sont maintenant, donc ce test a du sens. À faire une
       fois le site en ligne : l'outil doit pouvoir atteindre l'adresse publique.

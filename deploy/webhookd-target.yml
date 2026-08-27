@@ -1,11 +1,15 @@
 # Snippet to add under `targets:` in /etc/vw-webhookd/config.yml on greencloud.
 # `p-potvin` is already in server.allowed_owners, so nothing else changes there.
 #
-# Verified against /opt/vaultwares-adk/webhookd/vw_webhookd.py on
-# Wed, 12 Aug 2026 10:14 — targets are keyed by `owner/repo` and match exactly
-# one branch (line 329: `expected_branch = target.get("branch") or "main"`).
-# That is why production is a promotion rather than a second branch target.
+# Deux branches, une seule commande. Le script lit VW_REF pour savoir laquelle
+# a été poussée : `main` va sur dev, `prod` bascule la production.
+#
+# ATTENTION — la forme liste exige le correctif appliqué le 27 août 2026 à
+# /opt/vaultwares-adk/webhookd/vw_webhookd.py, qui accepte `branch` en chaîne
+# (comportement historique) OU en liste. Sans lui, une cible dont `branch` est
+# une liste ne correspond à aucune poussée et le dépôt cesse silencieusement de
+# se déployer. Voir « Le correctif du répartiteur » dans README.md.
 
   p-potvin/linformaticien:
-    branch: main
+    branch: [main, prod]
     command: /var/www/deploy-scripts/deploy-linformaticien.sh

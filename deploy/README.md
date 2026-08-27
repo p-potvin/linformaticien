@@ -1,35 +1,46 @@
 # Déploiement
 
-Mise à jour : Wed, 26 Aug 2026 17:42
+Mise à jour : Thu, 27 Aug 2026 01:20
 
 ## Le modèle : construire une fois, promouvoir l'artéfact
 
 ```
-push sur main
-  └─ GitHub envoie un webhook signé
-      └─ hooks.vaultwares.ca/github  (nginx, greencloud)
-          └─ vw-webhookd vérifie la signature        127.0.0.1:9033
-              └─ deploy-linformaticien.sh            (utilisateur vwdeploy)
-                  ├─ git fetch + checkout du SHA
-                  ├─ npm ci && npm run build
-                  ├─ publie dans releases/<SHA>
-                  └─ bascule le lien dev → releases/<SHA>
-                      └─ dev.linformaticien.ca  (tailnet seulement)
-
-promotion manuelle
-  └─ promote-linformaticien.sh
-      └─ bascule le lien prod → le MÊME releases/<SHA>
-          └─ linformaticien.ca  (public)
+push sur main                          push sur prod
+  └─ webhook signé                       └─ webhook signé
+      └─ vw-webhookd                         └─ vw-webhookd
+          └─ deploy-linformaticien.sh            └─ deploy-linformaticien.sh
+              VW_REF=refs/heads/main                 VW_REF=refs/heads/prod
+              ├─ git checkout du SHA                 └─ bascule prod → le MÊME
+              ├─ npm ci && npm run build                releases/<SHA>, SANS
+              ├─ publie releases/<SHA>                  reconstruire
+              └─ bascule dev → releases/<SHA>
+                  └─ dev  (tailnet)                        └─ linformaticien.ca
 ```
 
-Aucune reconstruction entre dev et prod. Ce qui part en production est
-l'artéfact exact qui a été regardé sur dev, octet pour octet.
+Une seule commande sert les deux : c'est `VW_REF` qui les distingue.
 
-### Pourquoi pas une branche `dev` et une branche `main`
+**Aucune reconstruction entre dev et prod.** `prod` étant une avance rapide de
+`main`, l'artéfact existe déjà quand elle est poussée ; le script se contente de
+basculer le lien. Ce qui part en production est donc l'artéfact exact qui a été
+regardé sur dev, octet pour octet.
 
-Le répartiteur ne le permet pas. Dans
-`/opt/vaultwares-adk/webhookd/vw_webhookd.py`, les cibles sont indexées par
-`owner/repo` et ne retiennent qu'une seule branche :
+Si l'artéfact manque — release élaguée, ou `prod` poussée sans passer par
+`main` — le script construit quand même, mais il l'écrit en toutes lettres dans
+le journal : la production ne sert alors pas un artéfact déjà vu.
+
+### Mettre en production
+
+```bash
+git checkout prod && git merge --ff-only main && git push
+```
+
+Pas de fusion à trois branches, pas de commit de fusion : `--ff-only` garantit
+que `prod` ne peut être qu'un point de `main` déjà passé par dev.
+
+### Le correctif du répartiteur
+
+`/opt/vaultwares-adk/webhookd/vw_webhookd.py` indexe ses cibles par
+`owner/repo` et n'en retenait **qu'une seule branche** :
 
 ```python
 expected_branch = target.get("branch") or "main"
@@ -38,13 +49,31 @@ if ref != expected_ref:
     ...ignored
 ```
 
-Un dépôt ne peut donc pas router `dev` et `main` vers deux commandes
-différentes sans modifier ce fichier — un fichier partagé par tous les projets,
-et que la documentation signale comme régulièrement réécrit.
+Le 27 août 2026, ce test accepte désormais aussi une **liste** de branches. Le
+correctif est rétrocompatible : les treize autres cibles utilisent une chaîne et
+se comportent exactement comme avant.
 
-La promotion d'artéfact évite ce problème et vaut mieux de toute façon : une
-branche `dev` reconstruit la production séparément, ce qui laisse la porte
-ouverte à ce que prod diffère de ce qui a été validé.
+```python
+expected_branch = target.get("branch") or "main"
+if isinstance(expected_branch, str):
+    expected_branch = [expected_branch]
+expected_refs = {f"refs/heads/{b}" for b in expected_branch}
+if ref not in expected_refs:
+    ...ignored
+```
+
+**C'est un fichier partagé par tous les projets, et la documentation VaultWares
+le signale comme régulièrement réécrit.** S'il est réécrit sans ce correctif, la
+cible de ce dépôt aura une liste dans `branch`, ne correspondra plus à aucune
+poussée, et **les deux environnements cesseront silencieusement de se
+déployer** — aucune erreur, aucune alerte, juste plus rien.
+
+Symptôme à reconnaître dans `/var/log/vw-webhookd.log` :
+`ignored ... reason=ref=refs/heads/main`. Sauvegarde du fichier d'origine :
+`/opt/vaultwares-adk/webhookd/vw_webhookd.py.bak-20260827-multibranch`.
+
+En attendant le rétablissement, `promote-linformaticien.sh` fonctionne toujours
+et ne dépend pas du répartiteur.
 
 ## Rôle de chaque environnement
 
@@ -52,7 +81,7 @@ ouverte à ce que prod diffère de ce qui a été validé.
 | --- | --- | --- |
 | Adresse | `dev.linformaticien.ca` | `linformaticien.ca` |
 | Accès | tailnet seulement (`allow 100.64.0.0/10`) | public |
-| Mise à jour | chaque push sur `main` | commande explicite |
+| Mise à jour | chaque push sur `main` | chaque push sur `prod` |
 | Indexation | `X-Robots-Tag: noindex` | indexé |
 | Racine | `/var/www/linformaticien/dev` | `/var/www/linformaticien/prod` |
 
@@ -111,6 +140,11 @@ permises, jamais un déploiement.
 
 ## Usage courant
 
+La mise en production passe par la branche `prod` (voir plus haut).
+`promote-linformaticien.sh` reste installé et sert à ce que la branche ne fait
+pas : constater l'état, revenir en arrière, forcer une version précise. Il ne
+dépend pas du répartiteur, donc il fonctionne même si le correctif est perdu.
+
 ```bash
 # Voir ce que chaque environnement sert
 /var/www/deploy-scripts/promote-linformaticien.sh --status
@@ -152,6 +186,7 @@ La version en ligne se lit dans le source de la page, en commentaire HTML
 | `not our ref` sur un fetch | Un `git fetch origin <SHA>` traîne dans le script | Le retirer ; `--all --prune` ramène déjà `origin/main` |
 | `Permission denied` sur le verrou | Verrou laissé à `root:root` | Le verrou vit dans `/var/lib/vw-deploy/`, mode 0666 |
 | Le déploiement passe mais la page ne change pas | `index.html` mis en cache | Le vhost envoie déjà `Cache-Control: no-cache` sur `index.html` |
+| Plus rien ne se déploie, journal en `reason=ref=refs/heads/main` | `vw_webhookd.py` réécrit, correctif multi-branches perdu | Le réappliquer (voir « Le correctif du répartiteur »), ou repasser `branch` à `main` seul et promouvoir à la main |
 
 ## Surveillance
 
