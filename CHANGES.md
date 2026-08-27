@@ -1,5 +1,45 @@
 # Journal des changements
 
+## v0.4.0 — Wed, 26 Aug 2026 21:30
+
+L'ordre des priorités du projet est arrêté noir sur blanc : **une page qui a de
+l'allure passe avant une page accessible, qui passe avant un score parfait aux
+outils automatiques.** Le reste de cette version en découle.
+
+- **Un seul bleu.** Les liens reprennent `#1a75b2`, le bleu exact du
+  mot-symbole. Le doublon `bleu-fonce` pour le texte disparaît — il ne sert plus
+  qu'au survol. Sur la teinte, un lien tient 4,0:1 : sous la cible, au-dessus du
+  plancher, et c'est assumé.
+- **La teinte se voit enfin.** Le fond des bandes alternées passe de `#f2f7fb`
+  à `#dbe9f5` : l'écart avec le blanc double, de 1,08 à 1,24. Il avait été
+  choisi pâle pour faire passer le bleu du logo à 4,5:1 — contrainte levée.
+- **Une bande pleinement bleue.** La section « Pour qui » prend le bleu du logo
+  en aplat, texte blanc, cernée de noir. Le rythme de la page devient blanc,
+  teinte, blanc, teinte — avec ce bloc bleu au milieu.
+- **Le cerne noir du logo devient un motif.** Le mot-symbole est un aplat bleu
+  cerné de noir ; boutons, cartes, questions, étiquettes et pastilles d'étapes
+  reprennent ce cerne de 2 px (`--color-contour`, `#141414`). C'est le
+  changement qui accorde le plus la page au dessin, et il ne coûte qu'une
+  bordure.
+- **Un bouton de courriel dans l'en-tête**, à côté du téléphone, plus un second
+  dans le tarif. Le site comptait un seul `mailto:` pour quatre `tel:` ; il en
+  compte maintenant trois. Sous 640 px le bouton de courriel s'efface : les deux
+  boutons plus le numéro ne laissaient que 6 px de marge.
+- **Le menu change.** « Comment ça marche » sort, « Contactez-moi » entre et
+  pointe vers le bas de page. La section Contact s'intitule maintenant
+  « Contactez-moi » plutôt que « Appelez-moi », puisqu'on peut aussi écrire.
+- **Les heures ajoutent la fin de semaine** : de 10 h à 16 h le samedi et le
+  dimanche, en plus de 8 h à 20 h en semaine. `heuresMachine` devient une liste
+  de deux plages, ce que schema.org accepte tel quel.
+- **`npm run verifier` suit la nouvelle règle** : il bloque sous 3:1, il signale
+  entre 3 et 4,5 sans bloquer, et il garde la cible de 4,5:1 pour le corps de
+  texte seulement. Les vérifications de concordance des jetons, elles, restent
+  bloquantes — une couleur qui ne dit pas la même chose à trois endroits reste
+  une erreur, pas un choix.
+- **L'impression forçait le fond en blanc sans toucher au texte.** La nouvelle
+  bande bleue serait sortie blanche sur blanc, donc vide. Le texte est
+  maintenant forcé en noir lui aussi.
+
 ## v0.3.0 — Wed, 26 Aug 2026 19:05
 
 Le site prend l'allure du logo. Le mot-symbole redessiné en 9:1 exact devient

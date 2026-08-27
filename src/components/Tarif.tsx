@@ -1,4 +1,4 @@
-import { Check, Phone } from "lucide-react";
+import { Check, Mail, Phone } from "lucide-react";
 import { Button } from "./ui/Button";
 import { Section } from "./ui/Section";
 import { coordonnees, lecteursDecran, tarif } from "../content/site";
@@ -32,15 +32,26 @@ export function Tarif() {
             {tarif.note}
           </p>
 
-          <Button
-            href={`tel:${coordonnees.telephoneLien}`}
-            taille="grande"
-            className="mt-8"
-            aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
-          >
-            <Phone aria-hidden="true" className="size-6 shrink-0" strokeWidth={2.5} />
-            <span className="chiffres">{coordonnees.telephone}</span>
-          </Button>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Button
+              href={`tel:${coordonnees.telephoneLien}`}
+              taille="grande"
+              aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
+            >
+              <Phone aria-hidden="true" className="size-6 shrink-0" strokeWidth={2.5} />
+              <span className="chiffres">{coordonnees.telephone}</span>
+            </Button>
+            {/* Tout le monde n'aime pas téléphoner à un inconnu. */}
+            <Button
+              href={`mailto:${coordonnees.courriel}`}
+              variante="secondaire"
+              taille="grande"
+              aria-label={`${lecteursDecran.ecrire} ${coordonnees.courriel}`}
+            >
+              <Mail aria-hidden="true" className="size-6 shrink-0" strokeWidth={2.5} />
+              {tarif.actionCourriel}
+            </Button>
+          </div>
         </div>
       </div>
     </Section>

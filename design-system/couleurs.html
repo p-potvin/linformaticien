@@ -11,17 +11,18 @@
     <style>
       :root {
         --papier: #ffffff;
-        --teinte: #f2f7fb;
+        --teinte: #dbe9f5;
         --encre: #16232e;
         --bleu: #1a75b2;
         --bleu-fonce: #12557f;
         --bleu-nuit: #0b3e5e;
-        --bleu-pale: #e8f1f7;
+        --bleu-pale: #eef5fb;
+        --contour: #141414;
         --rouge: #c03a37;
         --rouge-pale: #fdf0ef;
         --vert: #1f6b47;
         --gris: #5a6672;
-        --ligne: #dde5ec;
+        --ligne: #cddeee;
       }
       body {
         margin: 0;
@@ -91,19 +92,19 @@
 
     <div class="grille">
       <div class="jeton">
-        <div class="pastille" style="background: #ffffff; border-bottom: 1px solid #dde5ec"></div>
+        <div class="pastille" style="background: #ffffff; border-bottom: 1px solid #cddeee"></div>
         <div class="info">
           <div class="nom">papier</div>
           <div class="hex">#FFFFFF</div>
-          <div class="ratio">fond de page — jamais remplacé</div>
+          <div class="ratio">fond de page</div>
         </div>
       </div>
       <div class="jeton">
-        <div class="pastille" style="background: #f2f7fb; border-bottom: 1px solid #dde5ec"></div>
+        <div class="pastille" style="background: #dbe9f5; border-bottom: 1px solid #cddeee"></div>
         <div class="info">
           <div class="nom">teinte</div>
-          <div class="hex">#F2F7FB</div>
-          <div class="ratio">sections alternées, écran</div>
+          <div class="hex">#DBE9F5</div>
+          <div class="ratio">bandes alternées</div>
         </div>
       </div>
       <div class="jeton">
@@ -119,7 +120,7 @@
         <div class="info">
           <div class="nom">bleu</div>
           <div class="hex">#1A75B2</div>
-          <div class="ratio">5,0:1 — aplats, pictogrammes</div>
+          <div class="ratio">5,0:1 — marque, liens, aplats</div>
         </div>
       </div>
       <div class="jeton">
@@ -127,7 +128,7 @@
         <div class="info">
           <div class="nom">bleu-fonce</div>
           <div class="hex">#12557F</div>
-          <div class="ratio">8,0:1 — liens, texte bleu</div>
+          <div class="ratio">8,0:1 — survol</div>
         </div>
       </div>
       <div class="jeton">
@@ -135,15 +136,23 @@
         <div class="info">
           <div class="nom">bleu-nuit</div>
           <div class="hex">#0B3E5E</div>
-          <div class="ratio">11,3:1 — survol</div>
+          <div class="ratio">11,3:1 — état actif</div>
         </div>
       </div>
       <div class="jeton">
-        <div class="pastille" style="background: #e8f1f7; border-bottom: 1px solid #dde5ec"></div>
+        <div class="pastille" style="background: #eef5fb; border-bottom: 1px solid #cddeee"></div>
         <div class="info">
           <div class="nom">bleu-pale</div>
-          <div class="hex">#E8F1F7</div>
+          <div class="hex">#EEF5FB</div>
           <div class="ratio">surface seulement</div>
+        </div>
+      </div>
+      <div class="jeton">
+        <div class="pastille" style="background: #141414"></div>
+        <div class="info">
+          <div class="nom">contour</div>
+          <div class="hex">#141414</div>
+          <div class="ratio">18,4:1 — cerne du logo</div>
         </div>
       </div>
       <div class="jeton">
@@ -155,7 +164,7 @@
         </div>
       </div>
       <div class="jeton">
-        <div class="pastille" style="background: #fdf0ef; border-bottom: 1px solid #dde5ec"></div>
+        <div class="pastille" style="background: #fdf0ef; border-bottom: 1px solid #cddeee"></div>
         <div class="info">
           <div class="nom">rouge-pale</div>
           <div class="hex">#FDF0EF</div>
@@ -179,32 +188,34 @@
         </div>
       </div>
       <div class="jeton">
-        <div class="pastille" style="background: #dde5ec; border-bottom: 1px solid #dde5ec"></div>
+        <div class="pastille" style="background: #cddeee; border-bottom: 1px solid #cddeee"></div>
         <div class="info">
           <div class="nom">ligne</div>
-          <div class="hex">#DDE5EC</div>
+          <div class="hex">#CDDEEE</div>
           <div class="ratio">filets et bordures</div>
         </div>
       </div>
     </div>
 
-    <h2>Les deux bleus</h2>
+    <h2>Un seul bleu</h2>
     <div class="regle">
-      <strong>bleu</strong> est celui du logo. Il sert aux <em>aplats</em> :
-      fond des boutons, pictogrammes, pastilles des étapes, filets. Le blanc
-      posé dessus tient 4,96:1.
+      <strong>bleu</strong> est celui du mot-symbole, et il sert à tout : fond
+      des boutons, pictogrammes, pastilles, filets, et les liens. Une seule
+      valeur sur la page, exactement celle du dessin.
+      <code>bleu-fonce</code> et <code>bleu-nuit</code> ne servent qu'au survol
+      et à l'état actif.
     </div>
     <div class="regle">
-      <strong>bleu-fonce</strong> est le même bleu en plus sombre, et c'est
-      celui qui porte le <em>texte</em> : liens, texte sur les surfaces pâles,
-      survol des boutons. Même teinte à un degré près, donc l'œil ne voit
-      qu'une couleur de marque — mais 8:1 au lieu de 5:1, et le public a 65 ans
-      et plus.
+      <strong>contour</strong> est le noir qui cerne le mot-symbole. Les boutons
+      principaux et les pastilles d'étapes le reprennent : c'est ce qui accorde
+      le plus vite la page au logo, sans rien ajouter d'autre.
     </div>
     <p class="note">
-      Ne pas intervertir les deux. Un lien en <code>bleu</code> tiendrait
-      4,6:1 sur la teinte : au-dessus du plancher, mais tout juste, et les
-      planchers du projet sont des minimums, pas des cibles.
+      Les ratios plus bas que 4,5:1 sont assumés. L'ordre des priorités du
+      projet est : une page qui a de l'allure d'abord, l'accessibilité ensuite,
+      les scores automatiques en dernier. Le plancher dur reste 3:1, et le
+      corps de texte — <code>encre</code> et <code>gris</code> — garde la cible
+      de 4,5:1 sur les deux fonds.
     </p>
   </body>
 </html>

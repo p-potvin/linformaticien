@@ -20,7 +20,7 @@ export function Hero() {
           {accueil.etiquettes.map((etiquette) => (
             <li
               key={etiquette}
-              className="rounded-carte bg-bleu-pale px-5 py-2.5 font-semibold text-bleu-fonce"
+              className="rounded-carte border-2 border-contour bg-bleu-pale px-5 py-2.5 font-bold text-encre"
             >
               {etiquette}
             </li>

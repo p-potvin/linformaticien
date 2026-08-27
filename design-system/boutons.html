@@ -42,15 +42,17 @@
         gap: 16px;
         align-items: center;
       }
+      /* Le cerne noir vient du mot-symbole : un aplat bleu cerné de noir.
+         Les deux variantes le portent — c'est lui qui fait la famille. */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 8px;
         border-radius: 12px;
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
-        border: 2px solid transparent;
+        border: 2px solid #141414;
         font-family: inherit;
         cursor: pointer;
       }
@@ -63,11 +65,15 @@
       }
       .secondaire {
         background: #fff;
-        color: #1a75b2;
-        border-color: #1a75b2;
+        color: #16232e;
       }
       .secondaire:hover {
-        background: #e8f1f7;
+        background: #eef5fb;
+      }
+      .icone {
+        width: 48px;
+        height: 48px;
+        padding: 0;
       }
       .normale {
         min-height: 48px;
@@ -130,6 +136,8 @@
       <li>Hauteur minimale de 48 px, 56 px pour l'action principale.</li>
       <li>Jamais d'icône seule : toujours accompagnée de mots.</li>
       <li>Le contour de focus fait 3 px et est rouge, et son décalage de 3 px le pose sur le fond de la page, jamais sur le bouton.</li>
+      <li>Les deux variantes portent le même cerne noir de 2 px, celui du mot-symbole. C'est ce qui les rattache au logo.</li>
+      <li>La taille « icône » fait 48 × 48 : un pictogramme seul, sans texte, mais la cible reste au plancher tactile.</li>
       <li>Une seule action principale par écran.</li>
       <li>Aucun libellé vague : « Appelez-moi », pas « En savoir plus ».</li>
     </ul>

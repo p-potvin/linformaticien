@@ -20,7 +20,10 @@ export function Section({ id, titre, intro, teinte = false, children }: SectionP
         {titre && (
           <h2 className="text-3xl sm:text-4xl">
             {titre}
-            <span aria-hidden="true" className="mt-4 block h-1.5 w-20 rounded-full bg-rouge" />
+            <span aria-hidden="true" className="mt-4 flex w-28 gap-1.5">
+              <span className="h-1.5 flex-1 rounded-full bg-bleu" />
+              <span className="h-1.5 w-6 rounded-full bg-rouge" />
+            </span>
           </h2>
         )}
         {intro && (

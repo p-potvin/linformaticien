@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Wed, 26 Aug 2026 19:05
+Dernière mise à jour : Wed, 26 Aug 2026 21:30
 
 ## Projet indépendant
 
@@ -80,6 +80,9 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
   dans le paquet.
 - **`<details>` natif pour les questions fréquentes.** Accessible au clavier et lisible
   sans JavaScript.
+- **Le cerne noir du logo comme motif.** Le mot-symbole est un aplat bleu cerné de
+  noir ; boutons, cartes et pastilles reprennent ce cerne de 2 px. C'est ce qui
+  accorde la page au dessin sans rien ajouter d'autre.
 - **Deux dessins de logo, pas un.** Le mot-symbole fait exactement neuf fois plus
   large que haut : il porte l'en-tête à partir de 640 px (288 px de large, puis
   396 px à partir de 1280 px) et le pied de page. Sous 640 px il n'entre pas à côté
@@ -95,28 +98,30 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
 
 ## Accessibilité
 
-Le public cible a 65 ans et plus. Les règles ne sont pas négociables :
+Le public cible a 65 ans et plus, mais l'ordre des priorités est explicite :
+
+> une page qui a de l'allure **>** une page accessible **>** un score parfait aux
+> outils automatiques.
+
+Ce qui reste non négociable :
 
 - corps de texte à 18 px minimum, interlignage 1,65 ;
-- contraste d'au moins 4,5:1 pour tout texte ;
 - cibles cliquables d'au moins 48 px, 56 px pour l'action principale ;
 - contour de focus de 3 px, visible ;
 - liens soulignés, jamais distingués par la couleur seule ;
-- numéro de téléphone cliquable (`tel:`) et écrit en gros.
+- numéro de téléphone cliquable (`tel:`) et écrit en gros ;
+- **3:1 de contraste, plancher dur.** En dessous, c'est illisible, pas stylé.
 
-Le contraste se calcule sur les **deux** fonds du site, le blanc et la teinte. La
-teinte est le cas défavorable : c'est elle qui décide si une couleur est admissible.
-Les ratios sont inscrits à côté de chaque jeton dans
+4,5:1 reste la **cible** pour le corps de texte (`encre`, `gris`) : c'est lui qu'on
+lit longtemps. Les couleurs d'accent peuvent descendre entre 3 et 4,5 si le rendu y
+gagne — le bleu du logo sur la teinte est à 4,0:1, et c'est assumé.
+
+Le contraste se calcule sur les **deux** fonds du site, le blanc et la teinte. Les
+ratios sont inscrits à côté de chaque jeton dans
 [`src/styles/theme.css`](src/styles/theme.css) — les mesurer, jamais les estimer.
 
-Les deux bleus ne sont pas interchangeables : `bleu` est celui du logo et sert aux
-**aplats** (fond des boutons, pictogrammes), `bleu-fonce` porte tout ce qui se
-**lit**. Même teinte à un degré près, 8:1 au lieu de 5:1.
-
-`npm run verifier` le fait pour vous, et tourne dans `npm run build` : une couleur
-sous le plancher, ou une étiquette du système de design qui ne dit plus la même chose
-que le jeton, arrête la construction. Les deux sont déjà arrivés sans que personne
-le voie.
+`npm run verifier` applique cette règle telle quelle : il **bloque** sous 3:1, il
+**signale** en dessous de la cible sans bloquer, et il tourne dans `npm run build`.
 
 ## Système de design
 

@@ -17,13 +17,14 @@ export const coordonnees = {
   telephoneLien: "+14388274585", // format tel:
   courriel: "philippe.potvin@linformaticien.ca",
   zone: "Sorel-Tracy", // zone desservie
-  heures: "de 8 h à 20 h, du lundi au vendredi", // plage d'appel
+  heures:
+    "de 8 h à 20 h en semaine, de 10 h à 16 h la fin de semaine", // plage d'appel
   /**
    * Les mêmes heures, dans le format que Google sait lire (schema.org).
    * Jours : Mo Tu We Th Fr Sa Su. Doit toujours dire la même chose que
    * `heures` ci-dessus — c'est la seule paire du fichier à tenir synchronisée.
    */
-  heuresMachine: "Mo-Fr 08:00-20:00", // doit correspondre à `heures`
+  heuresMachine: ["Mo-Fr 08:00-20:00", "Sa-Su 10:00-16:00"],
   site: "linformaticien.ca",
   adresseSite: "https://linformaticien.ca/",
 } as const;
@@ -38,9 +39,9 @@ export const marque = {
 export const entete = {
   liens: [
     { texte: "Ce que je fais", ancre: "#services" },
-    { texte: "Comment ça marche", ancre: "#approche" },
     { texte: "Tarif", ancre: "#tarif" },
     { texte: "Questions", ancre: "#questions" },
+    { texte: "Contactez-moi", ancre: "#contact" },
   ],
   bouton: "Appelez-moi",
 } as const;
@@ -149,6 +150,8 @@ export const tarif = {
     `Zone desservie : ${coordonnees.zone}.`,
   ],
   note: "Vous n'avez pas à apporter votre appareil nulle part. C'est moi qui viens.",
+  // Deuxième porte d'entrée : tout le monde n'aime pas téléphoner à un inconnu.
+  actionCourriel: "Écrivez-moi",
 } as const;
 
 export const questions = {
@@ -187,9 +190,10 @@ export const questions = {
 } as const;
 
 export const contact = {
-  titre: "Appelez-moi",
+  titre: "Contactez-moi",
   texte:
-    "Le plus simple, c'est le téléphone. Racontez-moi ce qui se passe et on part de là.",
+    "Le plus simple, c'est le téléphone. Si vous préférez écrire, mon courriel est juste en dessous — je réponds dans la journée.",
+  actionCourriel: "Écrivez-moi",
   etiquetteTelephone: "Téléphone",
   etiquetteCourriel: "Courriel",
   etiquetteZone: "Je me déplace dans",
@@ -204,6 +208,7 @@ export const contact = {
  */
 export const lecteursDecran = {
   appeler: "Appelez-moi au",
+  ecrire: "Écrivez-moi à",
 } as const;
 
 export const piedDePage = {

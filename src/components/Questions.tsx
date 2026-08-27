@@ -11,7 +11,7 @@ export function Questions() {
         {questions.liste.map((item) => (
           <details
             key={item.question}
-            className="group rounded-grand border border-ligne bg-papier"
+            className="group rounded-grand border-2 border-contour bg-papier"
           >
             <summary className="flex min-h-cible cursor-pointer list-none items-center justify-between gap-4 px-7 py-5 text-grand font-semibold">
               {item.question}

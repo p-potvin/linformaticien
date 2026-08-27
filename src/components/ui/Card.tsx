@@ -9,11 +9,11 @@ interface CardProps {
 
 export function Card({ titre, children, numero }: CardProps) {
   return (
-    <div className="h-full rounded-grand border border-ligne bg-papier p-7 shadow-carte sm:p-8">
+    <div className="h-full rounded-grand border-2 border-contour bg-papier p-7 shadow-carte sm:p-8">
       {numero && (
         <span
           aria-hidden="true"
-          className="chiffres mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-bleu text-xl font-bold text-papier"
+          className="chiffres mb-5 flex size-12 items-center justify-center rounded-full border-2 border-contour bg-bleu text-xl font-extrabold text-papier"
         >
           {numero}
         </span>

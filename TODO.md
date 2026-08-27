@@ -1,13 +1,14 @@
 # À faire
 
-Mise à jour : Wed, 26 Aug 2026 19:05
+Mise à jour : Wed, 26 Aug 2026 21:30
 
 ## Bloquant avant la mise en ligne
 
 - [x] Vraies coordonnées dans `src/content/site.ts` : Philippe Potvin,
       438 827-4585, philippe.potvin@linformaticien.ca, Sorel-Tracy.
-- [x] Heures d'appel arrêtées : de 8 h à 20 h, du lundi au vendredi. `heuresMachine`
-      dit la même chose (`Mo-Fr 08:00-20:00`).
+- [x] Heures d'appel arrêtées : de 8 h à 20 h en semaine, de 10 h à 16 h la fin de
+      semaine. `heuresMachine` dit la même chose
+      (`Mo-Fr 08:00-20:00` et `Sa-Su 10:00-16:00`).
 - [x] Zone desservie confirmée : Sorel-Tracy.
 - [ ] Trancher la question du temps minimum facturé (une heure ? une demi-heure ?).
       Rien n'est écrit à ce sujet pour l'instant, volontairement. **Seul point
@@ -68,9 +69,11 @@ valeurs jetables.
 - [ ] Regarder le mot-symbole de l'en-tête sur un vrai écran large. Les largeurs
       (288 px, puis 396 px à partir de 1280 px) viennent d'un calcul sur les
       métriques réelles des polices, pas d'une observation.
-- [ ] Vérifier que le nouveau fond teinté (`#f2f7fb`) se distingue encore du blanc
-      sur un écran bon marché mal calibré. Il est plus pâle que l'ancien crème,
-      parce que c'est ce qu'il fallait pour que le bleu du logo y tienne 4,5:1.
+- [x] Fond teinté plus visible : `#dbe9f5`, soit deux fois l'écart avec le blanc
+      qu'avait `#f2f7fb`.
+- [ ] Regarder la bande bleue de la section « Pour qui » en vrai. C'est le seul
+      aplat de couleur pleine de la page ; à l'impression elle sort en blanc avec
+      du texte noir, ce qui a été prévu mais pas vu.
 - [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
 - [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google.
       Les vraies coordonnées y sont maintenant, donc ce test a du sens. À faire une

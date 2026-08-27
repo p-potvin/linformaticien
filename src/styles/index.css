@@ -63,10 +63,8 @@
      Tailwind neutralise le soulignement natif, on le remet explicitement.
      Les boutons le retirent avec `no-underline`. */
   a {
-    /* Le bleu FONCÉ pour ce qui se lit : 8:1 au lieu de 5:1. Le bleu du logo
-       reste pour les aplats et les pictogrammes, où il n'y a pas de texte à
-       déchiffrer. */
-    color: var(--color-bleu-fonce);
+    /* Le bleu du logo, tel quel. Une seule couleur de marque sur la page. */
+    color: var(--color-bleu);
     text-decoration-line: underline;
     text-underline-offset: 0.2em;
     text-decoration-thickness: 0.08em;
@@ -128,9 +126,14 @@
     display: none !important;
   }
 
+  /* Le fond redevient blanc partout — mais la bande bleue de la section
+     « Pour qui » porte du texte blanc. Sans forcer aussi la couleur du texte,
+     elle sortirait blanche sur blanc, donc vide. */
   * {
     background: #fff !important;
+    color: #000 !important;
     box-shadow: none !important;
+    border-color: #000 !important;
   }
 
   body {

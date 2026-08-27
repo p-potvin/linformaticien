@@ -1,6 +1,6 @@
 # Notes pour les agents
 
-Mise à jour : Wed, 26 Aug 2026 19:05
+Mise à jour : Wed, 26 Aug 2026 21:30
 
 ## Portée
 
@@ -20,8 +20,14 @@ poste de travail : les PR restent obligatoires, aucun envoi direct sur `main`.
    `src/styles/theme.css`.
 5. **Fond blanc.** L'affiche part à l'impression ; les aplats de couleur coûtent cher.
    Le blanc du site et celui de l'affiche doivent rester les mêmes.
-6. **Planchers d'accessibilité** (voir `README.md`) : 18 px, 1,65, 4,5:1, 48 px. Ce sont
-   des minimums, pas des cibles.
+6. **Accessibilité : des planchers, pas un sans-faute.** Ordre des priorités arrêté
+   par le propriétaire le 26 août 2026 : *une page qui a de l'allure > une page
+   accessible > un score parfait aux outils automatiques*. Concrètement — 18 px de
+   corps, interligne 1,65, cibles de 48 px, et **3:1 de contraste comme plancher
+   dur**. 4,5:1 reste la cible pour le corps de texte seulement (`encre`, `gris`),
+   parce que c'est lui qu'on lit longtemps. `npm run verifier` applique exactement
+   cette règle : il bloque sous 3:1, il signale en dessous de la cible sans bloquer.
+   Ne pas resserrer ces seuils sans le demander.
 7. **Trois copies des jetons.** `src/styles/theme.css` (Tailwind),
    `design-system/tokens.css` (CSS pur) et les étiquettes affichées dans
    `design-system/couleurs.html`. Modifier une valeur veut dire la modifier dans les

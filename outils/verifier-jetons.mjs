@@ -43,6 +43,15 @@ const faute = (m) => {
   console.error("  ÉCHEC  " + m);
   fautes++;
 };
+// Un écart sous la cible est signalé, pas bloqué : c'est une décision de
+// design, pas une erreur. Seul le plancher dur arrête la construction.
+const remarque = (m) => console.log("  à l'œil  " + m);
+
+const PLANCHER = 3; // en dessous, c'est illisible : on bloque
+const CIBLE = 4.5; // au-dessus, c'est confortable : on vise, sans bloquer
+// Ce qu'on lit longtemps. Ceux-là doivent tenir la cible, pas seulement le
+// plancher — le public a 65 ans et plus.
+const CORPS = new Set(["encre", "gris"]);
 
 console.log("1. theme.css et tokens.css");
 for (const nom of new Set([...Object.keys(theme), ...Object.keys(portables)])) {
@@ -65,25 +74,29 @@ for (const [, pastille, nom, etiquette] of blocs) {
 }
 console.log(`   ${blocs.length} pastilles comparées`);
 
-console.log("3. contraste sur les deux fonds (plancher 4,5:1)");
+console.log(`3. contraste — plancher dur ${PLANCHER}:1, cible ${CIBLE}:1 pour le corps de texte`);
+const juger = (nom, description, r) => {
+  const seuil = CORPS.has(nom) ? CIBLE : PLANCHER;
+  if (r < PLANCHER) faute(`${description} : ${r.toFixed(2)}:1 — sous le plancher`);
+  else if (r < seuil) faute(`${description} : ${r.toFixed(2)}:1 — corps de texte sous la cible`);
+  else if (r < CIBLE) remarque(`${description} : ${r.toFixed(2)}:1`);
+};
+
 const fonds = { blanc: theme.papier, teinte: theme.teinte };
 for (const nom of ["encre", "bleu", "bleu-fonce", "bleu-nuit", "rouge", "vert", "gris"]) {
   for (const [nomFond, fond] of Object.entries(fonds)) {
-    const r = ratio(theme[nom], fond);
-    if (r < 4.5) faute(`${nom} sur ${nomFond} : ${r.toFixed(2)}:1`);
+    juger(nom, `${nom} sur ${nomFond}`, ratio(theme[nom], fond));
   }
 }
 // Textes posés sur un aplat plutôt que sur le fond de la page.
 const surAplats = [
-  ["blanc", "bleu", theme.papier, theme.bleu],
-  ["blanc", "bleu-fonce", theme.papier, theme["bleu-fonce"]],
-  ["bleu-fonce", "bleu-pale", theme["bleu-fonce"], theme["bleu-pale"]],
-  ["encre", "rouge-pale", theme.encre, theme["rouge-pale"]],
+  ["blanc sur bleu", theme.papier, theme.bleu],
+  ["blanc sur bleu-fonce", theme.papier, theme["bleu-fonce"]],
+  ["bleu sur bleu-pale", theme.bleu, theme["bleu-pale"]],
+  ["encre sur rouge-pale", theme.encre, theme["rouge-pale"]],
+  ["blanc sur contour", theme.papier, theme.contour],
 ];
-for (const [avant, arriere, a, b] of surAplats) {
-  const r = ratio(a, b);
-  if (r < 4.5) faute(`${avant} sur ${arriere} : ${r.toFixed(2)}:1`);
-}
+for (const [description, a, b] of surAplats) juger("aplat", description, ratio(a, b));
 
 console.log("4. l'image de partage dit-elle encore la vérité ?");
 {

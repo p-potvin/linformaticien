@@ -1,6 +1,6 @@
 /* ==========================================================================
    Système de design « L'Informaticien » — jetons portables
-   Mise à jour : Wed, 26 Aug 2026 19:05
+   Mise à jour : Wed, 26 Aug 2026 21:30
 
    Copie en CSS pur des jetons définis dans ../src/styles/theme.css.
    Sert aux contextes sans Tailwind : affiche imprimée, gabarits, Claude Design.
@@ -10,19 +10,20 @@
 
 :root {
   /* --- Couleurs (ratios mesurés : sur blanc / sur teinte) --------------- */
-  /* La teinte est le cas défavorable des deux fonds : c'est elle qui décide. */
+  /* Plancher dur 3:1 ; 4,5:1 est la cible pour le corps de texte seulement. */
   --papier: #ffffff;        /* fond de page — jamais remplacé */
-  --teinte: #f2f7fb;        /* sections alternées, écran seulement */
-  --encre: #16232e;         /* texte courant              16,0 / 14,8:1 */
-  --bleu: #1a75b2;          /* bleu du logo : aplats        5,0 / 4,6:1 */
-  --bleu-fonce: #12557f;    /* liens et texte bleu          8,0 / 7,4:1 */
-  --bleu-nuit: #0b3e5e;     /* survol, état actif         11,3 / 10,4:1 */
-  --bleu-pale: #e8f1f7;     /* surface teintée */
-  --rouge: #c03a37;         /* accent : prix, soulignés     5,4 / 5,0:1 */
+  --teinte: #dbe9f5;        /* sections alternées, écran seulement */
+  --encre: #16232e;         /* texte courant              16,0 / 12,9:1 */
+  --bleu: #1a75b2;          /* la couleur de la marque      5,0 / 4,0:1 */
+  --bleu-fonce: #12557f;    /* survol                       8,0 / 6,4:1 */
+  --bleu-nuit: #0b3e5e;     /* état actif                 11,3 / 9,1:1 */
+  --bleu-pale: #eef5fb;     /* surface, plus pâle que la teinte */
+  --contour: #141414;       /* le cerne noir du mot-symbole */
+  --rouge: #c03a37;         /* accent : prix, soulignés     5,4 / 4,4:1 */
   --rouge-pale: #fdf0ef;    /* surface d'accent */
-  --vert: #1f6b47;          /* confirmation                 6,5 / 6,0:1 */
-  --gris: #5a6672;          /* texte secondaire             5,9 / 5,4:1 */
-  --ligne: #dde5ec;         /* filets et bordures */
+  --vert: #1f6b47;          /* confirmation                 6,5 / 5,2:1 */
+  --gris: #5a6672;          /* texte secondaire             5,9 / 4,8:1 */
+  --ligne: #cddeee;         /* filets et bordures */
 
   /* --- Typographie ----------------------------------------------------- */
   /* Une seule famille : le logo est une grasse sans empattements, un titre à
