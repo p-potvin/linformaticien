@@ -6,7 +6,7 @@ Retouches après le premier vrai coup d'œil à l'écran.
 
 - **Le menu double de taille** : 24 px au lieu de 16, en gras et dans le bleu du
   logo, avec les écarts resserrés de 24 à 12 px. Au survol il passe au rouge et
-  se souligne — deux signaux plutôt qu'un.
+  se souligne — deux signaux plutôt qu'un — sur une transition de 0,1 s.
 - **Conséquence assumée : le menu n'apparaît plus qu'à 1280 px.** À 24 px il
   mesure 486 px de large ; le garder dès 1024 px aurait forcé le mot-symbole à
   180 px, ce qui défaisait tout le travail précédent. Entre 1024 et 1279 px,
@@ -17,11 +17,9 @@ Retouches après le premier vrai coup d'œil à l'écran.
   manquait pour qu'il se détache. Le texte prend aussi une graisse moyenne, et
   les crochets sont maintenant dans des pastilles rondes blanches : seuls sur
   l'aplat, ils se perdaient.
-- **Du rouge sur le numéro de téléphone** de la section Contact. C'est le seul
-  endroit où le rouge du logo porte autre chose qu'un filet ou une puce, et ça
-  suffit à le sortir du bleu ambiant.
 - **Les pastilles de la section Contact deviennent rondes** elles aussi, avec le
-  bleu du logo plutôt que le foncé.
+  bleu du logo plutôt que le foncé. Le numéro de téléphone, lui, reste bleu : le
+  rouge a été essayé puis écarté.
 
 ## v0.4.0 — Wed, 26 Aug 2026 21:30
 

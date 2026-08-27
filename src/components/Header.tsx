@@ -39,7 +39,7 @@ export function Header() {
               <li key={lien.ancre}>
                 <a
                   href={lien.ancre}
-                  className="whitespace-nowrap rounded-carte px-2 py-1 text-xl font-bold text-bleu no-underline transition-colors hover:text-rouge hover:underline hover:decoration-2 hover:underline-offset-4"
+                  className="whitespace-nowrap rounded-carte px-2 py-1 text-xl font-bold text-bleu no-underline transition-colors duration-100 hover:text-rouge hover:underline hover:decoration-2 hover:underline-offset-4"
                 >
                   {lien.texte}
                 </a>

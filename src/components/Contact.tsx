@@ -21,10 +21,7 @@ export function Contact() {
   const valeurs = [
     <a
       href={`tel:${coordonnees.telephoneLien}`}
-      /* Le rouge du logo sur l'élément le plus important de la page. C'est le
-         seul endroit où il porte autre chose qu'un filet ou une puce, et ça
-         suffit à le sortir du bleu ambiant. */
-      className="chiffres text-rouge text-3xl font-extrabold tracking-titre decoration-2 underline-offset-4 sm:text-4xl"
+      className="chiffres text-3xl font-extrabold tracking-titre decoration-2 underline-offset-4 sm:text-4xl"
       aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
     >
       {coordonnees.telephone}
