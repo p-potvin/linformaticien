@@ -38,8 +38,18 @@ mkdir -p "$LOCK_DIR"
 touch "$LOCK_FILE"
 chmod 0666 "$LOCK_FILE" 2>/dev/null || true
 
+# On ATTEND le verrou, on ne l'abandonne pas. Depuis que `main` et `prod`
+# déclenchent tous deux ce script, les deux poussées arrivent à quelques
+# secondes d'intervalle — c'est même la manœuvre normale de mise en ligne :
+#   git checkout prod && git merge --ff-only main && git push
+# Avec `flock -n`, la seconde sortait en erreur et la production ne bougeait
+# pas. Le premier déploiement dure environ une minute ; 15 minutes d'attente
+# couvrent largement une file de plusieurs poussées.
 exec 9>"$LOCK_FILE"
-flock -n 9 || { echo "deploy already running"; exit 1; }
+if ! flock -w 900 9; then
+  echo "un autre déploiement tient le verrou depuis plus de 15 minutes — abandon"
+  exit 1
+fi
 
 SHA="${VW_AFTER:-}"
 if [[ -z "$SHA" ]]; then

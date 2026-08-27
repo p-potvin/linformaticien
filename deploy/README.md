@@ -37,6 +37,11 @@ git checkout prod && git merge --ff-only main && git push
 Pas de fusion à trois branches, pas de commit de fusion : `--ff-only` garantit
 que `prod` ne peut être qu'un point de `main` déjà passé par dev.
 
+Les deux poussées arrivent à quelques secondes d'intervalle et se disputent le
+verrou de déploiement. C'est prévu : le verrou **attend** son tour au lieu
+d'abandonner, donc la production part dès que la construction de dev est finie.
+Compter environ deux minutes pour l'ensemble.
+
 ### Le correctif du répartiteur
 
 `/opt/vaultwares-adk/webhookd/vw_webhookd.py` indexe ses cibles par
@@ -187,6 +192,7 @@ La version en ligne se lit dans le source de la page, en commentaire HTML
 | `Permission denied` sur le verrou | Verrou laissé à `root:root` | Le verrou vit dans `/var/lib/vw-deploy/`, mode 0666 |
 | Le déploiement passe mais la page ne change pas | `index.html` mis en cache | Le vhost envoie déjà `Cache-Control: no-cache` sur `index.html` |
 | Plus rien ne se déploie, journal en `reason=ref=refs/heads/main` | `vw_webhookd.py` réécrit, correctif multi-branches perdu | Le réappliquer (voir « Le correctif du répartiteur »), ou repasser `branch` à `main` seul et promouvoir à la main |
+| `deploy already running`, la production ne bouge pas | Deux poussées rapprochées, `main` puis `prod` — c'est la manœuvre normale | Réglé : le verrou **attend** jusqu'à 15 minutes au lieu d'abandonner. Si le message revient, un déploiement est vraiment bloqué |
 
 ## Surveillance
 
