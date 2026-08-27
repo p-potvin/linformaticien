@@ -4,7 +4,7 @@ interface SectionProps {
   id?: string;
   titre?: string;
   intro?: string;
-  /** Teinte chaude pour alterner les sections à l'écran. Ignorée à l'impression. */
+  /** Fond légèrement bleuté pour alterner les sections à l'écran. Ignoré à l'impression. */
   teinte?: boolean;
   children: ReactNode;
 }
@@ -14,13 +14,16 @@ export function Section({ id, titre, intro, teinte = false, children }: SectionP
     <section
       id={id}
       /* scroll-mt : l'en-tête est collant, sinon l'ancre atterrit sous lui. */
-      className={`scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24 ${teinte ? "bg-creme" : "bg-papier"}`}
+      className={`scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24 ${teinte ? "bg-teinte" : "bg-papier"}`}
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-site">
         {titre && (
           <h2 className="text-3xl sm:text-4xl">
             {titre}
-            <span aria-hidden="true" className="mt-4 block h-1 w-16 bg-orange" />
+            <span aria-hidden="true" className="mt-4 flex w-28 gap-1.5">
+              <span className="h-1.5 flex-1 rounded-full bg-bleu" />
+              <span className="h-1.5 w-6 rounded-full bg-rouge" />
+            </span>
           </h2>
         )}
         {intro && (

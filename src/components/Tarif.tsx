@@ -1,3 +1,4 @@
+import { Check, Mail, Phone } from "lucide-react";
 import { Button } from "./ui/Button";
 import { Section } from "./ui/Section";
 import { coordonnees, lecteursDecran, tarif } from "../content/site";
@@ -5,10 +6,10 @@ import { coordonnees, lecteursDecran, tarif } from "../content/site";
 export function Tarif() {
   return (
     <Section id="tarif" titre={tarif.titre}>
-      <div className="grid items-start gap-10 sm:grid-cols-[auto_1fr]">
-        <p className="chiffres flex items-baseline gap-2 font-titre text-5xl font-semibold text-encre">
+      <div className="grid max-w-4xl items-start gap-10 sm:grid-cols-[auto_1fr]">
+        <p className="chiffres flex items-baseline gap-2 text-5xl font-extrabold tracking-titre text-encre">
           {tarif.montant}
-          <span className="font-texte text-grand font-semibold text-gris">
+          <span className="text-grand font-semibold tracking-normal text-gris">
             {tarif.unite}
           </span>
         </p>
@@ -17,27 +18,40 @@ export function Tarif() {
           <ul className="space-y-4">
             {tarif.details.map((detail) => (
               <li key={detail} className="flex items-start gap-3">
-                <span aria-hidden="true" className="text-xl leading-none text-orange">
-                  •
-                </span>
+                <Check
+                  aria-hidden="true"
+                  className="mt-1 size-5 shrink-0 text-bleu"
+                  strokeWidth={3}
+                />
                 {detail}
               </li>
             ))}
           </ul>
 
-          <p className="mt-8 rounded-carte bg-orange-pale px-6 py-5 font-semibold">
+          <p className="mt-8 rounded-carte bg-rouge-pale px-6 py-5 font-semibold">
             {tarif.note}
           </p>
 
-          <Button
-            href={`tel:${coordonnees.telephoneLien}`}
-            taille="grande"
-            className="mt-8"
-            aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
-          >
-            <span aria-hidden="true">☎</span>
-            <span className="chiffres">{coordonnees.telephone}</span>
-          </Button>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Button
+              href={`tel:${coordonnees.telephoneLien}`}
+              taille="grande"
+              aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
+            >
+              <Phone aria-hidden="true" className="size-6 shrink-0" strokeWidth={2.5} />
+              <span className="chiffres">{coordonnees.telephone}</span>
+            </Button>
+            {/* Tout le monde n'aime pas téléphoner à un inconnu. */}
+            <Button
+              href={`mailto:${coordonnees.courriel}`}
+              variante="secondaire"
+              taille="grande"
+              aria-label={`${lecteursDecran.ecrire} ${coordonnees.courriel}`}
+            >
+              <Mail aria-hidden="true" className="size-6 shrink-0" strokeWidth={2.5} />
+              {tarif.actionCourriel}
+            </Button>
+          </div>
         </div>
       </div>
     </Section>

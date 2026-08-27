@@ -1,0 +1,155 @@
+<!-- @dsCard group="Marque" -->
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Logo — L'Informaticien</title>
+    <style>
+      :root {
+        --papier: #ffffff;
+        --teinte: #f2f7fb;
+        --encre: #16232e;
+        --bleu: #1a75b2;
+        --rouge: #c03a37;
+        --gris: #5a6672;
+        --ligne: #dde5ec;
+      }
+      body {
+        margin: 0;
+        padding: 2.5rem;
+        background: var(--papier);
+        color: var(--encre);
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-size: 1.125rem;
+        line-height: 1.65;
+      }
+      h1, h2 { font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em; line-height: 1.15; }
+      h1 { font-size: 2.25rem; margin: 0 0 0.5rem; }
+      h2 { font-size: 1.5rem; margin: 2.5rem 0 0.75rem; }
+      .sous-titre { color: var(--gris); margin: 0 0 2rem; }
+      .cadre {
+        border: 1px solid var(--ligne);
+        border-radius: 0.75rem;
+        padding: 1.75rem;
+        margin-bottom: 1rem;
+        background: var(--papier);
+      }
+      .cadre img { display: block; max-width: 100%; height: auto; }
+      table { border-collapse: collapse; width: 100%; margin-top: 0.5rem; }
+      th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--ligne); vertical-align: top; }
+      th { font-weight: 600; }
+      code { background: var(--teinte); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.95em; }
+      .interdit { border-left: 4px solid var(--rouge); padding-left: 1rem; margin: 0.75rem 0; }
+      .permis { border-left: 4px solid var(--bleu); padding-left: 1rem; margin: 0.75rem 0; }
+    </style>
+  </head>
+  <body>
+    <h1>Logo</h1>
+    <p class="sous-titre">
+      Deux dessins, cinq fichiers. Lequel sortir dépend d'abord de la place
+      disponible, pas du goût.
+    </p>
+
+    <h2>Le mot-symbole</h2>
+    <div class="cadre">
+      <img src="marque/logo.png" alt="L'Informaticien" style="width: 420px" />
+    </div>
+    <p>
+      900 × 100, soit <strong>exactement neuf fois plus large que haut</strong>,
+      sans marge. C'est ce chiffre qui commande tout le reste : il lui faut de la
+      largeur, et beaucoup. Dans l'en-tête du site il fait 288 px à partir de
+      640 px, et 396 px à partir de 1280 px, où le conteneur atteint sa pleine
+      largeur de 1216 px. En dessous de 640 px il n'entre pas à côté du numéro de
+      téléphone : c'est la marque carrée qui prend le relais.
+    </p>
+
+    <h2>La marque carrée</h2>
+    <div class="cadre">
+      <img src="marque/favicon.png" alt="" style="width: 96px" />
+    </div>
+    <p>
+      Le « L' » seul, sur son carré bleu. C'est la version qui sert quand la
+      largeur est comptée : en-tête du site, favicon, icône iOS, photo de profil.
+      Elle reste lisible à 16 px, ce que le mot-symbole ne fait pas.
+    </p>
+
+    <h2>Quel fichier, pour quoi</h2>
+    <table>
+      <tr><th>Fichier</th><th>Usage</th><th>Taille</th></tr>
+      <tr><td><code>public/logo-wordmark.png</code></td><td>En-tête (≥ 640 px) et pied de page</td><td>900 × 100, sans marge</td></tr>
+      <tr><td><code>public/logo-mark.png</code></td><td>En-tête sous 640 px</td><td>96 × 96</td></tr>
+      <tr><td><code>public/favicon.ico</code></td><td>Onglet du navigateur</td><td>16, 32 et 48 dans un seul fichier</td></tr>
+      <tr><td><code>public/apple-touch-icon.png</code></td><td>Écran d'accueil iOS</td><td>180 × 180</td></tr>
+      <tr><td><code>public/og-image.png</code></td><td>Partage Facebook, Messenger</td><td>1200 × 630</td></tr>
+      <tr><td><code>marque/logo.png</code></td><td>Dessin source du mot-symbole</td><td>900 × 100</td></tr>
+      <tr><td><code>marque/logo-alt.png</code></td><td>Version claire, fonds sombres</td><td>1024 × 322</td></tr>
+      <tr><td><code>marque/favicon.png</code></td><td>Dessin source de la marque carrée</td><td>748 × 755</td></tr>
+    </table>
+    <p>
+      Les trois derniers ne sont pas dans <code>public/</code> : ce sont des
+      sources, pas des fichiers à servir. Les mettre en ligne ferait descendre
+      200 ko que personne ne regarde.
+    </p>
+
+    <h2>Refaire l'image de partage</h2>
+    <p>
+      <code>public/og-image.png</code> est la seule image du projet où du texte
+      est <strong>gravé</strong> : la promesse, la zone et le numéro de
+      téléphone. Elle ne se met pas à jour toute seule. Si une de ces trois
+      valeurs change dans <code>src/content/site.ts</code>,
+      <code>npm run verifier</code> arrête la construction et renvoie ici.
+    </p>
+    <p>Il faut ImageMagick et <code>fontTools</code> :</p>
+    <pre style="background: var(--teinte); padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-size: 0.95rem;"><code>python -c "
+from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
+for w in (600, 700):
+    f = instantiateVariableFont(
+        TTFont('public/fonts/source-sans-3-latin.woff2'), {'wght': w}, inplace=True)
+    f.flavor = None
+    f.save(f'/tmp/ss3-{w}.ttf')"
+
+magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gravity north -geometry +0+160 -composite   -font /tmp/ss3-600.ttf -pointsize 40 -fill '#5a6672'   -gravity north -annotate +0+340 'PROMESSE · ZONE'   -font /tmp/ss3-700.ttf -pointsize 86 -fill '#1a75b2'   -gravity north -annotate +0+410 'TÉLÉPHONE'   -colors 64 -strip public/og-image.png</code></pre>
+    <p>
+      Puis reporter les trois valeurs dans
+      <code>outils/og-image.source.json</code> : c'est ce fichier que le
+      vérificateur compare à <code>site.ts</code>.
+    </p>
+    <p>
+      Le symbole ☎ ne peut pas être gravé : il ne fait pas partie du
+      sous-ensemble « latin » des polices auto-hébergées, et ImageMagick le
+      laisse tomber sans rien dire.
+    </p>
+
+    <h2>Ce qu'on ne fait pas</h2>
+    <div class="interdit">
+      <strong>Pas de mot-symbole sur un téléphone.</strong> Neuf fois plus large
+      que haut, il pousse tout le reste hors de l'écran. C'est déjà arrivé dans
+      l'en-tête, sur toutes les largeurs de téléphone. Sous 640 px, c'est la
+      marque carrée, toujours.
+    </div>
+    <div class="interdit">
+      <strong>Pas de <code>logo-alt.png</code> sur le site.</strong> Il est fait
+      pour les fonds sombres ; le site et l'affiche sont blancs. Il existe pour
+      un cas qui ne s'est pas encore présenté.
+    </div>
+    <div class="interdit">
+      <strong>Pas de recadrage, pas d'étirement, pas de réécriture du nom
+      à côté du mot-symbole.</strong> Le mot-symbole dit déjà le nom.
+    </div>
+    <div class="permis">
+      <strong>Le bleu du logo n'est pas le bleu de l'interface.</strong> Le logo
+      porte un <code>#1a75b2</code> plus clair, qui ne tient que 4,4:1 sur crème
+      — sous le plancher du projet. L'interface garde <code>#1a75b2</code>, la
+      même teinte en plus foncé. Le logo est une image, pas du texte : la règle
+      de contraste ne s'y applique pas de la même façon.
+    </div>
+    <div class="permis">
+      <strong>Le rouge de l'accent vient du logo.</strong> Le logo porte
+      <code>#da5350</code>, l'interface <code>#c03a37</code> — même teinte,
+      assez foncée pour du texte.
+    </div>
+  </body>
+</html>

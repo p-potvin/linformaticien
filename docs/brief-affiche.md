@@ -46,7 +46,11 @@ dans le brief — c'est justement à ça que sert la synchronisation.
 >
 > **Ce qui doit apparaître, dans cet ordre de lecture**
 >
-> 1. Le nom : **L'Informaticien** — dépannage informatique à domicile.
+> 1. Le nom : **L'Informaticien** — dépannage informatique à domicile. Le nom a
+>    maintenant un dessin : utilise le mot-symbole du système de design (fiche
+>    « Logo ») plutôt que de le composer en caractères. Il est fait pour être
+>    lu de loin, et il fait neuf fois plus large que haut : donne-lui sa propre
+>    ligne, pleine largeur du bloc, en haut de l'affiche.
 > 2. Une accroche courte, chaleureuse, 40 à 56 pt. Proposition : « On règle ça ensemble,
 >    chez vous. »
 > 3. Ce que je fais, 4 à 6 points, chacun commençant par un verbe :

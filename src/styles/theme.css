@@ -3,32 +3,52 @@
    Source de vérité des jetons (tokens). Ne pas coder de couleur en dur ailleurs.
 
    Principes :
-   - Fond blanc uniquement (les affiches sont imprimées, la couleur de fond coûte cher).
    - Gros texte : 18 px minimum pour le corps, interlignage généreux (1.65).
-   - Contraste AA ou mieux sur blanc pour TOUT texte.
    - Cibles tactiles d'au moins 48 px, 56 px pour l'action principale.
+   - Contraste : 3:1 est un plancher dur, 4,5:1 est la cible pour le corps de
+     texte. L'allure de la page passe avant le sans-faute.
+   - Le fond de page reste blanc ; les bandes teintées sont un effet d'écran et
+     l'impression les remet en blanc.
    ========================================================================== */
 
 @theme {
   /* --- Couleurs -------------------------------------------------------- */
-  /* Ratios mesurés (WCAG 2.1) sur les DEUX fonds réellement utilisés :
-     blanc d'abord, crème ensuite. Le crème est le cas défavorable, c'est donc
-     lui qui décide. Toute nouvelle couleur de texte doit tenir 4,5:1 sur les
-     deux — vérifier avant de l'ajouter, ne pas estimer à l'œil. */
+  /* Ratios mesurés (WCAG 2.1) : sur blanc, puis sur la teinte.
+     Ordre des priorités du projet, décidé le 26 août 2026 :
+     un design qui a de l'allure passe avant un sans-faute d'accessibilité.
+     Le plancher dur est donc 3:1, et 4,5:1 reste la cible pour le corps de
+     texte seulement — c'est lui qu'on lit longtemps. `npm run verifier`
+     applique exactement ça : il bloque sous 3:1, il signale en dessous de la
+     cible sans bloquer. */
   --color-papier: #ffffff;          /* fond de page — jamais remplacé */
-  --color-creme: #f6f2ea;           /* teinte chaude, sections alternées (écran) */
-  --color-encre: #16232e;           /* texte courant              16,0 / 14,3:1 */
-  --color-bleu: #10557f;            /* couleur principale, boutons  8,0 / 7,2:1 */
-  --color-bleu-fonce: #0b3e5e;      /* survol / état actif        11,3 / 10,1:1 */
-  --color-bleu-pale: #e8f1f7;       /* surface teintée, encadrés */
-  --color-orange: #b04c0e;          /* accent : prix, soulignés     5,4 / 4,8:1 */
-  --color-orange-pale: #fdf0e6;     /* surface d'accent */
-  --color-vert: #1f6b47;            /* confirmation, « inclus »     6,5 / 5,8:1 */
-  --color-gris: #5a6672;            /* texte secondaire             5,9 / 5,3:1 */
-  --color-ligne: #d6dce2;           /* filets et bordures */
+  --color-teinte: #dbe9f5;          /* sections alternées (écran seulement) */
+  --color-encre: #16232e;           /* texte courant              16,0 / 14,8:1 */
+
+  /* Le bleu du logo, et rien d'autre. Aplats, pictogrammes, filets ET liens :
+     une seule valeur, exactement celle du dessin. */
+  --color-bleu: #1a75b2;            /* la couleur de la marque      5,0 / 4,0:1 */
+  --color-bleu-fonce: #12557f;      /* survol                       8,0 / 6,4:1 */
+  --color-bleu-nuit: #0b3e5e;       /* état actif                 11,3 / 9,1:1 */
+  --color-bleu-pale: #eef5fb;       /* surface, plus pâle que la teinte */
+
+  /* Le noir du contour du mot-symbole. Le logo est un aplat bleu cerné de
+     noir : reprendre ce cerne sur les boutons et les pastilles est ce qui
+     accorde le plus vite la page au dessin, sans rien ajouter d'autre. */
+  --color-contour: #141414;
+
+  /* Le rouge du logo, assez foncé pour porter du texte. */
+  --color-rouge: #c03a37;           /* accent : prix, soulignés     5,4 / 4,4:1 */
+  --color-rouge-pale: #fdf0ef;      /* surface d'accent */
+  --color-vert: #1f6b47;            /* confirmation, « inclus »     6,5 / 5,2:1 */
+  --color-gris: #5a6672;            /* texte secondaire             5,9 / 4,8:1 */
+  --color-ligne: #cddeee;           /* filets et bordures */
 
   /* --- Typographie ----------------------------------------------------- */
-  --font-titre: "Bitter", Georgia, "Times New Roman", serif;
+  /* Une seule famille. Le logo est une grasse géométrique sans empattements ;
+     un titre à empattements à côté faisait deux voix différentes. Source Sans 3
+     est variable : les graisses lourdes des titres ne coûtent aucun octet de
+     plus. */
+  --font-titre: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-texte: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   /* Échelle basée sur 18 px. Rien sous 1rem dans le contenu. */
@@ -43,7 +63,18 @@
   --text-5xl: 3.75rem;        /* 60 px */
 
   --leading-lecture: 1.65;    /* corps de texte — aéré pour les yeux fatigués */
-  --leading-titre: 1.15;
+  --leading-titre: 1.1;
+
+  /* Les titres reprennent l'allure du logo : graisse lourde, lettres serrées.
+     Le corps de texte, lui, ne bouge pas. */
+  --font-weight-titre: 800;
+  --tracking-titre: -0.02em;
+
+  /* --- Largeur de la page ---------------------------------------------- */
+  /* 1216 px : de quoi loger le mot-symbole à 396 px, le menu et le bouton sur
+     une seule rangée à partir de 1280 px. Les blocs de texte gardent leur
+     propre largeur de lecture, plus étroite. */
+  --container-site: 76rem;    /* 1216 px */
 
   /* --- Formes et profondeur -------------------------------------------- */
   --radius-carte: 0.75rem;    /* 12 px */

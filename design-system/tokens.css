@@ -1,30 +1,38 @@
 /* ==========================================================================
    Système de design « L'Informaticien » — jetons portables
-   Mise à jour : Fri, 14 Aug 2026 01:09
+   Mise à jour : Wed, 26 Aug 2026 21:30
 
    Copie en CSS pur des jetons définis dans ../src/styles/theme.css.
    Sert aux contextes sans Tailwind : affiche imprimée, gabarits, Claude Design.
    Si vous modifiez une valeur ici, modifiez-la aussi dans theme.css.
+   `npm run verifier` refuse de construire si les deux divergent.
    ========================================================================== */
 
 :root {
-  /* --- Couleurs (ratios mesurés : sur blanc / sur crème) ---------------- */
-  /* Le crème est le cas défavorable des deux fonds : c'est lui qui décide. */
+  /* --- Couleurs (ratios mesurés : sur blanc / sur teinte) --------------- */
+  /* Plancher dur 3:1 ; 4,5:1 est la cible pour le corps de texte seulement. */
   --papier: #ffffff;        /* fond de page — jamais remplacé */
-  --creme: #f6f2ea;         /* teinte chaude, écran seulement */
-  --encre: #16232e;         /* texte courant              16,0 / 14,3:1 */
-  --bleu: #10557f;          /* principale, boutons          8,0 / 7,2:1 */
-  --bleu-fonce: #0b3e5e;    /* survol, état actif         11,3 / 10,1:1 */
-  --bleu-pale: #e8f1f7;     /* surface teintée */
-  --orange: #b04c0e;        /* accent : prix, soulignés     5,4 / 4,8:1 */
-  --orange-pale: #fdf0e6;   /* surface d'accent */
-  --vert: #1f6b47;          /* confirmation                 6,5 / 5,8:1 */
-  --gris: #5a6672;          /* texte secondaire             5,9 / 5,3:1 */
-  --ligne: #d6dce2;         /* filets et bordures */
+  --teinte: #dbe9f5;        /* sections alternées, écran seulement */
+  --encre: #16232e;         /* texte courant              16,0 / 12,9:1 */
+  --bleu: #1a75b2;          /* la couleur de la marque      5,0 / 4,0:1 */
+  --bleu-fonce: #12557f;    /* survol                       8,0 / 6,4:1 */
+  --bleu-nuit: #0b3e5e;     /* état actif                 11,3 / 9,1:1 */
+  --bleu-pale: #eef5fb;     /* surface, plus pâle que la teinte */
+  --contour: #141414;       /* le cerne noir du mot-symbole */
+  --rouge: #c03a37;         /* accent : prix, soulignés     5,4 / 4,4:1 */
+  --rouge-pale: #fdf0ef;    /* surface d'accent */
+  --vert: #1f6b47;          /* confirmation                 6,5 / 5,2:1 */
+  --gris: #5a6672;          /* texte secondaire             5,9 / 4,8:1 */
+  --ligne: #cddeee;         /* filets et bordures */
 
   /* --- Typographie ----------------------------------------------------- */
-  --font-titre: "Bitter", Georgia, "Times New Roman", serif;
+  /* Une seule famille : le logo est une grasse sans empattements, un titre à
+     empattements à côté faisait deux voix. Source Sans 3 est variable, les
+     graisses lourdes ne coûtent rien de plus. */
+  --font-titre: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --font-texte: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --graisse-titre: 800;
+  --interlettre-titre: -0.02em;
 
   --texte-mention: 0.875rem;  /* 14 px — mentions légales seulement */
   --texte-petit: 1rem;        /* 16 px */
@@ -37,22 +45,16 @@
   --texte-5xl: 3.75rem;       /* 60 px */
 
   --interligne-lecture: 1.65;
-  --interligne-titre: 1.15;
+  --interligne-titre: 1.1;
 
-  /* --- Formes ---------------------------------------------------------- */
-  --rayon-carte: 0.75rem;
-  --rayon-grand: 1.25rem;
-  --ombre-carte: 0 1px 2px rgb(22 35 46 / 0.06), 0 8px 24px rgb(22 35 46 / 0.06);
+  /* --- Largeur de la page ---------------------------------------------- */
+  --largeur-site: 76rem;      /* 1216 px */
 
-  /* --- Cibles ---------------------------------------------------------- */
-  --cible: 3rem;      /* 48 px minimum cliquable */
-  --cible-lg: 3.5rem; /* 56 px pour l'action principale */
+  /* --- Formes ----------------------------------------------------------- */
+  --rayon-carte: 0.75rem;     /* 12 px */
+  --rayon-grand: 1.25rem;     /* 20 px */
+
+  /* --- Cibles tactiles -------------------------------------------------- */
+  --cible: 3rem;              /* 48 px — minimum cliquable */
+  --cible-lg: 3.5rem;         /* 56 px — action principale */
 }
-
-/* --- Équivalents pour l'impression (points plutôt que pixels) -----------
-   Affiche 8,5 × 11 po. Plancher absolu : 12 pt pour le corps de texte.
-   corps      12–14 pt
-   intertitre 18–22 pt
-   titre      40–56 pt
-   téléphone  36 pt minimum
-   ---------------------------------------------------------------------- */

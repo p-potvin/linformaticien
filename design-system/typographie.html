@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Typographie — L'Informaticien</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,7 +17,9 @@
         font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
       }
       h1 {
-        font-family: Bitter, Georgia, serif;
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
         font-size: 36px;
         line-height: 1.15;
         margin: 0 0 8px;
@@ -33,7 +35,7 @@
         gap: 24px;
         align-items: baseline;
         padding: 18px 0;
-        border-top: 1px solid #d6dce2;
+        border-top: 1px solid #dde5ec;
       }
       .etiquette {
         font-size: 16px;
@@ -41,14 +43,16 @@
         font-variant-numeric: tabular-nums;
       }
       .titre {
-        font-family: Bitter, Georgia, serif;
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
         font-weight: 600;
         line-height: 1.15;
       }
       .plancher {
         margin-top: 40px;
-        border-left: 4px solid #b04c0e;
-        background: #fdf0e6;
+        border-left: 4px solid #c03a37;
+        background: #fdf0ef;
         padding: 20px 24px;
         border-radius: 0 12px 12px 0;
       }
@@ -57,10 +61,20 @@
   <body>
     <h1>Typographie</h1>
     <p class="note">
-      Deux familles, pas plus. <strong>Bitter</strong> (empattements) pour les titres :
-      solide, chaleureuse, très lisible à l'impression. <strong>Source Sans 3</strong>
-      pour tout le reste. Le corps de texte ne descend jamais sous 18 px à l'écran ni
-      sous 12 pt sur papier.
+      <strong>Une seule famille : Source Sans 3.</strong> Les titres s'en distinguent
+      par la graisse (800) et par des lettres resserrées (-0,02 em), pas par une
+      deuxième police. C'est ce qui les accorde au mot-symbole, qui est lui-même une
+      grasse sans empattements — une police à empattements à côté faisait deux voix
+      qui ne se parlaient pas.
+
+      <br /><br />
+      Source Sans 3 est une police variable : la graisse 800 des titres ne coûte pas
+      un octet de plus que la 400 du texte courant. C'est aussi pour ça qu'abandonner
+      la deuxième famille a retiré 66 ko du site sans rien enlever à l'écran.
+
+      <br /><br />
+      Le corps de texte ne descend jamais sous 18 px à l'écran ni sous 12 pt sur
+      papier.
     </p>
 
     <div class="rangee">

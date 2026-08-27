@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Boutons et appels à l'action — L'Informaticien</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Source+Sans+3:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,13 +17,17 @@
         font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
       }
       h1 {
-        font-family: Bitter, Georgia, serif;
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
         font-size: 36px;
         line-height: 1.15;
         margin: 0 0 8px;
       }
       h2 {
-        font-family: Bitter, Georgia, serif;
+        font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
         font-size: 22px;
         margin: 40px 0 16px;
       }
@@ -38,32 +42,38 @@
         gap: 16px;
         align-items: center;
       }
+      /* Le cerne noir vient du mot-symbole : un aplat bleu cerné de noir.
+         Les deux variantes le portent — c'est lui qui fait la famille. */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 8px;
         border-radius: 12px;
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
-        border: 2px solid transparent;
+        border: 2px solid #141414;
         font-family: inherit;
         cursor: pointer;
       }
       .principale {
-        background: #10557f;
+        background: #1a75b2;
         color: #fff;
       }
       .principale:hover {
-        background: #0b3e5e;
+        background: #12557f;
       }
       .secondaire {
         background: #fff;
-        color: #10557f;
-        border-color: #10557f;
+        color: #16232e;
       }
       .secondaire:hover {
-        background: #e8f1f7;
+        background: #eef5fb;
+      }
+      .icone {
+        width: 48px;
+        height: 48px;
+        padding: 0;
       }
       .normale {
         min-height: 48px;
@@ -76,7 +86,7 @@
         font-size: 20px;
       }
       .focus {
-        outline: 3px solid #b04c0e;
+        outline: 3px solid #c03a37;
         outline-offset: 3px;
       }
       .chiffres {
@@ -84,7 +94,7 @@
       }
       .regles {
         margin-top: 40px;
-        border-left: 4px solid #10557f;
+        border-left: 4px solid #1a75b2;
         background: #e8f1f7;
         padding: 20px 24px;
         border-radius: 0 12px 12px 0;
@@ -106,13 +116,13 @@
 
     <h2>Grande — action principale</h2>
     <div class="rangee">
-      <a class="btn principale grande" href="#">☎ Appelez-moi : <span class="chiffres">418 555-0143</span></a>
+      <a class="btn principale grande" href="#">☎ Appelez-moi : <span class="chiffres">438 827-4585</span></a>
       <a class="btn secondaire grande" href="#">Voir ce que je fais</a>
     </div>
 
     <h2>Normale</h2>
     <div class="rangee">
-      <a class="btn principale normale" href="#">☎ <span class="chiffres">418 555-0143</span></a>
+      <a class="btn principale normale" href="#">☎ <span class="chiffres">438 827-4585</span></a>
       <a class="btn secondaire normale" href="#">Questions fréquentes</a>
     </div>
 
@@ -125,7 +135,9 @@
     <ul class="regles">
       <li>Hauteur minimale de 48 px, 56 px pour l'action principale.</li>
       <li>Jamais d'icône seule : toujours accompagnée de mots.</li>
-      <li>Le contour de focus fait 3 px et est orange, pour rester visible sur bleu.</li>
+      <li>Le contour de focus fait 3 px et est rouge, et son décalage de 3 px le pose sur le fond de la page, jamais sur le bouton.</li>
+      <li>Les deux variantes portent le même cerne noir de 2 px, celui du mot-symbole. C'est ce qui les rattache au logo.</li>
+      <li>La taille « icône » fait 48 × 48 : un pictogramme seul, sans texte, mais la cible reste au plancher tactile.</li>
       <li>Une seule action principale par écran.</li>
       <li>Aucun libellé vague : « Appelez-moi », pas « En savoir plus ».</li>
     </ul>
