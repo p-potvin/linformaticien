@@ -7,9 +7,9 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b-2 border-contour bg-papier">
       <div className="mx-auto flex max-w-site items-center justify-between gap-4 px-5 py-3 sm:px-8">
         {/* Le mot-symbole fait exactement 9:1. Sous 640 px il n'entre pas à côté
-            du numéro : c'est la marque carrée qui sort. Il redescend d'un cran
-            à 1024 px, là où le menu apparaît alors que la fenêtre borne encore
-            le conteneur — c'est le passage le plus serré de la page.
+            du numéro : c'est la marque carrée qui sort. À 1280 px il passe à
+            360 px, en même temps que le menu apparaît — 56 px de marge, de quoi
+            encaisser la police de secours qui est plus large.
             <picture> plutôt que deux <img> : un seul fichier descend. */}
         <a
           href="#haut"
@@ -23,18 +23,23 @@ export function Header() {
               alt=""
               width={96}
               height={96}
-              className="h-10 w-10 rounded-carte sm:aspect-[9/1] sm:h-8 sm:w-auto sm:rounded-none lg:h-7 xl:h-11"
+              className="h-10 w-10 rounded-carte sm:aspect-[9/1] sm:h-8 sm:w-auto sm:rounded-none xl:h-10"
             />
           </picture>
         </a>
 
-        <nav aria-label="Sections de la page" className="hidden lg:block">
-          <ul className="flex items-center gap-6">
+        {/* Le menu passe à 24 px, donc à 486 px de large : il ne tient plus à
+            1024 px sans écraser le mot-symbole à 180 px. Il n'apparaît donc
+            qu'à partir de 1280 px, là où le conteneur atteint sa pleine
+            largeur. Entre les deux, l'en-tête garde le logo et les deux
+            boutons, et la page se parcourt en défilant — elle est courte. */}
+        <nav aria-label="Sections de la page" className="hidden xl:block">
+          <ul className="flex items-center gap-3">
             {entete.liens.map((lien) => (
               <li key={lien.ancre}>
                 <a
                   href={lien.ancre}
-                  className="whitespace-nowrap text-petit font-semibold text-encre decoration-bleu decoration-2 underline-offset-4"
+                  className="whitespace-nowrap rounded-carte px-2 py-1 text-xl font-bold text-bleu no-underline transition-colors hover:text-rouge hover:underline hover:decoration-2 hover:underline-offset-4"
                 >
                   {lien.texte}
                 </a>

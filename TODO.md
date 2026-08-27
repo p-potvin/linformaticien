@@ -1,6 +1,6 @@
 # À faire
 
-Mise à jour : Wed, 26 Aug 2026 21:30
+Mise à jour : Wed, 26 Aug 2026 23:10
 
 ## Bloquant avant la mise en ligne
 
@@ -71,9 +71,14 @@ valeurs jetables.
       métriques réelles des polices, pas d'une observation.
 - [x] Fond teinté plus visible : `#dbe9f5`, soit deux fois l'écart avec le blanc
       qu'avait `#f2f7fb`.
-- [ ] Regarder la bande bleue de la section « Pour qui » en vrai. C'est le seul
-      aplat de couleur pleine de la page ; à l'impression elle sort en blanc avec
-      du texte noir, ce qui a été prévu mais pas vu.
+- [x] Bande bleue de la section « Pour qui » regardée en vrai : le texte blanc
+      manquait de détachement. Passée au bleu foncé (7,98:1) avec des pastilles
+      rondes derrière les crochets.
+- [ ] Vérifier que le menu à 24 px ne manque pas trop entre 1024 et 1279 px. S'il
+      manque, deux sorties : redescendre les liens à 20 px (ils tiennent alors
+      dès 1024 px), ou accepter que le menu soit réservé aux grands écrans.
+- [ ] À l'impression, la bande « Pour qui » sort en blanc avec du texte noir.
+      Prévu, jamais vu sur papier.
 - [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
 - [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google.
       Les vraies coordonnées y sont maintenant, donc ce test a du sens. À faire une

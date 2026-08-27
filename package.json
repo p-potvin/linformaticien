@@ -1,7 +1,7 @@
 {
   "name": "linformaticien",
   "private": true,
-  "version": "0.4.0",
+  "version": "0.4.1",
   "type": "module",
   "description": "Site vitrine de L'Informaticien — dépannage informatique à domicile (fr-CA).",
   "scripts": {

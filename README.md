@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Wed, 26 Aug 2026 21:30
+Dernière mise à jour : Wed, 26 Aug 2026 23:10
 
 ## Projet indépendant
 
@@ -108,7 +108,9 @@ Ce qui reste non négociable :
 - corps de texte à 18 px minimum, interlignage 1,65 ;
 - cibles cliquables d'au moins 48 px, 56 px pour l'action principale ;
 - contour de focus de 3 px, visible ;
-- liens soulignés, jamais distingués par la couleur seule ;
+- liens de contenu soulignés, jamais distingués par la couleur seule. Le menu de
+  l'en-tête fait exception : il est dans un `<nav>`, ses liens sont en gros et en
+  bleu, et le soulignement arrive au survol avec un passage au rouge ;
 - numéro de téléphone cliquable (`tel:`) et écrit en gros ;
 - **3:1 de contraste, plancher dur.** En dessous, c'est illisible, pas stylé.
 

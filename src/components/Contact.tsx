@@ -21,7 +21,10 @@ export function Contact() {
   const valeurs = [
     <a
       href={`tel:${coordonnees.telephoneLien}`}
-      className="chiffres text-3xl font-extrabold tracking-titre sm:text-4xl"
+      /* Le rouge du logo sur l'élément le plus important de la page. C'est le
+         seul endroit où il porte autre chose qu'un filet ou une puce, et ça
+         suffit à le sortir du bleu ambiant. */
+      className="chiffres text-rouge text-3xl font-extrabold tracking-titre decoration-2 underline-offset-4 sm:text-4xl"
       aria-label={`${lecteursDecran.appeler} ${coordonnees.telephone}`}
     >
       {coordonnees.telephone}
@@ -39,7 +42,7 @@ export function Contact() {
         {lignes.map(({ picto: Picto, etiquette }, i) => (
           <div key={etiquette}>
             <dt className="flex items-center gap-3 font-semibold text-gris">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-carte bg-bleu-pale text-bleu-fonce">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-bleu-pale text-bleu">
                 <Picto aria-hidden="true" className="size-5" strokeWidth={2.5} />
               </span>
               {etiquette}
