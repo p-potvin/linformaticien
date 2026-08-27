@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Wed, 26 Aug 2026 17:42
+Dernière mise à jour : Wed, 26 Aug 2026 19:05
 
 ## Projet indépendant
 
@@ -39,6 +39,7 @@ src/
   styles/index.css       Base, impression, accessibilité
   components/            Sections de la page
   components/ui/         Bouton, Section, Carte
+outils/verifier-jetons.mjs  Garde-fou des jetons, lancé par `npm run build`
 design-system/           Fiches poussées vers Claude Design
 design-system/marque/    Dessins sources du logo, volontairement hors de public/
 docs/brief-affiche.md    Brief à coller dans Claude Design pour l'affiche
@@ -72,18 +73,25 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
 ## Choix techniques
 
 - **Vite + React 19 + TypeScript + Tailwind 4.** Site statique, aucune donnée serveur.
-- **Aucune dépendance d'interface externe.** Les trois composants d'interface tiennent
-  en une centaine de lignes ; une librairie ajouterait des styles à combattre.
+- **Aucune librairie de composants.** Les trois composants d'interface tiennent en
+  une centaine de lignes ; une librairie ajouterait des styles à combattre. La seule
+  dépendance d'interface est `lucide-react`, et seulement pour les pictogrammes : ce
+  sont des SVG sans style imposé, et seuls les huit réellement importés se retrouvent
+  dans le paquet.
 - **`<details>` natif pour les questions fréquentes.** Accessible au clavier et lisible
   sans JavaScript.
-- **Deux dessins de logo, pas un.** Le mot-symbole fait neuf fois plus large que
-  haut : il tient au pied de page, pas dans une rangée serrée. L'en-tête porte la
-  marque carrée. Le détail est dans
+- **Deux dessins de logo, pas un.** Le mot-symbole fait exactement neuf fois plus
+  large que haut : il porte l'en-tête à partir de 640 px (288 px de large, puis
+  396 px à partir de 1280 px) et le pied de page. Sous 640 px il n'entre pas à côté
+  du numéro de téléphone, et c'est la marque carrée qui sort. Le détail est dans
   [`design-system/logo.html`](design-system/logo.html).
-- **Polices auto-hébergées.** Aucune requête vers un tiers. Bitter et Source Sans 3
-  sont des polices variables : quatre fichiers couvrent toutes les graisses. Voir
+- **Une seule police, auto-hébergée.** Aucune requête vers un tiers. Source Sans 3
+  est variable : deux fichiers couvrent toutes les graisses, titres compris. Voir
   [`src/styles/fonts.css`](src/styles/fonts.css) — remplacer un fichier veut dire
   changer son nom, le vhost les met en cache pour un an.
+- **Pas d'empattements.** Le mot-symbole est une grasse géométrique sans
+  empattements ; les titres s'en approchent par la graisse (800) et le resserrement
+  plutôt que par une deuxième famille. Abandonner Bitter a retiré 66 ko.
 
 ## Accessibilité
 
@@ -96,10 +104,14 @@ Le public cible a 65 ans et plus. Les règles ne sont pas négociables :
 - liens soulignés, jamais distingués par la couleur seule ;
 - numéro de téléphone cliquable (`tel:`) et écrit en gros.
 
-Le contraste se calcule sur les **deux** fonds du site, blanc et crème. Le crème
-est le cas défavorable : c'est lui qui décide si une couleur est admissible. Les
-ratios sont inscrits à côté de chaque jeton dans
+Le contraste se calcule sur les **deux** fonds du site, le blanc et la teinte. La
+teinte est le cas défavorable : c'est elle qui décide si une couleur est admissible.
+Les ratios sont inscrits à côté de chaque jeton dans
 [`src/styles/theme.css`](src/styles/theme.css) — les mesurer, jamais les estimer.
+
+Les deux bleus ne sont pas interchangeables : `bleu` est celui du logo et sert aux
+**aplats** (fond des boutons, pictogrammes), `bleu-fonce` porte tout ce qui se
+**lit**. Même teinte à un degré près, 8:1 au lieu de 5:1.
 
 `npm run verifier` le fait pour vous, et tourne dans `npm run build` : une couleur
 sous le plancher, ou une étiquette du système de design qui ne dit plus la même chose

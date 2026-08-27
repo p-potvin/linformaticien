@@ -12,23 +12,37 @@
 @theme {
   /* --- Couleurs -------------------------------------------------------- */
   /* Ratios mesurés (WCAG 2.1) sur les DEUX fonds réellement utilisés :
-     blanc d'abord, crème ensuite. Le crème est le cas défavorable, c'est donc
-     lui qui décide. Toute nouvelle couleur de texte doit tenir 4,5:1 sur les
-     deux — vérifier avant de l'ajouter, ne pas estimer à l'œil. */
+     blanc d'abord, teinte ensuite. La teinte est le cas défavorable, c'est
+     donc elle qui décide. Toute nouvelle couleur de texte doit tenir 4,5:1 sur
+     les deux — `npm run verifier` le vérifie, ne pas estimer à l'œil. */
   --color-papier: #ffffff;          /* fond de page — jamais remplacé */
-  --color-creme: #f6f2ea;           /* teinte chaude, sections alternées (écran) */
-  --color-encre: #16232e;           /* texte courant              16,0 / 14,3:1 */
-  --color-bleu: #10557f;            /* couleur principale, boutons  8,0 / 7,2:1 */
-  --color-bleu-fonce: #0b3e5e;      /* survol / état actif        11,3 / 10,1:1 */
+  --color-teinte: #f2f7fb;          /* sections alternées (écran seulement) */
+  --color-encre: #16232e;           /* texte courant              16,0 / 14,8:1 */
+
+  /* Le bleu du logo. C'est lui qu'on voit : aplats des boutons, pictogrammes,
+     filets. Le blanc dessus tient 4,96:1. */
+  --color-bleu: #1a75b2;            /* aplats et pictogrammes       5,0 / 4,6:1 */
+  /* Le même bleu en plus foncé, pour ce qui est LU : liens, texte sur les
+     surfaces pâles, survol des boutons. Même teinte (203° contre 204°), donc
+     l'œil ne voit qu'une seule couleur de marque — mais 8:1 au lieu de 5:1,
+     et le public a 65 ans et plus. */
+  --color-bleu-fonce: #12557f;      /* liens et texte bleu          8,0 / 7,4:1 */
+  --color-bleu-nuit: #0b3e5e;       /* survol, état actif         11,3 / 10,4:1 */
   --color-bleu-pale: #e8f1f7;       /* surface teintée, encadrés */
-  --color-rouge: #c03a37;           /* accent : prix, soulignés     5,4 / 4,8:1 */
+
+  /* Le rouge du logo, assez foncé pour porter du texte. */
+  --color-rouge: #c03a37;           /* accent : prix, soulignés     5,4 / 5,0:1 */
   --color-rouge-pale: #fdf0ef;      /* surface d'accent */
-  --color-vert: #1f6b47;            /* confirmation, « inclus »     6,5 / 5,8:1 */
-  --color-gris: #5a6672;            /* texte secondaire             5,9 / 5,3:1 */
-  --color-ligne: #d6dce2;           /* filets et bordures */
+  --color-vert: #1f6b47;            /* confirmation, « inclus »     6,5 / 6,0:1 */
+  --color-gris: #5a6672;            /* texte secondaire             5,9 / 5,4:1 */
+  --color-ligne: #dde5ec;           /* filets et bordures */
 
   /* --- Typographie ----------------------------------------------------- */
-  --font-titre: "Bitter", Georgia, "Times New Roman", serif;
+  /* Une seule famille. Le logo est une grasse géométrique sans empattements ;
+     un titre à empattements à côté faisait deux voix différentes. Source Sans 3
+     est variable : les graisses lourdes des titres ne coûtent aucun octet de
+     plus. */
+  --font-titre: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-texte: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   /* Échelle basée sur 18 px. Rien sous 1rem dans le contenu. */
@@ -43,7 +57,18 @@
   --text-5xl: 3.75rem;        /* 60 px */
 
   --leading-lecture: 1.65;    /* corps de texte — aéré pour les yeux fatigués */
-  --leading-titre: 1.15;
+  --leading-titre: 1.1;
+
+  /* Les titres reprennent l'allure du logo : graisse lourde, lettres serrées.
+     Le corps de texte, lui, ne bouge pas. */
+  --font-weight-titre: 800;
+  --tracking-titre: -0.02em;
+
+  /* --- Largeur de la page ---------------------------------------------- */
+  /* 1216 px : de quoi loger le mot-symbole à 396 px, le menu et le bouton sur
+     une seule rangée à partir de 1280 px. Les blocs de texte gardent leur
+     propre largeur de lecture, plus étroite. */
+  --container-site: 76rem;    /* 1216 px */
 
   /* --- Formes et profondeur -------------------------------------------- */
   --radius-carte: 0.75rem;    /* 12 px */

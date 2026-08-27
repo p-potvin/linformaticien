@@ -7,12 +7,12 @@
     <style>
       :root {
         --papier: #ffffff;
-        --creme: #f6f2ea;
+        --teinte: #f2f7fb;
         --encre: #16232e;
-        --bleu: #10557f;
+        --bleu: #1a75b2;
         --rouge: #c03a37;
         --gris: #5a6672;
-        --ligne: #d6dce2;
+        --ligne: #dde5ec;
       }
       body {
         margin: 0;
@@ -23,7 +23,9 @@
         font-size: 1.125rem;
         line-height: 1.65;
       }
-      h1, h2 { font-family: Bitter, Georgia, serif; line-height: 1.15; }
+      h1, h2 { font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em; line-height: 1.15; }
       h1 { font-size: 2.25rem; margin: 0 0 0.5rem; }
       h2 { font-size: 1.5rem; margin: 2.5rem 0 0.75rem; }
       .sous-titre { color: var(--gris); margin: 0 0 2rem; }
@@ -38,7 +40,7 @@
       table { border-collapse: collapse; width: 100%; margin-top: 0.5rem; }
       th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--ligne); vertical-align: top; }
       th { font-weight: 600; }
-      code { background: var(--creme); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.95em; }
+      code { background: var(--teinte); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.95em; }
       .interdit { border-left: 4px solid var(--rouge); padding-left: 1rem; margin: 0.75rem 0; }
       .permis { border-left: 4px solid var(--bleu); padding-left: 1rem; margin: 0.75rem 0; }
     </style>
@@ -55,10 +57,12 @@
       <img src="marque/logo.png" alt="L'Informaticien" style="width: 420px" />
     </div>
     <p>
-      Il mesure <strong>neuf fois plus large que haut</strong> une fois détouré.
-      C'est ce chiffre qui commande : il lui faut une ligne à lui. Il va au pied
-      de page, sur l'affiche et sur la carte d'affaires. Il ne va pas dans une
-      rangée qui contient déjà autre chose.
+      900 × 100, soit <strong>exactement neuf fois plus large que haut</strong>,
+      sans marge. C'est ce chiffre qui commande tout le reste : il lui faut de la
+      largeur, et beaucoup. Dans l'en-tête du site il fait 288 px à partir de
+      640 px, et 396 px à partir de 1280 px, où le conteneur atteint sa pleine
+      largeur de 1216 px. En dessous de 640 px il n'entre pas à côté du numéro de
+      téléphone : c'est la marque carrée qui prend le relais.
     </p>
 
     <h2>La marque carrée</h2>
@@ -74,12 +78,12 @@
     <h2>Quel fichier, pour quoi</h2>
     <table>
       <tr><th>Fichier</th><th>Usage</th><th>Taille</th></tr>
-      <tr><td><code>public/logo-wordmark.png</code></td><td>Pied de page du site</td><td>933 × 103, détouré</td></tr>
-      <tr><td><code>public/logo-mark.png</code></td><td>En-tête du site</td><td>96 × 96</td></tr>
+      <tr><td><code>public/logo-wordmark.png</code></td><td>En-tête (≥ 640 px) et pied de page</td><td>900 × 100, sans marge</td></tr>
+      <tr><td><code>public/logo-mark.png</code></td><td>En-tête sous 640 px</td><td>96 × 96</td></tr>
       <tr><td><code>public/favicon.ico</code></td><td>Onglet du navigateur</td><td>16, 32 et 48 dans un seul fichier</td></tr>
       <tr><td><code>public/apple-touch-icon.png</code></td><td>Écran d'accueil iOS</td><td>180 × 180</td></tr>
       <tr><td><code>public/og-image.png</code></td><td>Partage Facebook, Messenger</td><td>1200 × 630</td></tr>
-      <tr><td><code>marque/logo.png</code></td><td>Dessin source du mot-symbole</td><td>1024 × 194, marge transparente</td></tr>
+      <tr><td><code>marque/logo.png</code></td><td>Dessin source du mot-symbole</td><td>900 × 100</td></tr>
       <tr><td><code>marque/logo-alt.png</code></td><td>Version claire, fonds sombres</td><td>1024 × 322</td></tr>
       <tr><td><code>marque/favicon.png</code></td><td>Dessin source de la marque carrée</td><td>748 × 755</td></tr>
     </table>
@@ -98,7 +102,7 @@
       <code>npm run verifier</code> arrête la construction et renvoie ici.
     </p>
     <p>Il faut ImageMagick et <code>fontTools</code> :</p>
-    <pre style="background: var(--creme); padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-size: 0.95rem;"><code>python -c "
+    <pre style="background: var(--teinte); padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-size: 0.95rem;"><code>python -c "
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 for w in (600, 700):
@@ -107,10 +111,10 @@ for w in (600, 700):
     f.flavor = None
     f.save(f'/tmp/ss3-{w}.ttf')"
 
-magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gravity north -geometry +0+160 -composite   -font /tmp/ss3-600.ttf -pointsize 40 -fill '#5a6672'   -gravity north -annotate +0+340 'PROMESSE · ZONE'   -font /tmp/ss3-700.ttf -pointsize 86 -fill '#10557f'   -gravity north -annotate +0+410 'TÉLÉPHONE'   -colors 64 -strip public/og-image.png</code></pre>
+magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gravity north -geometry +0+160 -composite   -font /tmp/ss3-600.ttf -pointsize 40 -fill '#5a6672'   -gravity north -annotate +0+340 'PROMESSE · ZONE'   -font /tmp/ss3-700.ttf -pointsize 86 -fill '#1a75b2'   -gravity north -annotate +0+410 'TÉLÉPHONE'   -colors 64 -strip public/og-image.png</code></pre>
     <p>
       Puis reporter les trois valeurs dans
-      <code>public/og-image.source.json</code> : c'est ce fichier que le
+      <code>outils/og-image.source.json</code> : c'est ce fichier que le
       vérificateur compare à <code>site.ts</code>.
     </p>
     <p>
@@ -121,9 +125,10 @@ magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gr
 
     <h2>Ce qu'on ne fait pas</h2>
     <div class="interdit">
-      <strong>Pas de mot-symbole dans une rangée serrée.</strong> Neuf fois plus
-      large que haut, il pousse tout le reste hors de l'écran. C'est déjà arrivé
-      dans l'en-tête du site, sur toutes les largeurs de téléphone.
+      <strong>Pas de mot-symbole sur un téléphone.</strong> Neuf fois plus large
+      que haut, il pousse tout le reste hors de l'écran. C'est déjà arrivé dans
+      l'en-tête, sur toutes les largeurs de téléphone. Sous 640 px, c'est la
+      marque carrée, toujours.
     </div>
     <div class="interdit">
       <strong>Pas de <code>logo-alt.png</code> sur le site.</strong> Il est fait
@@ -137,7 +142,7 @@ magick -size 1200x630 xc:white   \( public/logo-wordmark.png -resize 760x \) -gr
     <div class="permis">
       <strong>Le bleu du logo n'est pas le bleu de l'interface.</strong> Le logo
       porte un <code>#1a75b2</code> plus clair, qui ne tient que 4,4:1 sur crème
-      — sous le plancher du projet. L'interface garde <code>#10557f</code>, la
+      — sous le plancher du projet. L'interface garde <code>#1a75b2</code>, la
       même teinte en plus foncé. Le logo est une image, pas du texte : la règle
       de contraste ne s'y applique pas de la même façon.
     </div>

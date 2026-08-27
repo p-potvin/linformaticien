@@ -1,6 +1,6 @@
 # Notes pour les agents
 
-Mise à jour : Wed, 12 Aug 2026 08:32
+Mise à jour : Wed, 26 Aug 2026 19:05
 
 ## Portée
 
@@ -22,9 +22,18 @@ poste de travail : les PR restent obligatoires, aucun envoi direct sur `main`.
    Le blanc du site et celui de l'affiche doivent rester les mêmes.
 6. **Planchers d'accessibilité** (voir `README.md`) : 18 px, 1,65, 4,5:1, 48 px. Ce sont
    des minimums, pas des cibles.
-7. **Deux copies des jetons.** `src/styles/theme.css` (Tailwind) et
-   `design-system/tokens.css` (CSS pur). Modifier une valeur veut dire la modifier dans
-   les deux.
+7. **Trois copies des jetons.** `src/styles/theme.css` (Tailwind),
+   `design-system/tokens.css` (CSS pur) et les étiquettes affichées dans
+   `design-system/couleurs.html`. Modifier une valeur veut dire la modifier dans les
+   trois. **Ne pas s'y fier de mémoire** : `npm run verifier` compare les trois et
+   recalcule tous les contrastes, et il tourne dans `npm run build`. Cette troisième
+   copie a déjà dérivé deux fois sans que personne le voie.
+8. **Une seule famille de caractères.** Source Sans 3, en police variable. Les titres
+   se distinguent par la graisse (800) et le resserrement, jamais par une deuxième
+   police : le mot-symbole est une grasse sans empattements, et tout doit s'y accorder.
+9. **Les pictogrammes viennent de `lucide-react`**, jamais d'un caractère Unicode
+   posé dans le texte. Un ☎ ou un ✓ collé dans une phrase se fait lire à voix haute
+   par les lecteurs d'écran et change de dessin selon le système.
 
 ## Affiche imprimée
 

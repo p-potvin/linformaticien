@@ -1,5 +1,47 @@
 # Journal des changements
 
+## v0.3.0 — Wed, 26 Aug 2026 19:05
+
+Le site prend l'allure du logo. Le mot-symbole redessiné en 9:1 exact devient
+l'élément principal de l'en-tête, et le reste de la page s'accorde à lui.
+
+- **Le mot-symbole porte l'en-tête** à partir de 640 px : 288 px de large, puis
+  396 px à partir de 1280 px. Le conteneur du site passe de 1024 à **1216 px**
+  pour lui faire de la place sans écraser le menu ni le bouton. Sous 640 px, la
+  marque carrée prend le relais : le mot-symbole ne rentre pas à côté du numéro.
+  Mesuré au pire cas (1024 px, quand le menu apparaît alors que la fenêtre borne
+  encore le conteneur) : 72 px de marge.
+- **Le bleu du logo devient celui du site.** `#1a75b2` porte maintenant les
+  aplats : fond des boutons, pictogrammes, pastilles des étapes. Il ne pouvait
+  pas porter de texte tel quel — 4,44:1 sur l'ancien fond crème, sous le
+  plancher — alors le fond des sections alternées est passé du crème chaud à une
+  teinte froide (`#f2f7fb`), qui le fait tenir à 4,60:1. Ce qui se **lit** garde
+  un bleu plus foncé, `#12557f` : même teinte à un degré près, mais 8:1 au lieu
+  de 5:1, et le public a 65 ans et plus.
+- **Plus d'empattements.** Bitter est retiré. Les titres se distinguent
+  maintenant par la graisse (800) et des lettres resserrées (-0,02 em), pas par
+  une deuxième police — le mot-symbole est une grasse sans empattements, et un
+  titre à empattements à côté faisait deux voix. Source Sans 3 étant variable,
+  la graisse 800 ne coûte rien : **66 ko de moins**, et un préchargement en
+  moins dans l'en-tête.
+- **Le bouton de l'en-tête maigrit** de 299 à 162 px : le libellé
+  « Appelez-moi : » disparaît au profit d'un pictogramme, et les 106 px
+  récupérés vont au mot-symbole. La hauteur, elle, ne bouge pas — 48 px, le
+  plancher tactile. Le nom accessible reste complet.
+- **Les pictogrammes viennent de `lucide-react`** au lieu des caractères ☎, ✓, •
+  et + posés dans le texte. Ces caractères se font lire à voix haute par les
+  lecteurs d'écran et changent de dessin d'un système à l'autre. Huit icônes
+  importées, 5 ko de plus dans le paquet — largement remboursés par les 66 ko de
+  la police retirée.
+- **La section Contact gagne un pictogramme par ligne**, dans le `<dt>`. Premier
+  jet cassé : le pictogramme était glissé entre le `<dl>` et ses `<dt>`, ce qui
+  détruit la liste de définitions pour les lecteurs d'écran. axe l'a attrapé.
+- **`npm run verifier` s'étend** aux textes posés sur un aplat (blanc sur bleu,
+  bleu foncé sur bleu pâle) et connaît les nouveaux jetons. Il a attrapé deux
+  vraies erreurs pendant ce travail : la fiche de couleurs restée sur l'ancienne
+  palette, puis un remplacement trop large qui avait écrasé la pastille
+  `bleu-nuit`.
+
 ## v0.2.1 — Wed, 26 Aug 2026 17:42
 
 Arrivée du logo et des vraies coordonnées. Le site n'affiche plus une seule

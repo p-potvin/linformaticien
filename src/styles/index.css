@@ -33,14 +33,26 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Les titres empruntent au logo : très grasses, lettres serrées. C'est ce
+     qui accorde la page au mot-symbole maintenant qu'il n'y a plus
+     d'empattements pour faire diversion. Source Sans 3 étant variable, la
+     graisse 800 ne coûte pas un octet de plus. */
   h1,
   h2,
   h3,
   h4 {
     font-family: var(--font-titre);
     line-height: var(--leading-titre);
+    letter-spacing: var(--tracking-titre);
     text-wrap: balance;
-    font-weight: 600;
+    font-weight: var(--font-weight-titre);
+  }
+
+  /* Le resserrement des titres ne descend pas jusqu'aux petits : sous 24 px il
+     colle les lettres au lieu de les tenir. */
+  h3,
+  h4 {
+    letter-spacing: -0.01em;
   }
 
   p {
@@ -51,7 +63,10 @@
      Tailwind neutralise le soulignement natif, on le remet explicitement.
      Les boutons le retirent avec `no-underline`. */
   a {
-    color: var(--color-bleu);
+    /* Le bleu FONCÉ pour ce qui se lit : 8:1 au lieu de 5:1. Le bleu du logo
+       reste pour les aplats et les pictogrammes, où il n'y a pas de texte à
+       déchiffrer. */
+    color: var(--color-bleu-fonce);
     text-decoration-line: underline;
     text-underline-offset: 0.2em;
     text-decoration-thickness: 0.08em;

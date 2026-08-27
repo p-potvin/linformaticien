@@ -1,6 +1,6 @@
 # À faire
 
-Mise à jour : Wed, 26 Aug 2026 17:42
+Mise à jour : Wed, 26 Aug 2026 19:05
 
 ## Bloquant avant la mise en ligne
 
@@ -51,7 +51,8 @@ valeurs jetables.
 
 ## Site
 
-- [x] Auto-héberger Bitter et Source Sans 3 plutôt que de dépendre de Google Fonts.
+- [x] Auto-héberger la police plutôt que de dépendre de Google Fonts. (Bitter a
+      depuis été retiré : une seule famille, Source Sans 3.)
 - [x] Ajouter `sitemap.xml` (`robots.txt` le référence déjà).
 - [x] Ajouter les données structurées `LocalBusiness` en JSON-LD.
 - [x] Passer un vérificateur d'accessibilité automatisé : axe-core sur le DOM
@@ -60,10 +61,16 @@ valeurs jetables.
       tabulation a été vérifié dans le DOM (19 éléments, aucun `tabindex` positif),
       mais personne n'a encore *vu* le contour de focus se promener dans la page.
 - [ ] Vérifier le rendu réel sur un téléphone, à taille de police système agrandie
-      (réglage courant chez les aînés). Le débordement de l'en-tête est réglé — la
-      marque carrée a remplacé le mot-symbole, ce qui laisse 42 px de marge à
-      320 px. Ce qui reste à surveiller : le bouton est en `whitespace-nowrap`, donc
-      une police système très agrandie peut encore le pousser dehors.
+      (réglage courant chez les aînés). L'en-tête a maintenant 62 px de marge à
+      320 px, contre 42 avant : le bouton a maigri de 299 à 162 px. Ce qui reste à
+      surveiller : il est toujours en `whitespace-nowrap`, donc une police système
+      très agrandie peut encore le pousser dehors.
+- [ ] Regarder le mot-symbole de l'en-tête sur un vrai écran large. Les largeurs
+      (288 px, puis 396 px à partir de 1280 px) viennent d'un calcul sur les
+      métriques réelles des polices, pas d'une observation.
+- [ ] Vérifier que le nouveau fond teinté (`#f2f7fb`) se distingue encore du blanc
+      sur un écran bon marché mal calibré. Il est plus pâle que l'ancien crème,
+      parce que c'est ce qu'il fallait pour que le bleu du logo y tienne 4,5:1.
 - [ ] Rediriger `letechnicien.top` et `le.technicien.top` vers `linformaticien.ca`.
 - [ ] Valider le JSON-LD avec l'outil de test des résultats enrichis de Google.
       Les vraies coordonnées y sont maintenant, donc ce test a du sens. À faire une

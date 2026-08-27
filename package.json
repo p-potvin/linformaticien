@@ -1,7 +1,7 @@
 {
   "name": "linformaticien",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.3.0",
   "type": "module",
   "description": "Site vitrine de L'Informaticien — dépannage informatique à domicile (fr-CA).",
   "scripts": {
@@ -12,6 +12,7 @@
     "verifier": "node outils/verifier-jetons.mjs"
   },
   "dependencies": {
+    "lucide-react": "^1.34.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

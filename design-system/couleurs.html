@@ -4,19 +4,24 @@
   <head>
     <meta charset="UTF-8" />
     <title>Couleurs — L'Informaticien</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --papier: #ffffff;
-        --creme: #f6f2ea;
+        --teinte: #f2f7fb;
         --encre: #16232e;
-        --bleu: #10557f;
-        --bleu-fonce: #0b3e5e;
+        --bleu: #1a75b2;
+        --bleu-fonce: #12557f;
+        --bleu-nuit: #0b3e5e;
         --bleu-pale: #e8f1f7;
         --rouge: #c03a37;
         --rouge-pale: #fdf0ef;
         --vert: #1f6b47;
         --gris: #5a6672;
-        --ligne: #d6dce2;
+        --ligne: #dde5ec;
       }
       body {
         margin: 0;
@@ -26,10 +31,17 @@
         font: 400 18px/1.65 "Source Sans 3", "Segoe UI", system-ui, sans-serif;
       }
       h1 {
-        font-family: Bitter, Georgia, serif;
         font-size: 36px;
-        line-height: 1.15;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
         margin: 0 0 8px;
+      }
+      h2 {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin: 40px 0 12px;
       }
       .note {
         color: var(--gris);
@@ -59,111 +71,140 @@
       .ratio {
         font-size: 16px;
         color: var(--gris);
-        font-variant-numeric: tabular-nums;
       }
-      .ratio strong {
-        color: var(--vert);
+      .regle {
+        border-left: 4px solid var(--bleu);
+        padding-left: 16px;
+        margin: 16px 0;
+        max-width: 70ch;
       }
     </style>
   </head>
   <body>
     <h1>Couleurs</h1>
     <p class="note">
-      Le fond est toujours blanc : les affiches sont imprimées et l'aplat de couleur
-      coûte cher. Le ratio indiqué est le contraste du texte sur blanc — tout ce qui
-      sert de texte dépasse 4,5:1.
+      Les ratios sont mesurés sur fond blanc. Le deuxième fond du site, la
+      teinte, est légèrement plus sombre : c'est lui le cas défavorable, et
+      c'est lui qui décide si une couleur peut porter du texte. Le plancher du
+      projet est 4,5:1 sur les deux.
     </p>
 
     <div class="grille">
+      <div class="jeton">
+        <div class="pastille" style="background: #ffffff; border-bottom: 1px solid #dde5ec"></div>
+        <div class="info">
+          <div class="nom">papier</div>
+          <div class="hex">#FFFFFF</div>
+          <div class="ratio">fond de page — jamais remplacé</div>
+        </div>
+      </div>
+      <div class="jeton">
+        <div class="pastille" style="background: #f2f7fb; border-bottom: 1px solid #dde5ec"></div>
+        <div class="info">
+          <div class="nom">teinte</div>
+          <div class="hex">#F2F7FB</div>
+          <div class="ratio">sections alternées, écran</div>
+        </div>
+      </div>
       <div class="jeton">
         <div class="pastille" style="background: #16232e"></div>
         <div class="info">
           <div class="nom">encre</div>
           <div class="hex">#16232E</div>
-          <div class="ratio"><strong>16,0:1</strong> — texte courant</div>
+          <div class="ratio">16,0:1 — texte courant</div>
         </div>
       </div>
-
       <div class="jeton">
-        <div class="pastille" style="background: #10557f"></div>
+        <div class="pastille" style="background: #1a75b2"></div>
         <div class="info">
           <div class="nom">bleu</div>
-          <div class="hex">#10557F</div>
-          <div class="ratio"><strong>8,0:1</strong> — boutons, liens</div>
+          <div class="hex">#1A75B2</div>
+          <div class="ratio">5,0:1 — aplats, pictogrammes</div>
         </div>
       </div>
-
+      <div class="jeton">
+        <div class="pastille" style="background: #12557f"></div>
+        <div class="info">
+          <div class="nom">bleu-fonce</div>
+          <div class="hex">#12557F</div>
+          <div class="ratio">8,0:1 — liens, texte bleu</div>
+        </div>
+      </div>
       <div class="jeton">
         <div class="pastille" style="background: #0b3e5e"></div>
         <div class="info">
-          <div class="nom">bleu-fonce</div>
+          <div class="nom">bleu-nuit</div>
           <div class="hex">#0B3E5E</div>
-          <div class="ratio"><strong>11,3:1</strong> — survol</div>
+          <div class="ratio">11,3:1 — survol</div>
         </div>
       </div>
-
       <div class="jeton">
-        <div class="pastille" style="background: #e8f1f7; border-bottom: 1px solid #d6dce2"></div>
+        <div class="pastille" style="background: #e8f1f7; border-bottom: 1px solid #dde5ec"></div>
         <div class="info">
           <div class="nom">bleu-pale</div>
           <div class="hex">#E8F1F7</div>
           <div class="ratio">surface seulement</div>
         </div>
       </div>
-
       <div class="jeton">
         <div class="pastille" style="background: #c03a37"></div>
         <div class="info">
           <div class="nom">rouge</div>
           <div class="hex">#C03A37</div>
-          <div class="ratio"><strong>5,4:1</strong> — prix, accents</div>
+          <div class="ratio">5,4:1 — prix, accents</div>
         </div>
       </div>
-
       <div class="jeton">
-        <div class="pastille" style="background: #fdf0ef; border-bottom: 1px solid #d6dce2"></div>
+        <div class="pastille" style="background: #fdf0ef; border-bottom: 1px solid #dde5ec"></div>
         <div class="info">
           <div class="nom">rouge-pale</div>
           <div class="hex">#FDF0EF</div>
           <div class="ratio">surface seulement</div>
         </div>
       </div>
-
       <div class="jeton">
         <div class="pastille" style="background: #1f6b47"></div>
         <div class="info">
           <div class="nom">vert</div>
           <div class="hex">#1F6B47</div>
-          <div class="ratio"><strong>6,5:1</strong> — confirmations</div>
+          <div class="ratio">6,5:1 — confirmations</div>
         </div>
       </div>
-
       <div class="jeton">
         <div class="pastille" style="background: #5a6672"></div>
         <div class="info">
           <div class="nom">gris</div>
           <div class="hex">#5A6672</div>
-          <div class="ratio"><strong>5,9:1</strong> — texte secondaire</div>
+          <div class="ratio">5,9:1 — texte secondaire</div>
         </div>
       </div>
-
       <div class="jeton">
-        <div class="pastille" style="background: #f6f2ea; border-bottom: 1px solid #d6dce2"></div>
-        <div class="info">
-          <div class="nom">creme</div>
-          <div class="hex">#F6F2EA</div>
-          <div class="ratio">écran seulement, jamais imprimé</div>
-        </div>
-      </div>
-
-      <div class="jeton">
-        <div class="pastille" style="background: #d6dce2"></div>
+        <div class="pastille" style="background: #dde5ec; border-bottom: 1px solid #dde5ec"></div>
         <div class="info">
           <div class="nom">ligne</div>
-          <div class="hex">#D6DCE2</div>
-          <div class="ratio">filets, bordures</div>
+          <div class="hex">#DDE5EC</div>
+          <div class="ratio">filets et bordures</div>
         </div>
       </div>
     </div>
+
+    <h2>Les deux bleus</h2>
+    <div class="regle">
+      <strong>bleu</strong> est celui du logo. Il sert aux <em>aplats</em> :
+      fond des boutons, pictogrammes, pastilles des étapes, filets. Le blanc
+      posé dessus tient 4,96:1.
+    </div>
+    <div class="regle">
+      <strong>bleu-fonce</strong> est le même bleu en plus sombre, et c'est
+      celui qui porte le <em>texte</em> : liens, texte sur les surfaces pâles,
+      survol des boutons. Même teinte à un degré près, donc l'œil ne voit
+      qu'une couleur de marque — mais 8:1 au lieu de 5:1, et le public a 65 ans
+      et plus.
+    </div>
+    <p class="note">
+      Ne pas intervertir les deux. Un lien en <code>bleu</code> tiendrait
+      4,6:1 sur la teinte : au-dessus du plancher, mais tout juste, et les
+      planchers du projet sont des minimums, pas des cibles.
+    </p>
   </body>
 </html>

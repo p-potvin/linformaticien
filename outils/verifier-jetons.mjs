@@ -66,21 +66,30 @@ for (const [, pastille, nom, etiquette] of blocs) {
 console.log(`   ${blocs.length} pastilles comparées`);
 
 console.log("3. contraste sur les deux fonds (plancher 4,5:1)");
-const fonds = { blanc: theme.papier, creme: theme.creme };
-for (const nom of ["encre", "bleu", "bleu-fonce", "rouge", "vert", "gris"]) {
+const fonds = { blanc: theme.papier, teinte: theme.teinte };
+for (const nom of ["encre", "bleu", "bleu-fonce", "bleu-nuit", "rouge", "vert", "gris"]) {
   for (const [nomFond, fond] of Object.entries(fonds)) {
     const r = ratio(theme[nom], fond);
     if (r < 4.5) faute(`${nom} sur ${nomFond} : ${r.toFixed(2)}:1`);
   }
 }
-const surBouton = ratio(theme.papier, theme.bleu);
-if (surBouton < 4.5) faute(`blanc sur bleu : ${surBouton.toFixed(2)}:1`);
+// Textes posés sur un aplat plutôt que sur le fond de la page.
+const surAplats = [
+  ["blanc", "bleu", theme.papier, theme.bleu],
+  ["blanc", "bleu-fonce", theme.papier, theme["bleu-fonce"]],
+  ["bleu-fonce", "bleu-pale", theme["bleu-fonce"], theme["bleu-pale"]],
+  ["encre", "rouge-pale", theme.encre, theme["rouge-pale"]],
+];
+for (const [avant, arriere, a, b] of surAplats) {
+  const r = ratio(a, b);
+  if (r < 4.5) faute(`${avant} sur ${arriere} : ${r.toFixed(2)}:1`);
+}
 
 console.log("4. l'image de partage dit-elle encore la vérité ?");
 {
   const site = readFileSync("src/content/site.ts", "utf8");
   const valeur = (cle) => site.match(new RegExp(`${cle}:[ ]*"([^"]+)"`))?.[1];
-  const grave = JSON.parse(readFileSync("public/og-image.source.json", "utf8"));
+  const grave = JSON.parse(readFileSync("outils/og-image.source.json", "utf8"));
   const actuel = {
     promesse: valeur("promesse"),
     zone: valeur("zone"),
