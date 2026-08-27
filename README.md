@@ -3,7 +3,7 @@
 Site vitrine pour un service de dépannage informatique à domicile, destiné à une
 clientèle âgée peu à l'aise avec la technologie.
 
-Dernière mise à jour : Wed, 26 Aug 2026 23:10
+Dernière mise à jour : Thu, 27 Aug 2026 02:10
 
 ## Projet indépendant
 
@@ -66,9 +66,9 @@ l'autre passerait inaperçu à l'écran.
 | `le.technicien.top`         | Redirection 301                   | Public            |
 | `dev.linformaticien.ca`     | Préproduction                     | Tailnet seulement |
 
-Chaque push sur `main` déclenche un webhook signé et met à jour **dev**.
-La production est une promotion explicite du même artéfact, jamais une
-reconstruction. Voir [`deploy/README.md`](deploy/README.md).
+Chaque push sur `main` met à jour **dev** ; chaque push sur `prod` bascule la
+**production** sur le même artéfact, sans le reconstruire. Voir
+[`deploy/README.md`](deploy/README.md).
 
 ## Choix techniques
 
@@ -88,6 +88,10 @@ reconstruction. Voir [`deploy/README.md`](deploy/README.md).
   396 px à partir de 1280 px) et le pied de page. Sous 640 px il n'entre pas à côté
   du numéro de téléphone, et c'est la marque carrée qui sort. Le détail est dans
   [`design-system/logo.html`](design-system/logo.html).
+- **Mesure d'audience par Google Tag Manager** (`GTM-5QJ5XN28`). C'est la
+  **seule** requête vers un tiers de la page — tout le reste est servi par
+  `linformaticien.ca`. Le conteneur est chargé en `async`, donc il ne retarde
+  pas l'affichage.
 - **Une seule police, auto-hébergée.** Aucune requête vers un tiers. Source Sans 3
   est variable : deux fichiers couvrent toutes les graisses, titres compris. Voir
   [`src/styles/fonts.css`](src/styles/fonts.css) — remplacer un fichier veut dire

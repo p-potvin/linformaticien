@@ -1,6 +1,6 @@
 # À faire
 
-Mise à jour : Thu, 27 Aug 2026 01:45
+Mise à jour : Thu, 27 Aug 2026 02:10
 
 ## Bloquant avant la mise en ligne
 
@@ -91,6 +91,18 @@ valeurs jetables.
 - [ ] Regarder l'aperçu de partage dans Messenger et Facebook une fois en ligne
       (`og-image.png`, 1200 × 630). Les deux gardent l'ancienne image en cache
       longtemps : vérifier tôt.
+
+## Mesure d'audience
+
+- [x] Conteneur Google Tag Manager `GTM-5QJ5XN28` posé dans `index.html`, en-tête
+      et corps.
+- [ ] **Loi 25 (Québec).** GTM seul ne dépose rien, mais la première balise qui
+      suit — Google Analytics en particulier — dépose des témoins et déclenche
+      l'obligation d'obtenir le consentement avant le dépôt, plus une politique
+      de confidentialité accessible. À régler **avant** d'activer une balise dans
+      le conteneur, pas après. Rien à faire tant que le conteneur reste vide.
+- [ ] Vérifier dans l'aperçu GTM que le conteneur se charge bien sur la
+      production, et que le mode sans JavaScript (`<noscript>`) ne casse rien.
 
 ## À décider plus tard
 
